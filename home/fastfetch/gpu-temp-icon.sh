@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 GPU="AMD Radeon RX $(lspci | grep -i 'vga\|3d\|display' | grep -i amd | grep -oP '(?<=\[)Radeon[^\]]*(?=\])' | cut -d'/' -f2 | sed 's/^[[:space:]]*//')"
 

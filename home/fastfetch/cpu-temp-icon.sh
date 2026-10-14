@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 CPU=$(grep -m1 'model name' /proc/cpuinfo | cut -d: -f2 | sed 's/^[[:space:]]*//' | sed 's/ [0-9]*-Core Processor//')
 
