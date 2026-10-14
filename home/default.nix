@@ -8,6 +8,7 @@
     ./ghostty.nix
     ./fastfetch.nix
     ./fish.nix
+    ./kwin.nix
     ./vesktop.nix
     ./yazi.nix
   ];
