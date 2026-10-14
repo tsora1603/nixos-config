@@ -1,0 +1,2236 @@
+/*
+ * Plasma Overdose Cream / Pixel95 — Hydra Launcher
+ * Windows 9x foundation · Needy Girl Overdose-inspired pixel chrome
+ *
+ * Sections
+ *  1. Windows 9x foundation and original component styles
+ *  2. Pixel95 component treatments
+ *  3. Game details and review form
+ *  4. Game options and download settings
+ *
+ * Upstream theme: https://github.com/tsora1603/hydra-themes
+ * Theme docs: https://docs.hydralauncher.gg/themes.html
+ * Font: installed DepartureMono Nerd Font (no remote imports)
+ */
+
+:root {
+  /* Plasma Overdose Cream palette: taupe #d8d0c0, cream #f0ece0,
+     ink #202628, warm brown #96703a, accent orange #c87922.
+     Keep the original --win95-* names so upstream component rules work. */
+  --win95-grey: #d8d0c0;
+  --win95-grey-light: #f7f5ee;
+  --win95-grey-dark: #8a7c64;
+  --win95-black: #202628;
+  --win95-white: #f0ece0;
+  --win95-blue: #7d6036;
+  --win95-blue-light: #96703a;
+  --win95-teal: #f0ece0;
+  --overdose-orange: #c87922;
+  --overdose-muted-text: #6a5c46;
+  --win95-font: 'DepartureMono Nerd Font', 'DepartureMono Nerd Font Mono', 'Departure Mono', monospace;
+  /* Pixel95 surface colors and bevel tokens */
+  --ngo-paper: #f0ece0;
+  --ngo-raised: #e4dfd1;
+  --ngo-glint: #fffaf1;
+  --ngo-border: #96703a;
+  --ngo-ink: #202628;
+  --ngo-sand: #cbbda5;
+  --ngo-deep: #7d6036;
+  --ngo-orange: #c87922;
+  --ngo-sunken: #dcd1bb;
+  --ngo-soft-grid: rgba(150, 112, 58, .055);
+  --ngo-bevel: inset 2px 2px 0 var(--ngo-glint), inset -2px -2px 0 var(--win95-grey-dark);
+  --ngo-press: inset 2px 2px 0 var(--win95-grey-dark), inset -2px -2px 0 var(--ngo-glint);
+  --ngo-outer-step: 2px 2px 0 var(--ngo-deep);
+}
+
+/* Global reset */
+* {
+  border-radius: 0 !important;
+  font-family: var(--win95-font) !important;
+  box-shadow: none !important;
+}
+
+body {
+  background-color: var(--win95-teal) !important;
+}
+
+/* Header (page title bar) */
+.header {
+  background: linear-gradient(90deg, var(--win95-blue) 0%, var(--win95-blue-light) 100%) !important;
+  color: var(--win95-white) !important;
+  border-bottom: 2px solid var(--win95-black) !important;
+  box-shadow: inset 0 -1px 0 var(--win95-grey-dark) !important;
+  padding: 4px 6px !important;
+  font-weight: bold !important;
+}
+
+.header__title,
+.header__title--has-back-button {
+  color: var(--win95-white) !important;
+  font-weight: bold !important;
+  text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.4) !important;
+}
+
+.header__section {
+  background: transparent !important;
+}
+
+/* Back arrow: absolutely-positioned 16x16 icon, grown symmetrically via
+   border-box + negative margin so the button box doesn't shift anchor */
+.header__back-button,
+.header__back-button--enabled {
+  box-sizing: border-box !important;
+  width: 22px !important;
+  height: 22px !important;
+  margin: -3px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  color: var(--win95-black) !important;
+  background: var(--win95-grey) !important;
+  border-top: 1px solid var(--win95-grey-light) !important;
+  border-left: 1px solid var(--win95-grey-light) !important;
+  border-right: 1px solid var(--win95-black) !important;
+  border-bottom: 1px solid var(--win95-black) !important;
+  box-shadow: inset -1px -1px 0 var(--win95-grey-dark), inset 1px 1px 0 var(--win95-white) !important;
+  padding: 0 !important;
+}
+
+.header__back-button:active {
+  border-top: 1px solid var(--win95-black) !important;
+  border-left: 1px solid var(--win95-black) !important;
+  border-right: 1px solid var(--win95-grey-light) !important;
+  border-bottom: 1px solid var(--win95-grey-light) !important;
+  box-shadow: none !important;
+}
+
+.header__action-button {
+  background: var(--win95-grey) !important;
+  color: var(--win95-black) !important;
+  border-top: 2px solid var(--win95-grey-light) !important;
+  border-left: 2px solid var(--win95-grey-light) !important;
+  border-right: 2px solid var(--win95-black) !important;
+  border-bottom: 2px solid var(--win95-black) !important;
+  box-shadow: inset -1px -1px 0 var(--win95-grey-dark), inset 1px 1px 0 var(--win95-white) !important;
+  padding: 2px 8px !important;
+}
+
+.header__action-button:active {
+  border-top: 2px solid var(--win95-black) !important;
+  border-left: 2px solid var(--win95-black) !important;
+  border-right: 2px solid var(--win95-grey-light) !important;
+  border-bottom: 2px solid var(--win95-grey-light) !important;
+  box-shadow: none !important;
+}
+
+.header__search {
+  background: var(--win95-white) !important;
+  color: var(--win95-black) !important;
+  border-top: 2px solid var(--win95-grey-dark) !important;
+  border-left: 2px solid var(--win95-grey-dark) !important;
+  border-right: 2px solid var(--win95-white) !important;
+  border-bottom: 2px solid var(--win95-white) !important;
+  box-shadow: inset -1px -1px 0 var(--win95-grey-light), inset 1px 1px 0 var(--win95-black) !important;
+}
+
+.header__search-input {
+  background: transparent !important;
+  color: var(--win95-black) !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* Search icon button nested inside .header__search — strip its own
+   bevel so it sits flush instead of showing a separate indented box */
+.header__search .header__action-button {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 4px !important;
+  color: var(--win95-black) !important;
+}
+
+/* Title bar (window chrome: drag region, Big Picture, min/max/close) */
+.title-bar {
+  background: linear-gradient(90deg, var(--win95-blue) 0%, var(--win95-blue-light) 100%) !important;
+  border-bottom: 2px solid var(--win95-black) !important;
+}
+
+.title-bar__cloud-text {
+  background: none !important;
+  -webkit-text-fill-color: var(--win95-white) !important;
+  color: var(--win95-white) !important;
+}
+
+.title-bar__big-picture {
+  color: var(--win95-white) !important;
+  opacity: 0.85 !important;
+}
+
+.title-bar__big-picture:hover {
+  opacity: 1 !important;
+  background-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+.title-bar__window-control {
+  color: var(--win95-white) !important;
+}
+
+.title-bar__window-control:hover {
+  background-color: rgba(255, 255, 255, 0.2) !important;
+  color: var(--win95-white) !important;
+}
+
+.title-bar__window-control--close:hover {
+  background-color: #a83232 !important;
+  color: var(--win95-white) !important;
+}
+
+/* "Hydra" wordmark, plain <h4> with no dedicated class */
+.title-bar h4 {
+  color: var(--win95-white) !important;
+  font-weight: bold !important;
+  text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.5) !important;
+  letter-spacing: 0.02em !important;
+}
+
+/* Sidebar */
+.sidebar,
+.sidebar__container,
+.sidebar__content {
+  background: var(--win95-grey) !important;
+  color: var(--win95-black) !important;
+  border-right: 2px solid var(--win95-grey-dark) !important;
+  box-shadow: inset -1px 0 0 var(--win95-white) !important;
+}
+
+/* Split container/button borders to avoid a doubled bottom edge */
+.sidebar-profile {
+  background: var(--win95-grey) !important;
+  border: none !important;
+  color: var(--win95-black) !important;
+}
+
+.sidebar-profile__button {
+  background: var(--win95-grey) !important;
+  border-top: 2px solid var(--win95-grey-light) !important;
+  border-left: 2px solid var(--win95-grey-light) !important;
+  border-right: 2px solid var(--win95-black) !important;
+  border-bottom: 2px solid var(--win95-black) !important;
+  color: var(--win95-black) !important;
+}
+
+.sidebar-profile__button-title {
+  font-weight: bold !important;
+  color: var(--win95-black) !important;
+}
+
+/* Profile dropdown menu */
+.sidebar-profile__dropdown {
+  background-color: var(--win95-grey) !important;
+  backdrop-filter: none !important;
+  border-top: 2px solid var(--win95-grey-light) !important;
+  border-left: 2px solid var(--win95-grey-light) !important;
+  border-right: 2px solid var(--win95-black) !important;
+  border-bottom: 2px solid var(--win95-black) !important;
+  box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.5) !important;
+}
+
+.sidebar-profile__dropdown-item {
+  color: var(--win95-black) !important;
+}
+
+.sidebar-profile__dropdown-item:hover {
+  background-color: var(--win95-blue) !important;
+  color: var(--win95-white) !important;
+}
+
+.sidebar-profile__dropdown-item--danger:hover {
+  color: var(--win95-white) !important;
+}
+
+.sidebar-profile__dropdown-badge {
+  color: var(--win95-white) !important;
+}
+
+.sidebar-profile__dropdown-separator {
+  background-color: var(--win95-grey-dark) !important;
+}
+
+.sidebar__section-title,
+.sidebar__section-header,
+.sidebar__collection-count {
+  color: var(--win95-black) !important;
+  font-weight: bold !important;
+  text-transform: none !important;
+}
+
+.sidebar__menu-item,
+.sidebar__menu-item-button {
+  background: transparent !important;
+  color: var(--win95-black) !important;
+  border: none !important;
+}
+
+/* Raised taskbar-button bevel for main nav items only (Home, Catalogue,
+   Library, Downloads, Settings) — game rows below reuse the same
+   classes and get a flat treatment instead, further down */
+.sidebar__menu .sidebar__menu-item-button {
+  border-top: 2px solid var(--win95-grey-light) !important;
+  border-left: 2px solid var(--win95-grey-light) !important;
+  border-right: 2px solid var(--win95-grey-dark) !important;
+  border-bottom: 2px solid var(--win95-grey-dark) !important;
+  box-shadow: inset -1px -1px 0 var(--win95-black), inset 1px 1px 0 var(--win95-white) !important;
+}
+
+.sidebar__menu .sidebar__menu-item--active .sidebar__menu-item-button,
+.sidebar__menu .sidebar__menu-item:hover .sidebar__menu-item-button {
+  background: var(--win95-blue) !important;
+  border-top: 2px solid var(--win95-black) !important;
+  border-left: 2px solid var(--win95-black) !important;
+  border-right: 2px solid var(--win95-grey-light) !important;
+  border-bottom: 2px solid var(--win95-grey-light) !important;
+  box-shadow: none !important;
+}
+
+/* Flat list rows for the library game list */
+.sidebar__game-list-scroll .sidebar__menu-item-button {
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.sidebar__menu-item--active,
+.sidebar__menu-item:hover {
+  background: var(--win95-blue) !important;
+  color: var(--win95-white) !important;
+}
+
+/* Force white through icon/label children, which don't inherit color */
+.sidebar__menu-item--active .sidebar__menu-item-button,
+.sidebar__menu-item--active .sidebar__menu-item-button-label,
+.sidebar__menu-item--active svg,
+.sidebar__menu-item:hover .sidebar__menu-item-button,
+.sidebar__menu-item:hover .sidebar__menu-item-button-label,
+.sidebar__menu-item:hover svg {
+  color: var(--win95-white) !important;
+}
+
+.sidebar__menu-item-button-label {
+  color: inherit !important;
+}
+
+.sidebar__game-list,
+.sidebar__game-list-scroll {
+  background: var(--win95-white) !important;
+  border-top: 2px solid var(--win95-grey-dark) !important;
+  border-left: 2px solid var(--win95-grey-dark) !important;
+  border-right: 2px solid var(--win95-white) !important;
+  border-bottom: 2px solid var(--win95-white) !important;
+}
+
+.sidebar__game-icon {
+  border: 1px solid var(--win95-black) !important;
+}
+
+.sidebar__add-button,
+.sidebar__play-button {
+  background: var(--win95-grey) !important;
+  color: var(--win95-black) !important;
+  border-top: 2px solid var(--win95-grey-light) !important;
+  border-left: 2px solid var(--win95-grey-light) !important;
+  border-right: 2px solid var(--win95-black) !important;
+  border-bottom: 2px solid var(--win95-black) !important;
+}
+
+.sidebar__add-button:active,
+.sidebar__play-button:active {
+  border-top: 2px solid var(--win95-black) !important;
+  border-left: 2px solid var(--win95-black) !important;
+  border-right: 2px solid var(--win95-grey-light) !important;
+  border-bottom: 2px solid var(--win95-grey-light) !important;
+}
+
+/* Sidebar resize handle, kept invisible */
+.sidebar__handle {
+  background: transparent !important;
+}
+
+.settings__sidebar,
+.settings__sidebar-group,
+.settings__sidebar-group-label {
+  background: var(--win95-grey) !important;
+  color: var(--win95-black) !important;
+}
+
+.settings__sidebar-button {
+  background: var(--win95-grey) !important;
+  color: var(--win95-black) !important;
+  border-top: 2px solid var(--win95-grey-light) !important;
+  border-left: 2px solid var(--win95-grey-light) !important;
+  border-right: 2px solid var(--win95-grey-dark) !important;
+  border-bottom: 2px solid var(--win95-grey-dark) !important;
+  box-shadow: inset -1px -1px 0 var(--win95-black), inset 1px 1px 0 var(--win95-white) !important;
+}
+
+.settings__sidebar-button--active {
+  background: var(--win95-blue) !important;
+  color: var(--win95-white) !important;
+  border-top: 2px solid var(--win95-black) !important;
+  border-left: 2px solid var(--win95-black) !important;
+  border-right: 2px solid var(--win95-grey-light) !important;
+  border-bottom: 2px solid var(--win95-grey-light) !important;
+  box-shadow: none !important;
+}
+
+.settings__sidebar-divider {
+  border-top: 1px solid var(--win95-grey-dark) !important;
+  border-bottom: 1px solid var(--win95-white) !important;
+}
+
+/* Main content */
+.container__content {
+  background: var(--win95-grey) !important;
+  color: var(--win95-black) !important;
+}
+
+/* Bottom panel (status bar) */
+.bottom-panel {
+  background: var(--win95-grey) !important;
+  color: var(--win95-black) !important;
+  border-top: 2px solid var(--win95-white) !important;
+  box-shadow: inset 0 1px 0 var(--win95-grey-light) !important;
+  font-size: 11px !important;
+}
+
+.bottom-panel__downloads-button,
+.bottom-panel__version-button {
+  background: var(--win95-grey) !important;
+  color: var(--win95-black) !important;
+  border-top: 1px solid var(--win95-grey-dark) !important;
+  border-left: 1px solid var(--win95-grey-dark) !important;
+  border-right: 1px solid var(--win95-white) !important;
+  border-bottom: 1px solid var(--win95-white) !important;
+}
+
+/* Toast */
+.toast {
+  background: var(--win95-grey) !important;
+  color: var(--win95-black) !important;
+  border-top: 2px solid var(--win95-grey-light) !important;
+  border-left: 2px solid var(--win95-grey-light) !important;
+  border-right: 2px solid var(--win95-black) !important;
+  border-bottom: 2px solid var(--win95-black) !important;
+  box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.5) !important;
+}
+
+/* Modals (e.g. "Download options") */
+.modal {
+  background: var(--win95-grey) !important;
+  color: var(--win95-black) !important;
+  border-top: 2px solid var(--win95-grey-light) !important;
+  border-left: 2px solid var(--win95-grey-light) !important;
+  border-right: 2px solid var(--win95-black) !important;
+  border-bottom: 2px solid var(--win95-black) !important;
+  box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.4) !important;
+}
+
+.modal__header {
+  background: linear-gradient(90deg, var(--win95-blue) 0%, var(--win95-blue-light) 100%) !important;
+  border-bottom: 2px solid var(--win95-black) !important;
+}
+
+.modal__header h3,
+.modal__header p {
+  color: var(--win95-white) !important;
+  text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.4) !important;
+}
+
+.modal__close-button-icon {
+  color: var(--win95-white) !important;
+}
+
+.repacks-modal__repack-button {
+  background: var(--win95-grey-light) !important;
+  color: var(--win95-black) !important;
+  border-top: 1px solid var(--win95-white) !important;
+  border-left: 1px solid var(--win95-white) !important;
+  border-right: 1px solid var(--win95-grey-dark) !important;
+  border-bottom: 1px solid var(--win95-grey-dark) !important;
+}
+
+.repacks-modal__repack-title,
+.repacks-modal__repack-info {
+  color: var(--win95-black) !important;
+}
+
+.repacks-modal__new-badge {
+  background: var(--win95-grey) !important;
+  color: var(--win95-black) !important;
+  border: 1px solid var(--win95-black) !important;
+}
+
+.repacks-modal__source-item {
+  background: var(--win95-white) !important;
+  border: 1px solid var(--win95-black) !important;
+}
+
+/* Dropdowns (e.g. "Filter by source", "Sort by") */
+.select-field {
+  background: var(--win95-white) !important;
+  border-top: 2px solid var(--win95-grey-dark) !important;
+  border-left: 2px solid var(--win95-grey-dark) !important;
+  border-right: 2px solid var(--win95-white) !important;
+  border-bottom: 2px solid var(--win95-white) !important;
+  box-shadow: inset -1px -1px 0 var(--win95-grey-light), inset 1px 1px 0 var(--win95-black) !important;
+}
+
+.select-field__option {
+  background: transparent !important;
+}
+
+/* Game details page */
+.hero-panel {
+  background: var(--win95-grey) !important;
+  border-top: 2px solid var(--win95-grey-light) !important;
+  border-left: 2px solid var(--win95-grey-light) !important;
+  border-right: 2px solid var(--win95-black) !important;
+  border-bottom: 2px solid var(--win95-black) !important;
+  backdrop-filter: none !important;
+}
+
+.hero-panel__content p,
+.hero-panel__download-details {
+  color: var(--win95-black) !important;
+}
+
+.game-details__description-container {
+  background: var(--win95-grey) !important;
+}
+
+.game-details__description {
+  color: var(--win95-black) !important;
+}
+
+.sidebar-section {
+  background: var(--win95-grey) !important;
+  border-top: 2px solid var(--win95-grey-light) !important;
+  border-left: 2px solid var(--win95-grey-light) !important;
+  border-right: 2px solid var(--win95-black) !important;
+  border-bottom: 2px solid var(--win95-black) !important;
+}
+
+.sidebar-section__content {
+  background: var(--win95-grey-light) !important;
+}
+
+.sidebar-section__button,
+.sidebar-section__subtitle,
+.sidebar-section__content * {
+  color: var(--win95-black) !important;
+}
+
+.sidebar-section__header:hover {
+  background: var(--win95-blue) !important;
+}
+
+.sidebar-section__header:hover .sidebar-section__button {
+  color: var(--win95-white) !important;
+}
+
+/* Release date / publisher box */
+.description-header {
+  background: var(--win95-grey) !important;
+  border-top: 2px solid var(--win95-grey-light) !important;
+  border-left: 2px solid var(--win95-grey-light) !important;
+  border-right: 2px solid var(--win95-black) !important;
+  border-bottom: 2px solid var(--win95-black) !important;
+}
+
+.description-header p {
+  color: var(--win95-black) !important;
+}
+
+/* Reviews section */
+.game-details__reviews-section,
+.game-details__reviews-section * {
+  color: var(--win95-black) !important;
+}
+
+.game-details__reviews-badge {
+  background: var(--win95-white) !important;
+  border: 1px solid var(--win95-black) !important;
+}
+
+.game-details__vote-button {
+  background: var(--win95-grey-light) !important;
+  border: 1px solid var(--win95-black) !important;
+}
+
+/* Downloads page */
+.download-group__header-title-group h2,
+.download-group__header-count,
+.download-group__simple-title,
+.download-group__simple-meta-row,
+.download-group__simple-size,
+.download-group__simple-extracting,
+.download-group__simple-progress-text {
+  color: var(--win95-black) !important;
+}
+
+.download-group__header-count {
+  background: var(--win95-white) !important;
+  border: 1px solid var(--win95-black) !important;
+}
+
+.download-group__progress-bar {
+  background: var(--win95-grey-dark) !important;
+}
+
+.download-group__progress-fill {
+  background: var(--win95-blue) !important;
+}
+
+/* Classics / Emulation settings — blanket text color, since these pages
+   use dozens of hardcoded hex colors with no shared variables */
+.console-card,
+.emulator-detail {
+  color: var(--win95-black) !important;
+}
+
+.console-card *,
+.emulator-detail * {
+  color: var(--win95-black) !important;
+}
+
+.console-card {
+  background: var(--win95-grey-light) !important;
+  border: 2px solid var(--win95-black) !important;
+}
+
+.console-card__hint-box,
+.emulator-detail__hero,
+.emulator-detail__row,
+.emulator-detail__stat,
+.emulator-detail__exec-path-box,
+.emulator-detail__memcard-card,
+.emulator-detail__cloud-card,
+.emulator-detail__restore-target,
+.emulator-detail__page-btn {
+  background: var(--win95-white) !important;
+  border: 1px solid var(--win95-black) !important;
+}
+
+.console-card__chip,
+.emulator-detail__synced,
+.emulator-detail__path-missing,
+.emulator-detail__res-status {
+  background: var(--win95-white) !important;
+  border: 1px solid var(--win95-black) !important;
+}
+
+.emulator-detail__tab {
+  opacity: 1 !important;
+  border-bottom: 2px solid transparent !important;
+}
+
+.emulator-detail__tab--active {
+  border-bottom: 2px solid var(--win95-blue) !important;
+  font-weight: bold !important;
+}
+
+.emulator-detail__memcard-backup-progress-track {
+  background: var(--win95-grey-dark) !important;
+}
+
+.emulator-detail__memcard-backup-progress-fill {
+  background: var(--win95-blue) !important;
+}
+
+/* Search dropdown (recent searches / live results) */
+.search-dropdown {
+  background: var(--win95-grey) !important;
+  border-top: 2px solid var(--win95-grey-light) !important;
+  border-left: 2px solid var(--win95-grey-light) !important;
+  border-right: 2px solid var(--win95-black) !important;
+  border-bottom: 2px solid var(--win95-black) !important;
+}
+
+.search-dropdown__section:not(:last-child) {
+  border-bottom: 1px solid var(--win95-grey-dark) !important;
+}
+
+.search-dropdown__section-title,
+.search-dropdown__clear-text-button,
+.search-dropdown__item,
+.search-dropdown__item-icon,
+.search-dropdown__loading,
+.search-dropdown__empty {
+  color: var(--win95-black) !important;
+}
+
+.search-dropdown__shop-switch {
+  background: var(--win95-white) !important;
+  border: 1px solid var(--win95-black) !important;
+}
+
+.search-dropdown__shop-button--active {
+  background: var(--win95-blue) !important;
+  color: var(--win95-white) !important;
+}
+
+.search-dropdown__item:hover,
+.search-dropdown__item--active {
+  background: var(--win95-blue) !important;
+  color: var(--win95-white) !important;
+}
+
+.search-dropdown__item:hover .search-dropdown__item-icon,
+.search-dropdown__item--active .search-dropdown__item-icon {
+  color: var(--win95-white) !important;
+}
+
+/* Library game card covers, raised bevel like a tile/button */
+.library-game-card__wrapper {
+  border-top: 2px solid var(--win95-grey-light) !important;
+  border-left: 2px solid var(--win95-grey-light) !important;
+  border-right: 2px solid var(--win95-black) !important;
+  border-bottom: 2px solid var(--win95-black) !important;
+  box-shadow: inset -1px -1px 0 var(--win95-grey-dark), inset 1px 1px 0 var(--win95-white) !important;
+}
+
+.library-game-card-large {
+  border-top: 2px solid var(--win95-grey-light) !important;
+  border-left: 2px solid var(--win95-grey-light) !important;
+  border-right: 2px solid var(--win95-black) !important;
+  border-bottom: 2px solid var(--win95-black) !important;
+  box-shadow: inset -1px -1px 0 var(--win95-grey-dark), inset 1px 1px 0 var(--win95-white) !important;
+}
+
+/* Profile page */
+.profile-section {
+  background: var(--win95-grey) !important;
+  border-top: 2px solid var(--win95-grey-light) !important;
+  border-left: 2px solid var(--win95-grey-light) !important;
+  border-right: 2px solid var(--win95-black) !important;
+  border-bottom: 2px solid var(--win95-black) !important;
+}
+
+.profile-section__content {
+  background: var(--win95-grey-light) !important;
+}
+
+.profile-section__button,
+.profile-section__count,
+.profile-section__content * {
+  color: var(--win95-black) !important;
+}
+
+.profile-section__header {
+  background: var(--win95-grey) !important;
+}
+
+.profile-section__header:hover {
+  background: var(--win95-blue) !important;
+}
+
+.profile-section__header:hover .profile-section__button {
+  color: var(--win95-white) !important;
+}
+
+/* Banner + avatar */
+.profile-hero__content-box {
+  background: var(--win95-grey) !important;
+}
+
+.profile-hero__avatar-button {
+  background: var(--win95-white) !important;
+  border: 2px solid var(--win95-black) !important;
+  box-shadow: inset -1px -1px 0 var(--win95-grey-light), inset 1px 1px 0 var(--win95-grey-dark) !important;
+}
+
+.profile-hero__display-name,
+.profile-hero__information,
+.profile-hero__friend-code {
+  color: var(--win95-white) !important;
+  text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.6) !important;
+}
+
+.profile-hero__hero-panel {
+  background: var(--win95-grey) !important;
+  backdrop-filter: none !important;
+  border-top: 2px solid var(--win95-grey-light) !important;
+}
+
+/* Tabs (Library / Reviews, Notifications filters) */
+.profile-content__tab,
+.notifications__tab {
+  color: var(--win95-black) !important;
+  opacity: 1 !important;
+  border-bottom: 2px solid transparent !important;
+}
+
+.profile-content__tab--active,
+.notifications__tab--active {
+  border-bottom: 2px solid var(--win95-blue) !important;
+  font-weight: bold !important;
+}
+
+.profile-content__tab-underline,
+.notifications__tab-underline {
+  display: none !important;
+}
+
+.profile-content__tab-badge,
+.notifications__tab-badge,
+.profile-content__section-badge {
+  background: var(--win95-white) !important;
+  color: var(--win95-black) !important;
+  border: 1px solid var(--win95-black) !important;
+}
+
+/* User review cards */
+.user-reviews__review-item,
+.user-reviews__review-item * {
+  color: var(--win95-black) !important;
+}
+
+.user-reviews__review-item {
+  background: var(--win95-white) !important;
+  border: 1px solid var(--win95-black) !important;
+}
+
+.user-reviews__review-score-stars,
+.user-reviews__review-playtime,
+.user-reviews__vote-button {
+  background: var(--win95-grey-light) !important;
+  border: 1px solid var(--win95-black) !important;
+}
+
+/* Notifications page */
+.notifications__filter-tabs {
+  border-bottom: 1px solid var(--win95-grey-dark) !important;
+}
+
+.notification-item {
+  background: var(--win95-white) !important;
+  border: 1px solid var(--win95-black) !important;
+  opacity: 1 !important;
+}
+
+.notification-item:hover {
+  background: var(--win95-grey-light) !important;
+  opacity: 1 !important;
+}
+
+.notification-item--unread {
+  border-left: 4px solid var(--win95-blue) !important;
+}
+
+.notification-item__picture,
+.notification-item__badge-picture {
+  background: var(--win95-grey) !important;
+  color: var(--win95-black) !important;
+}
+
+.notification-item__title,
+.notification-item__description,
+.notification-item__time {
+  color: var(--win95-black) !important;
+}
+
+/* Collections shelf (Favorites / custom collection pills) */
+.library__collections-title {
+  color: var(--win95-black) !important;
+  font-weight: bold !important;
+}
+
+.library__add-collection-button {
+  background: var(--win95-grey) !important;
+  color: var(--win95-black) !important;
+  border-top: 2px solid var(--win95-grey-light) !important;
+  border-left: 2px solid var(--win95-grey-light) !important;
+  border-right: 2px solid var(--win95-black) !important;
+  border-bottom: 2px solid var(--win95-black) !important;
+  box-shadow: inset -1px -1px 0 var(--win95-grey-dark), inset 1px 1px 0 var(--win95-white) !important;
+}
+
+.library__add-collection-button:active {
+  border-top: 2px solid var(--win95-black) !important;
+  border-left: 2px solid var(--win95-black) !important;
+  border-right: 2px solid var(--win95-grey-light) !important;
+  border-bottom: 2px solid var(--win95-grey-light) !important;
+  box-shadow: none !important;
+}
+
+.library__collection-item {
+  color: var(--win95-black) !important;
+  background: var(--win95-grey) !important;
+  border-top: 2px solid var(--win95-grey-light) !important;
+  border-left: 2px solid var(--win95-grey-light) !important;
+  border-right: 2px solid var(--win95-black) !important;
+  border-bottom: 2px solid var(--win95-black) !important;
+  box-shadow: inset -1px -1px 0 var(--win95-grey-dark), inset 1px 1px 0 var(--win95-white) !important;
+}
+
+.library__collection-item:hover {
+  background: var(--win95-grey-light) !important;
+}
+
+.library__collection-item--active {
+  background: var(--win95-blue) !important;
+  color: var(--win95-white) !important;
+  border-top: 2px solid var(--win95-black) !important;
+  border-left: 2px solid var(--win95-black) !important;
+  border-right: 2px solid var(--win95-grey-light) !important;
+  border-bottom: 2px solid var(--win95-grey-light) !important;
+  box-shadow: none !important;
+}
+
+.library__collection-item--active * {
+  color: var(--win95-white) !important;
+}
+
+.library__collection-count {
+  background: var(--win95-white) !important;
+  color: var(--win95-black) !important;
+  border: 1px solid var(--win95-black) !important;
+}
+
+/* Buttons (generic) */
+.button {
+  background: var(--win95-grey) !important;
+  color: var(--win95-black) !important;
+  border-top: 2px solid var(--win95-grey-light) !important;
+  border-left: 2px solid var(--win95-grey-light) !important;
+  border-right: 2px solid var(--win95-black) !important;
+  border-bottom: 2px solid var(--win95-black) !important;
+  box-shadow: inset -1px -1px 0 var(--win95-grey-dark), inset 1px 1px 0 var(--win95-white) !important;
+  font-weight: normal !important;
+  padding: 4px 12px !important;
+  transition: none !important;
+}
+
+.button:active {
+  border-top: 2px solid var(--win95-black) !important;
+  border-left: 2px solid var(--win95-black) !important;
+  border-right: 2px solid var(--win95-grey-light) !important;
+  border-bottom: 2px solid var(--win95-grey-light) !important;
+  box-shadow: none !important;
+  transform: translate(1px, 1px) !important;
+}
+
+/* Settings content pane */
+.settings__content {
+  background: var(--win95-grey) !important;
+  color: var(--win95-black) !important;
+}
+
+.settings__content h1,
+.settings__content h2,
+.settings__content h3,
+.settings__content p,
+.settings__content span,
+.settings__content label {
+  color: var(--win95-black) !important;
+}
+
+.settings__sidebar-button-label,
+.settings__sidebar-button-icon,
+.settings__sidebar-group-label {
+  color: var(--win95-black) !important;
+}
+
+.settings__sidebar-button--active .settings__sidebar-button-label,
+.settings__sidebar-button--active .settings__sidebar-button-icon {
+  color: var(--win95-white) !important;
+}
+
+.settings-download-sources__item,
+.download-group__item,
+.settings-emulation__header {
+  background: var(--win95-grey-light) !important;
+  color: var(--win95-black) !important;
+  border-top: 1px solid var(--win95-white) !important;
+  border-left: 1px solid var(--win95-white) !important;
+  border-right: 1px solid var(--win95-grey-dark) !important;
+  border-bottom: 1px solid var(--win95-grey-dark) !important;
+}
+
+/* Text fields / search / inputs */
+.text-field-container__text-field--dark,
+.text-field-container__text-field--primary,
+input[type="text"],
+input[type="search"],
+input[type="password"],
+input[type="number"],
+textarea,
+select {
+  background: var(--win95-white) !important;
+  color: var(--win95-black) !important;
+  border-top: 2px solid var(--win95-grey-dark) !important;
+  border-left: 2px solid var(--win95-grey-dark) !important;
+  border-right: 2px solid var(--win95-white) !important;
+  border-bottom: 2px solid var(--win95-white) !important;
+  box-shadow: inset -1px -1px 0 var(--win95-grey-light), inset 1px 1px 0 var(--win95-black) !important;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--win95-grey-dark) !important;
+  opacity: 1 !important;
+}
+
+/* Checkboxes — .checkbox-field__input is the real (invisible, full-size)
+   input, kept full-size so its click area isn't shrunk */
+.checkbox-field__checkbox {
+  width: 16px !important;
+  height: 16px !important;
+  min-width: 16px !important;
+  min-height: 16px !important;
+  background: var(--win95-white) !important;
+  border-top: 2px solid var(--win95-grey-dark) !important;
+  border-left: 2px solid var(--win95-grey-dark) !important;
+  border-right: 2px solid var(--win95-white) !important;
+  border-bottom: 2px solid var(--win95-white) !important;
+}
+
+.checkbox-field__icon {
+  color: var(--win95-black) !important;
+}
+
+.checkbox-field__label {
+  color: var(--win95-black) !important;
+}
+
+/* Catalogue / library filters + toolbar */
+.catalogue__filters-container,
+.game-item,
+.friends-box__box,
+.user-stats__box,
+.recent-games__box {
+  background: var(--win95-grey) !important;
+  color: var(--win95-black) !important;
+  border-top: 2px solid var(--win95-grey-light) !important;
+  border-left: 2px solid var(--win95-grey-light) !important;
+  border-right: 2px solid var(--win95-black) !important;
+  border-bottom: 2px solid var(--win95-black) !important;
+}
+
+.catalogue__filters-container *,
+.friends-box__box *,
+.user-stats__box *,
+.recent-games__box * {
+  color: var(--win95-black) !important;
+}
+
+/* Filter panel (Publisher/Release Year/Genres boxes) */
+.filter-section {
+  background: var(--win95-grey) !important;
+  border-top: 2px solid var(--win95-grey-light) !important;
+  border-left: 2px solid var(--win95-grey-light) !important;
+  border-right: 2px solid var(--win95-black) !important;
+  border-bottom: 2px solid var(--win95-black) !important;
+  box-shadow: none !important;
+}
+
+.filter-section__button {
+  background: transparent !important;
+  color: var(--win95-black) !important;
+}
+
+.filter-section__content {
+  background: var(--win95-grey) !important;
+}
+
+.filter-section__title,
+.filter-section__header-count,
+.filter-section__count,
+.filter-section__clear-button {
+  color: var(--win95-black) !important;
+}
+
+.filter-section__header-count {
+  background: var(--win95-white) !important;
+  border: 1px solid var(--win95-black) !important;
+}
+
+.filter-item {
+  background: var(--win95-grey-light) !important;
+  color: var(--win95-black) !important;
+  border: 1px solid var(--win95-black) !important;
+}
+
+/* Result count / filter hint text */
+.catalogue__result-count,
+.catalogue__filters-hint,
+.catalogue__sort-label,
+.catalogue__active-filters-label {
+  color: var(--win95-black) !important;
+}
+
+/* Loading skeleton — colors are set as inline CSS custom properties by
+   react-loading-skeleton, so override the variables directly */
+.catalogue__skeleton {
+  border: 1px solid var(--win95-black) !important;
+}
+
+.react-loading-skeleton {
+  --base-color: var(--win95-grey-light) !important;
+  --highlight-color: var(--win95-white) !important;
+  background-color: var(--win95-grey-light) !important;
+}
+
+/* Profile page "Platforms" / "Sort by" dropdowns */
+.filter-dropdown__trigger {
+  background: var(--win95-white) !important;
+  color: var(--win95-black) !important;
+  border-top: 2px solid var(--win95-grey-dark) !important;
+  border-left: 2px solid var(--win95-grey-dark) !important;
+  border-right: 2px solid var(--win95-white) !important;
+  border-bottom: 2px solid var(--win95-white) !important;
+  box-shadow: inset -1px -1px 0 var(--win95-grey-light), inset 1px 1px 0 var(--win95-black) !important;
+}
+
+.filter-dropdown__placeholder,
+.filter-dropdown__value,
+.filter-dropdown__chevron {
+  color: var(--win95-black) !important;
+}
+
+.filter-dropdown__menu {
+  background: var(--win95-grey) !important;
+  border-top: 2px solid var(--win95-grey-light) !important;
+  border-left: 2px solid var(--win95-grey-light) !important;
+  border-right: 2px solid var(--win95-black) !important;
+  border-bottom: 2px solid var(--win95-black) !important;
+  box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.5) !important;
+}
+
+.filter-dropdown__option {
+  color: var(--win95-black) !important;
+}
+
+.filter-dropdown__option:hover,
+.filter-dropdown__option--active {
+  background: var(--win95-blue) !important;
+  color: var(--win95-white) !important;
+}
+
+.filter-dropdown__check {
+  color: var(--win95-black) !important;
+}
+
+/* Library page "All / PC / Classics" toggle */
+.library-category-filter__container {
+  background: var(--win95-grey) !important;
+  border-top: 2px solid var(--win95-grey-dark) !important;
+  border-left: 2px solid var(--win95-grey-dark) !important;
+  border-right: 2px solid var(--win95-white) !important;
+  border-bottom: 2px solid var(--win95-white) !important;
+  gap: 4px !important;
+}
+
+.library-category-filter__option {
+  color: var(--win95-black) !important;
+  background: var(--win95-grey) !important;
+  border-top: 2px solid var(--win95-grey-light) !important;
+  border-left: 2px solid var(--win95-grey-light) !important;
+  border-right: 2px solid var(--win95-black) !important;
+  border-bottom: 2px solid var(--win95-black) !important;
+  box-shadow: inset -1px -1px 0 var(--win95-grey-dark), inset 1px 1px 0 var(--win95-white) !important;
+}
+
+.library-category-filter__option--active {
+  background: var(--win95-blue) !important;
+  color: var(--win95-white) !important;
+  border-top: 2px solid var(--win95-black) !important;
+  border-left: 2px solid var(--win95-black) !important;
+  border-right: 2px solid var(--win95-grey-light) !important;
+  border-bottom: 2px solid var(--win95-grey-light) !important;
+  box-shadow: none !important;
+}
+
+.library-category-filter__option--active * {
+  color: var(--win95-white) !important;
+}
+
+/* Catalogue page "Modern Games / Classics" toggle */
+.catalogue-mode-toggle {
+  background: var(--win95-grey) !important;
+  border-top: 2px solid var(--win95-grey-dark) !important;
+  border-left: 2px solid var(--win95-grey-dark) !important;
+  border-right: 2px solid var(--win95-white) !important;
+  border-bottom: 2px solid var(--win95-white) !important;
+  gap: 4px !important;
+}
+
+.catalogue-mode-toggle__option {
+  color: var(--win95-black) !important;
+  background: var(--win95-grey) !important;
+  border-top: 2px solid var(--win95-grey-light) !important;
+  border-left: 2px solid var(--win95-grey-light) !important;
+  border-right: 2px solid var(--win95-black) !important;
+  border-bottom: 2px solid var(--win95-black) !important;
+  box-shadow: inset -1px -1px 0 var(--win95-grey-dark), inset 1px 1px 0 var(--win95-white) !important;
+}
+
+.catalogue-mode-toggle__option--active {
+  background: var(--win95-blue) !important;
+  color: var(--win95-white) !important;
+  border-top: 2px solid var(--win95-black) !important;
+  border-left: 2px solid var(--win95-black) !important;
+  border-right: 2px solid var(--win95-grey-light) !important;
+  border-bottom: 2px solid var(--win95-grey-light) !important;
+  box-shadow: none !important;
+}
+
+.catalogue-mode-toggle__option--active * {
+  color: var(--win95-white) !important;
+}
+
+/* ProtonDB tier radio filters — round, exempted from the global reset */
+.radio-field__control {
+  border-radius: 999px !important;
+  width: 14px !important;
+  height: 14px !important;
+  min-width: 14px !important;
+  background: var(--win95-white) !important;
+  border: 2px solid var(--win95-grey-dark) !important;
+  box-shadow: inset -1px -1px 0 var(--win95-grey-light), inset 1px 1px 0 var(--win95-black) !important;
+}
+
+.radio-field__dot {
+  border-radius: 999px !important;
+  background: var(--win95-black) !important;
+}
+
+.radio-field__label {
+  color: var(--win95-black) !important;
+}
+
+/* Field/dropdown text color */
+.text-field-container__text-field-input,
+.select-field__option,
+.select-field__label {
+  color: var(--win95-black) !important;
+}
+
+/* Game row genre subtitle */
+.game-item__genres {
+  color: var(--win95-black) !important;
+}
+
+.badge {
+  background: var(--win95-white) !important;
+  color: var(--win95-black) !important;
+  border: 1px solid var(--win95-black) !important;
+  backdrop-filter: none !important;
+}
+
+/* Root background */
+#root {
+  background: var(--win95-teal) !important;
+}
+
+/* Default text color fallback */
+body {
+  color: var(--win95-black) !important;
+}
+
+/* Scrollbars */
+::-webkit-scrollbar {
+  width: 16px !important;
+  height: 16px !important;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--win95-grey) !important;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--win95-grey) !important;
+  border-top: 2px solid var(--win95-grey-light) !important;
+  border-left: 2px solid var(--win95-grey-light) !important;
+  border-right: 2px solid var(--win95-black) !important;
+  border-bottom: 2px solid var(--win95-black) !important;
+}
+
+/* Cream palette finishing touches: readable hints and an amber focus accent. */
+input::placeholder,
+textarea::placeholder {
+  color: var(--overdose-muted-text) !important;
+}
+
+:where(button, a, input, textarea, select, [role="button"]):focus-visible {
+  outline: 2px dashed var(--overdose-orange) !important;
+  outline-offset: 2px !important;
+}
+
+::selection {
+  background: var(--win95-blue);
+  color: var(--win95-white);
+}
+
+/* ========================================================================
+   PLASMA OVERDOSE CREAM / PIXEL WINDOWS — NGO-INSPIRED INTERFACE
+   ------------------------------------------------------------------------
+   Layered over the original Windows 9x CSS. No layout rewrites, no imagery
+   filters, no font downloads. All decorative geometry is pure CSS.
+   ======================================================================== */
+
+/* Pixel-grid stationery, kept behind content and away from game imagery. */
+body,
+#root {
+  background-color: var(--ngo-paper) !important;
+  background-image: linear-gradient(90deg, var(--ngo-soft-grid) 1px, transparent 1px),
+    linear-gradient(0deg, var(--ngo-soft-grid) 1px, transparent 1px) !important;
+  background-size: 12px 12px !important;
+}
+
+/* JINE-like window stripes across main, page and modal title strips. */
+.title-bar,
+.header,
+.modal__header {
+  background-color: var(--ngo-deep) !important;
+  background-image: repeating-linear-gradient(90deg, transparent 0 8px, rgba(255,250,241,.12) 8px 10px),
+    linear-gradient(90deg, var(--ngo-deep), var(--ngo-border)) !important;
+  border-bottom: 2px solid var(--ngo-ink) !important;
+  box-shadow: inset 0 2px 0 rgba(255,250,241,.18), inset 0 -1px 0 #513e2a !important;
+}
+
+.title-bar h4,
+.header__title,
+.header__title--has-back-button,
+.modal__header h3,
+.modal__header p {
+  color: var(--ngo-glint) !important;
+  text-shadow: 1px 1px 0 var(--ngo-ink) !important;
+  letter-spacing: .035em !important;
+}
+
+/* A soft checkerboard strip beneath the most recognizable panels. */
+.bottom-panel,
+.settings__sidebar,
+.sidebar__container {
+  background-image: repeating-linear-gradient(90deg,
+    transparent 0 9px, rgba(255,250,241,.14) 9px 10px) !important;
+}
+
+/* One frame per real button: crisp two-pixel beveled controls. The nested
+   search icon is excluded so the input doesn't acquire a second button. */
+:is( .button, .header__action-button, .header__back-button, .sidebar-profile__button, .sidebar__add-button, .sidebar__play-button, .settings__sidebar-button, .library__add-collection-button, .library__collection-item, .library-category-filter__option, .catalogue-mode-toggle__option, .repacks-modal__repack-button, .game-details__vote-button, .user-reviews__vote-button, .emulator-detail__page-btn, .bottom-panel__downloads-button, .bottom-panel__version-button ) {
+  border: 2px solid var(--ngo-deep) !important;
+  background-color: var(--ngo-raised) !important;
+  background-image: linear-gradient(180deg, rgba(255,250,241,.52), transparent 60%) !important;
+  box-shadow: var(--ngo-bevel), var(--ngo-outer-step) !important;
+  color: var(--ngo-ink) !important;
+  border-radius: 0 !important;
+  transition: none !important;
+  text-shadow: none !important;
+}
+
+/* Keep top-navigation buttons as the sole cards; do not style their wrappers. */
+.sidebar__menu .sidebar__menu-item-button {
+  background-color: var(--ngo-raised) !important;
+  background-image: linear-gradient(180deg, rgba(255,250,241,.4), transparent 60%) !important;
+  border: 2px solid var(--ngo-deep) !important;
+  box-shadow: var(--ngo-bevel), var(--ngo-outer-step) !important;
+  color: var(--ngo-ink) !important;
+}
+
+/* Do not turn individual games into a second layer of navigation cards. */
+.sidebar__game-list-scroll .sidebar__menu-item-button {
+  border: none !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+/* The icon inside the search field must remain flush. */
+.header__search .header__action-button {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* Hover highlights the existing button — no floating duplicate shadows. */
+:is( .button, .header__action-button, .header__back-button, .sidebar-profile__button, .sidebar__add-button, .sidebar__play-button, .settings__sidebar-button, .library__add-collection-button, .library__collection-item, .library-category-filter__option, .catalogue-mode-toggle__option, .repacks-modal__repack-button, .game-details__vote-button, .user-reviews__vote-button, .emulator-detail__page-btn ):hover:not(:active):not(:disabled) {
+  border-color: var(--ngo-orange) !important;
+  background-color: var(--ngo-glint) !important;
+  color: var(--ngo-ink) !important;
+}
+
+.sidebar__menu .sidebar__menu-item:hover .sidebar__menu-item-button {
+  border-color: var(--ngo-orange) !important;
+}
+
+/* Pressed buttons sink one step; avoid changing their layout dimensions. */
+:is( .button, .header__action-button, .header__back-button, .sidebar-profile__button, .sidebar__add-button, .sidebar__play-button, .library__add-collection-button, .repacks-modal__repack-button ):active {
+  background-color: var(--ngo-sunken) !important;
+  background-image: none !important;
+  box-shadow: var(--ngo-press) !important;
+  transform: translate(1px, 1px) !important;
+}
+
+/* Selected navigation/tabs use dark, warm brown with readable ivory text.
+   Target existing buttons, not the parent row. */
+.sidebar__menu .sidebar__menu-item--active .sidebar__menu-item-button,
+.sidebar__menu .sidebar__menu-item--active:hover .sidebar__menu-item-button,
+.settings__sidebar-button--active,
+.settings__sidebar-button--active:hover,
+.library__collection-item--active,
+.library__collection-item--active:hover,
+.library-category-filter__option--active,
+.library-category-filter__option--active:hover,
+.catalogue-mode-toggle__option--active,
+.catalogue-mode-toggle__option--active:hover {
+  background-color: var(--ngo-deep) !important;
+  background-image: repeating-linear-gradient(45deg,
+    rgba(255,250,241,.09) 0 2px, transparent 2px 6px) !important;
+  color: var(--ngo-glint) !important;
+  /* Match the selected brown surface instead of drawing a black box. */
+  border-color: var(--ngo-deep) !important;
+  box-shadow: var(--ngo-press) !important;
+  text-shadow: none !important;
+}
+
+:is( .sidebar__menu .sidebar__menu-item--active .sidebar__menu-item-button, .settings__sidebar-button--active, .library__collection-item--active, .library-category-filter__option--active, .catalogue-mode-toggle__option--active ) :is(svg, span) {
+  color: var(--ngo-glint) !important;
+}
+
+/* Collection pills and sidebar game selections: flat selection behind text,
+   without a second bevel or card nested under the list item. */
+.sidebar__game-list-scroll .sidebar__menu-item--active,
+.sidebar__game-list-scroll .sidebar__menu-item:hover {
+  background-color: var(--ngo-deep) !important;
+  background-image: repeating-linear-gradient(90deg,
+    rgba(255,250,241,.07) 0 2px, transparent 2px 8px) !important;
+}
+
+/* Text inputs: inset beige paper with orange focus outline. */
+:is( .header__search, .select-field, .filter-dropdown__trigger, .text-field-container__text-field--dark, .text-field-container__text-field--primary, input[type="text"], input[type="search"], input[type="password"], input[type="number"], textarea, select ) {
+  background-color: var(--ngo-paper) !important;
+  background-image: none !important;
+  color: var(--ngo-ink) !important;
+  border: 2px solid var(--ngo-deep) !important;
+  box-shadow: var(--ngo-press) !important;
+  border-radius: 0 !important;
+}
+
+:is( .header__search, .select-field, .filter-dropdown__trigger, .text-field-container__text-field--dark, .text-field-container__text-field--primary ):focus-within {
+  outline: 2px dashed var(--ngo-orange) !important;
+  outline-offset: 2px !important;
+}
+
+.header__search-input,
+.text-field-container__text-field-input,
+.select-field__label,
+.select-field__option {
+  color: var(--ngo-ink) !important;
+}
+
+/* Pixel-checkered checkboxes and strong selected dots; preserve click areas. */
+.checkbox-field__checkbox,
+.radio-field__control {
+  background-color: var(--ngo-paper) !important;
+  border: 2px solid var(--ngo-deep) !important;
+  box-shadow: var(--ngo-press) !important;
+}
+
+.checkbox-field__icon,
+.radio-field__dot {
+  color: var(--ngo-deep) !important;
+  background-color: var(--ngo-deep) !important;
+}
+
+/* Cards and windows: square JINE-like cream paper, staggered hard shadows.
+   Only frame major surfaces (not their generic content wrappers). */
+:is( .modal, .toast, .search-dropdown, .sidebar-profile__dropdown, .filter-dropdown__menu ) {
+  background: var(--ngo-raised) !important;
+  border: 2px solid var(--ngo-ink) !important;
+  box-shadow: inset 2px 2px 0 var(--ngo-glint),
+    inset -2px -2px 0 var(--ngo-sand), 4px 4px 0 var(--ngo-deep) !important;
+}
+
+:is( .hero-panel, .profile-section, .sidebar-section, .description-header, .filter-section, .console-card, .catalogue__filters-container, .notification-item, .user-reviews__review-item, .game-item ) {
+  border: 2px solid var(--ngo-deep) !important;
+  box-shadow: inset 2px 2px 0 var(--ngo-glint),
+    2px 2px 0 var(--ngo-sand) !important;
+  border-radius: 0 !important;
+}
+
+/* Cover tiles retain their original images; only the outside gets pixels. */
+.library-game-card__wrapper,
+.library-game-card-large {
+  border: 2px solid var(--ngo-deep) !important;
+  box-shadow: 2px 2px 0 var(--ngo-ink), 4px 4px 0 var(--ngo-sand) !important;
+  border-radius: 0 !important;
+  transition: none !important;
+}
+
+.library-game-card__wrapper:hover,
+.library-game-card-large:hover {
+  border-color: var(--ngo-orange) !important;
+  box-shadow: 2px 2px 0 var(--ngo-deep), 4px 4px 0 var(--ngo-sand) !important;
+}
+
+/* Badges, tags and counts resemble clipped pixel stickers. */
+:is( .badge, .library__collection-count, .library-category-filter__container, .download-group__header-count, .filter-section__header-count, .profile-content__tab-badge, .notifications__tab-badge, .profile-content__section-badge, .repacks-modal__new-badge ) {
+  border: 1px solid var(--ngo-deep) !important;
+  background: var(--ngo-paper) !important;
+  color: var(--ngo-ink) !important;
+  box-shadow: 1px 1px 0 var(--ngo-sand) !important;
+}
+
+/* Graphic equalizer-like pixel progress fills (no animation). */
+.download-group__progress-bar,
+.emulator-detail__memcard-backup-progress-track {
+  background: var(--ngo-sunken) !important;
+  border: 2px solid var(--ngo-deep) !important;
+  box-shadow: var(--ngo-press) !important;
+}
+
+.download-group__progress-fill,
+.emulator-detail__memcard-backup-progress-fill {
+  background-color: var(--ngo-orange) !important;
+  background-image: repeating-linear-gradient(90deg,
+    transparent 0 6px, rgba(32,38,40,.24) 6px 8px) !important;
+  box-shadow: inset 0 1px 0 rgba(255,250,241,.42) !important;
+}
+
+/* Selection tabs, notification markers and keyboard navigation. */
+:is(.profile-content__tab--active, .notifications__tab--active, .emulator-detail__tab--active) {
+  border-bottom: 3px solid var(--ngo-orange) !important;
+  color: var(--ngo-deep) !important;
+}
+
+.notification-item--unread {
+  border-left: 4px solid var(--ngo-orange) !important;
+}
+
+/* Scrollbars retain their 9x layout while using alternating pixel marks. */
+::-webkit-scrollbar-track {
+  background-color: var(--win95-grey) !important;
+  background-image: repeating-linear-gradient(45deg,
+    rgba(255,250,241,.35) 0 2px, transparent 2px 5px) !important;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--ngo-raised) !important;
+  background-image: repeating-linear-gradient(90deg,
+    rgba(150,112,58,.12) 0 2px, transparent 2px 5px) !important;
+  border-top: 2px solid var(--ngo-glint) !important;
+  border-left: 2px solid var(--ngo-glint) !important;
+  border-right: 2px solid var(--ngo-deep) !important;
+  border-bottom: 2px solid var(--ngo-deep) !important;
+}
+
+/* Keep visible keyboard focus without smooth UI motion. */
+:is(button, input, textarea, select, a, [role="button"]):focus-visible {
+  outline: 2px dashed var(--ngo-orange) !important;
+  outline-offset: 2px !important;
+}
+
+/* Respect disabled states; do not animate or pixelate cover images. */
+:is(button, .button):disabled {
+  opacity: .65 !important;
+  cursor: not-allowed !important;
+}
+
+/* Hydra paints text and icons white on any hovered navigation row. Override
+   this only for the pale inactive button, leaving active rows ivory on brown. */
+.sidebar__menu .sidebar__menu-item:hover,
+.sidebar__menu .sidebar__menu-item--active {
+  background: transparent !important;
+}
+
+.sidebar__menu .sidebar__menu-item:hover:not(.sidebar__menu-item--active) .sidebar__menu-item-button,
+.sidebar__menu .sidebar__menu-item:hover:not(.sidebar__menu-item--active) .sidebar__menu-item-button-label,
+.sidebar__menu .sidebar__menu-item:hover:not(.sidebar__menu-item--active) svg {
+  color: var(--ngo-ink) !important;
+}
+
+.sidebar__menu .sidebar__menu-item--active .sidebar__menu-item-button-label,
+.sidebar__menu .sidebar__menu-item--active svg {
+  color: var(--ngo-glint) !important;
+}
+
+/* The search icon is not a standalone button: keep it borderless on hover. */
+.header__search .header__action-button,
+.header__search .header__action-button:hover,
+.header__search .header__action-button:active {
+  background: transparent !important;
+  background-image: none !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  transform: none !important;
+  color: var(--ngo-ink) !important;
+}
+
+/* Profile text sits on taupe in this theme. Dark ink provides proper contrast. */
+.profile-hero__content-box .profile-hero__display-name,
+.profile-hero__content-box .profile-hero__information,
+.profile-hero__content-box .profile-hero__friend-code {
+  color: var(--ngo-ink) !important;
+  text-shadow: none !important;
+}
+
+/* ========================================================================
+   PIXEL95 / GAME DETAILS CONTRAST CORRECTIONS
+   Restores cream/brown surfaces wherever Hydra's dark-native component
+   colors still show through. Game art and status-tier colors are untouched.
+   ======================================================================== */
+
+/* Sidebar sections (ProtonDB, Achievements, Stats, requirements): the
+   unhovered title uses Hydra's dark background unless explicitly styled.
+   Make all headers consistent with the brown header in the screenshot. */
+.game-details__description-container .sidebar-section__header {
+  background: var(--ngo-deep) !important;
+  background-image: repeating-linear-gradient(90deg,
+    rgba(255,250,241,.08) 0 1px, transparent 1px 10px) !important;
+  border-bottom: 1px solid var(--ngo-border) !important;
+}
+
+.game-details__description-container .sidebar-section__header:hover {
+  background-color: var(--ngo-border) !important;
+}
+
+.game-details__description-container .sidebar-section__header :is( .sidebar-section__button, .sidebar-section__button span, .sidebar-section__button svg, .sidebar-section__subtitle, .sidebar-section__subtitle svg ) {
+  color: var(--ngo-glint) !important;
+}
+
+/* Keep section content readable instead of white-on-cream or black-on-black. */
+.game-details__description-container .sidebar-section__content {
+  background: var(--ngo-paper) !important;
+  color: var(--ngo-ink) !important;
+}
+
+.game-details__description-container .sidebar-section__content :is( .list__item, .list__item p, .list__item small, .stats__category, .stats__category-title, .requirement__details, .protondb__category-title, .protondb__value, .protondb__view-link, .how-long-to-beat__category-label, .controller-support__description ) {
+  color: var(--ngo-ink) !important;
+}
+
+.game-details__description-container .sidebar-section__content .list__item:hover {
+  background-color: rgba(150,112,58,.12) !important;
+}
+
+/* Hydra's default ProtonDB icon rule inverts SVG/image icons to pure white,
+   making them almost disappear against the cream content background. */
+.game-details__description-container :is(.protondb__steamdeck-icon, .protondb__proton-icon) {
+  filter: brightness(0) saturate(100%) !important;
+  opacity: .85;
+}
+
+/* Steam's game-description preview fades to Hydra's DARK background at the
+   bottom. Blend instead into the exact taupe description surface. */
+.game-details__description--collapsed::after {
+  background: linear-gradient(to bottom,
+    rgba(216,208,192,0), var(--win95-grey)) !important;
+}
+
+/* Show more/less control with visible cream-theme contrast. */
+.game-details__description-toggle {
+  background: var(--ngo-raised) !important;
+  color: var(--ngo-ink) !important;
+  border: 2px solid var(--ngo-deep) !important;
+  border-radius: 0 !important;
+  box-shadow: var(--ngo-bevel), 2px 2px 0 var(--ngo-deep) !important;
+  text-shadow: none !important;
+}
+
+.game-details__description-toggle:hover {
+  background: var(--ngo-glint) !important;
+  border-color: var(--ngo-orange) !important;
+}
+
+.game-details__description-toggle:active {
+  background: var(--ngo-sunken) !important;
+  box-shadow: var(--ngo-press) !important;
+}
+
+/* Selected controls: the original bevel included an
+   inner ivory edge (var(--ngo-press)); selected states are now flat brown
+   with a matching border, without compromising orange keyboard focus. */
+.sidebar__menu .sidebar__menu-item--active .sidebar__menu-item-button,
+.sidebar__menu .sidebar__menu-item--active:hover .sidebar__menu-item-button,
+.settings__sidebar-button--active,
+.settings__sidebar-button--active:hover,
+.library__collection-item--active,
+.library__collection-item--active:hover,
+.library-category-filter__option--active,
+.library-category-filter__option--active:hover,
+.catalogue-mode-toggle__option--active,
+.catalogue-mode-toggle__option--active:hover {
+  box-shadow: none !important;
+  border-color: var(--ngo-deep) !important;
+}
+
+/* ========================================================================
+   PIXEL95 / GAME REVIEW COMPOSER
+   Hydra's Tiptap/ProseMirror editor is not a native textarea: theme the real
+   editor and its toolbar directly. Scope every rule to the review form so
+   other text editors, game images and unrelated controls are untouched.
+   ======================================================================== */
+
+/* Match the cream game panels, with a single square 9x frame. */
+.game-details__review-form .game-details__review-input-container {
+  background: var(--ngo-paper) !important;
+  background-image: none !important;
+  color: var(--ngo-ink) !important;
+  border: 2px solid var(--ngo-deep) !important;
+  border-radius: 0 !important;
+  box-shadow: inset 2px 2px 0 var(--ngo-glint), 2px 2px 0 var(--ngo-deep) !important;
+  overflow: hidden;
+}
+
+/* A brown toolbar, like a miniature titlebar. No second nested frame. */
+.game-details__review-form .game-details__review-input-header {
+  background-color: var(--ngo-deep) !important;
+  background-image: repeating-linear-gradient(90deg,
+    rgba(255, 250, 241, .07) 0 1px, transparent 1px 9px) !important;
+  color: var(--ngo-glint) !important;
+  border: 0 !important;
+  border-bottom: 2px solid var(--ngo-border) !important;
+  box-shadow: none !important;
+}
+
+/* One bevel on each actual B / I / U button; toolbar stays flat. */
+.game-details__review-form .game-details__editor-button {
+  background: var(--ngo-raised) !important;
+  background-image: linear-gradient(180deg, rgba(255,250,241,.4), transparent) !important;
+  border: 1px solid var(--ngo-ink) !important;
+  border-radius: 0 !important;
+  color: var(--ngo-ink) !important;
+  box-shadow: inset 1px 1px 0 var(--ngo-glint), 1px 1px 0 var(--ngo-border) !important;
+  text-shadow: none !important;
+  transition: none !important;
+}
+
+.game-details__review-form .game-details__editor-button:hover:not(:disabled),
+.game-details__review-form .game-details__editor-button:focus-visible {
+  background: var(--ngo-paper) !important;
+  border-color: var(--ngo-orange) !important;
+  color: var(--ngo-ink) !important;
+}
+
+.game-details__review-form .game-details__editor-button.is-active,
+.game-details__review-form .game-details__editor-button.is-active:hover {
+  background: var(--ngo-sunken) !important;
+  background-image: none !important;
+  border-color: var(--ngo-ink) !important;
+  box-shadow: inset 1px 1px 0 var(--ngo-border) !important;
+  color: var(--ngo-ink) !important;
+}
+
+.game-details__review-form .game-details__editor-button:disabled {
+  color: var(--overdose-muted-text) !important;
+  opacity: .7 !important;
+}
+
+/* Review character-counter contrast on the titlebar. */
+.game-details__review-form .game-details__review-char-counter,
+.game-details__review-form .game-details__review-char-counter span {
+  color: var(--ngo-glint) !important;
+  text-shadow: 1px 1px 0 var(--ngo-ink) !important;
+}
+
+.game-details__review-form .game-details__review-char-counter .over-limit {
+  color: #ffbc77 !important;
+  font-weight: bold !important;
+}
+
+/* Hydra uses Tiptap/ProseMirror rather than <textarea> here. Keep the
+   editable body unframed: only the surrounding container gets a border. */
+.game-details__review-form .game-details__review-input,
+.game-details__review-form .game-details__review-input .ProseMirror,
+.game-details__review-form .game-details__review-editor {
+  background: var(--ngo-paper) !important;
+  background-image: none !important;
+  color: var(--ngo-ink) !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  text-shadow: none !important;
+  caret-color: var(--ngo-ink) !important;
+}
+
+.game-details__review-form .game-details__review-input:focus-within {
+  outline: 2px solid var(--ngo-orange) !important;
+  outline-offset: -2px !important;
+}
+
+.game-details__review-form .game-details__review-input .ProseMirror :is(p, em, strong, u, a),
+.game-details__review-form .game-details__review-editor :is(p, em, strong, u, a) {
+  color: var(--ngo-ink) !important;
+}
+
+.game-details__review-form .game-details__review-editor [data-placeholder]::before,
+.game-details__review-form .game-details__review-editor p.is-editor-empty:first-child::before,
+.game-details__review-form .game-details__review-editor.is-editor-empty::before {
+  color: var(--overdose-muted-text) !important;
+}
+
+/* Star icons: visible when empty; only the chosen score gains emphasis. */
+.game-details__review-form .game-details__star {
+  background: transparent !important;
+  background-image: none !important;
+  border: 1px solid transparent !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  color: var(--ngo-deep) !important;
+  opacity: 1 !important;
+  transform: none !important;
+  transition: none !important;
+}
+
+.game-details__review-form .game-details__star:hover,
+.game-details__review-form .game-details__star:focus-visible {
+  background: var(--ngo-raised) !important;
+  border-color: var(--ngo-border) !important;
+  color: var(--ngo-orange) !important;
+}
+
+.game-details__review-form .game-details__star--filled {
+  color: var(--ngo-orange) !important;
+}
+
+/* Retain Hydra's semantic score cues without reintroducing dark surfaces. */
+.game-details__review-form .game-details__star--filled.game-details__review-score-select--red {
+  color: #a83232 !important;
+}
+
+.game-details__review-form .game-details__star--filled.game-details__review-score-select--yellow {
+  color: var(--ngo-orange) !important;
+}
+
+.game-details__review-form .game-details__star--filled.game-details__review-score-select--green {
+  color: #39734a !important;
+}
+
+.game-details__review-form .game-details__star svg {
+  color: inherit !important;
+}
+
+/* The submit button already inherits Pixel95's shared .button bevel.
+   Recolor its disabled state instead of stacking an additional frame. */
+.game-details__review-form .game-details__review-submit .button {
+  color: var(--ngo-ink) !important;
+  background-color: var(--ngo-raised) !important;
+  border-color: var(--ngo-deep) !important;
+}
+
+.game-details__review-form .game-details__review-submit .button:disabled {
+  background-color: var(--ngo-sunken) !important;
+  color: var(--overdose-muted-text) !important;
+  border-color: var(--ngo-border) !important;
+  opacity: .85 !important;
+  cursor: not-allowed !important;
+}
+
+.game-details__review-form .game-details__review-submit .button:not(:disabled):hover {
+  background-color: var(--ngo-glint) !important;
+  border-color: var(--ngo-orange) !important;
+}
+
+/* Light-theme review heading and separators throughout this section. */
+.game-details__reviews-section .game-details__reviews-title,
+.game-details__reviews-section .game-details__reviews-loading,
+.game-details__reviews-section .game-details__reviews-empty-title,
+.game-details__reviews-section .game-details__reviews-empty-message,
+.game-details__reviews-section .game-details__reviews-empty-icon {
+  color: var(--ngo-ink) !important;
+}
+
+.game-details__reviews-section {
+  border-top-color: var(--ngo-sand) !important;
+}
+
+.game-details__reviews-section .game-details__reviews-separator {
+  background: var(--ngo-sand) !important;
+}
+
+/* ========================================================================
+   PIXEL95 / GAME OPTIONS DIALOG
+   Hydra renders this dialog with its own sidebar and subcomponents. These
+   rules touch those real controls only, leaving the original modal layout,
+   game artwork and the rest of the Pixel95 theme unchanged.
+   ======================================================================== */
+
+/* Replace Hydra's black game-settings sidebar with taupe. */
+.game-options-modal__container {
+  background: var(--win95-grey) !important;
+  color: var(--ngo-ink) !important;
+}
+
+.game-options-modal__sidebar {
+  background: var(--win95-grey) !important;
+  background-image: repeating-linear-gradient(90deg,
+    transparent 0 11px, rgba(255,250,241,.07) 11px 12px) !important;
+  color: var(--ngo-ink) !important;
+  border-right: 2px solid var(--ngo-border) !important;
+  box-shadow: inset -2px 0 0 var(--ngo-glint) !important;
+}
+
+.game-options-modal__panel {
+  background: var(--ngo-paper) !important;
+  color: var(--ngo-ink) !important;
+}
+
+.game-options-modal__panel :is(.game-options-modal__header-description, .game-options-modal__category-note, .game-options-modal__panel-header p) {
+  color: var(--overdose-muted-text) !important;
+}
+
+.game-options-modal__panel :is(h2, h3, h4) {
+  color: var(--ngo-ink) !important;
+  text-shadow: none !important;
+}
+
+.game-options-modal__warning,
+.game-options-modal__danger-zone-description {
+  color: #9a3a2e !important;
+}
+
+/* Exactly one raised button per sidebar item; no card on the parent. */
+.game-options-modal__sidebar-button {
+  box-sizing: border-box;
+  border: 1px solid var(--ngo-border) !important;
+  border-radius: 0 !important;
+  background: var(--ngo-raised) !important;
+  background-image: linear-gradient(180deg,
+    rgba(255,250,241,.38), transparent 65%) !important;
+  box-shadow: inset 1px 1px 0 var(--ngo-glint),
+    2px 2px 0 var(--win95-grey-dark) !important;
+  color: var(--ngo-ink) !important;
+  text-shadow: none !important;
+  transition: none !important;
+}
+
+.game-options-modal__sidebar-button :is(span, svg) {
+  color: inherit !important;
+}
+
+.game-options-modal__sidebar-button:hover:not(.game-options-modal__sidebar-button--active) {
+  border-color: var(--ngo-orange) !important;
+  background: var(--ngo-glint) !important;
+  box-shadow: inset 1px 1px 0 var(--ngo-glint),
+    2px 2px 0 var(--win95-grey-dark) !important;
+}
+
+.game-options-modal__sidebar-button--active,
+.game-options-modal__sidebar-button--active:hover {
+  background-color: var(--ngo-deep) !important;
+  background-image: repeating-linear-gradient(45deg,
+    rgba(255,250,241,.075) 0 2px, transparent 2px 7px) !important;
+  border-color: var(--ngo-deep) !important;
+  box-shadow: none !important;
+  /* no black or white selected outline */
+  color: var(--ngo-glint) !important;
+}
+
+.game-options-modal__sidebar-button--active :is(span, svg) {
+  color: var(--ngo-glint) !important;
+}
+
+.game-options-modal__sidebar-button:focus-visible {
+  outline: 2px dashed var(--ngo-orange) !important;
+  outline-offset: 2px !important;
+}
+
+/* Game Options fields and subtle labels (the main screenshot is already
+   mostly styled; these keep the other category pages consistent). */
+.game-options-modal__panel :is(.text-field-container__text-field--dark, .text-field-container__text-field--primary) {
+  background: var(--ngo-paper) !important;
+  color: var(--ngo-ink) !important;
+}
+
+.game-options-modal__panel :is(.game-options-modal__mangohud-label, .game-options-modal__gamemode-label, .game-options-modal__steam-playtime-label, .proton-path-picker__option-label) {
+  color: var(--ngo-ink) !important;
+}
+
+.game-options-modal__panel .proton-path-picker__option {
+  color: var(--ngo-ink) !important;
+}
+
+.game-options-modal__panel .proton-path-picker input[type="radio"] {
+  accent-color: var(--ngo-deep) !important;
+}
+
+/* Disc picker/dropdown: Hydra hardcodes a near-black menu and pale labels. */
+.game-options-modal__panel .disc-field__trigger,
+.game-options-modal__panel .disc-field__menu {
+  background: var(--ngo-paper) !important;
+  border: 2px solid var(--ngo-deep) !important;
+  border-radius: 0 !important;
+  color: var(--ngo-ink) !important;
+  box-shadow: 2px 2px 0 var(--ngo-deep) !important;
+}
+
+.game-options-modal__panel .disc-field__menu {
+  background: var(--win95-grey) !important;
+  box-shadow: 3px 3px 0 var(--ngo-deep) !important;
+}
+
+.game-options-modal__panel :is(.disc-field__label, .disc-field__chevron, .disc-field__icon) {
+  color: var(--ngo-ink) !important;
+}
+
+.game-options-modal__panel .disc-field__filename {
+  color: var(--overdose-muted-text) !important;
+}
+
+.game-options-modal__panel .disc-field__option {
+  color: var(--ngo-ink) !important;
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+}
+
+.game-options-modal__panel .disc-field__option:hover {
+  background: var(--ngo-raised) !important;
+}
+
+.game-options-modal__panel .disc-field__option--active,
+.game-options-modal__panel .disc-field__option--active:hover {
+  background: var(--ngo-sunken) !important;
+  box-shadow: inset 3px 0 0 var(--ngo-border) !important;
+}
+
+/* File-transfer drive cards are also dark-themed by Hydra itself. */
+.game-options-modal__panel .drive-card {
+  background: var(--ngo-raised) !important;
+  color: var(--ngo-ink) !important;
+  border: 1px solid var(--ngo-border) !important;
+  border-radius: 0 !important;
+  box-shadow: 2px 2px 0 var(--win95-grey-dark) !important;
+}
+
+.game-options-modal__panel .drive-card:hover:not(:disabled) {
+  background: var(--ngo-glint) !important;
+  border-color: var(--ngo-orange) !important;
+}
+
+.game-options-modal__panel .drive-card--selected,
+.game-options-modal__panel .drive-card--selected:hover:not(:disabled) {
+  background: var(--ngo-sunken) !important;
+  border-color: var(--ngo-deep) !important;
+  box-shadow: inset 3px 0 0 var(--ngo-deep) !important;
+}
+
+.game-options-modal__panel .drive-card :is(.drive-card__label, .drive-card__space, .drive-card__icon) {
+  color: var(--ngo-ink) !important;
+}
+
+.game-options-modal__panel .drive-card__bar,
+.game-options-modal__panel .transfer-progress__track {
+  background: var(--ngo-sand) !important;
+  border-radius: 0 !important;
+}
+
+.game-options-modal__panel .transfer-progress__fill {
+  background: var(--ngo-border) !important;
+  border-radius: 0 !important;
+}
+
+.game-options-modal__panel .transfer-progress__pct {
+  color: var(--ngo-deep) !important;
+}
+
+/* On narrow windows Hydra moves the category buttons above the panel.
+   Mirror its breakpoint; do not force its sidebar to stay vertical. */
+@media (max-width: 860px) {
+  .game-options-modal__sidebar {
+    border-right: 0 !important;
+    border-bottom: 2px solid var(--ngo-border) !important;
+    box-shadow: inset 0 -2px 0 var(--ngo-glint) !important;
+  }
+}
+
+/* ========================================================================
+   PLASMA OVERDOSE CREAM · PIXEL95 / DOWNLOAD SETTINGS
+   The provider chooser and torrent-file picker have their own dark styles
+   in Hydra. Target those components, not generic buttons or their wrappers.
+   ======================================================================== */
+
+/* Panel and provider list: one frame surrounding the list, not every row. */
+.download-settings-modal__container {
+  color: var(--ngo-ink) !important;
+}
+
+.download-settings-modal__downloaders-list-wrapper {
+  background: var(--ngo-paper) !important;
+  border: 2px solid var(--ngo-deep) !important;
+  border-radius: 0 !important;
+  box-shadow: inset 1px 1px 0 var(--ngo-glint),
+    2px 2px 0 var(--win95-grey-dark) !important;
+}
+
+.download-settings-modal__downloaders-list,
+.download-settings-modal__downloader-item-wrapper {
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+.download-settings-modal__downloader-item {
+  background: var(--win95-grey) !important;
+  background-image: linear-gradient(180deg,
+    rgba(255,250,241,.18), transparent 70%) !important;
+  border: 0 !important;
+  border-bottom: 1px solid var(--ngo-sand) !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  color: var(--ngo-ink) !important;
+  text-shadow: none !important;
+  transition: background-color .1s linear !important;
+}
+
+.download-settings-modal__downloader-item-wrapper:nth-child(even) .download-settings-modal__downloader-item:not(.download-settings-modal__downloader-item--selected) {
+  background-color: var(--ngo-raised) !important;
+}
+
+.download-settings-modal__downloader-item--last {
+  border-bottom: 0 !important;
+}
+
+.download-settings-modal__downloader-item:not(:disabled):hover:not(.download-settings-modal__downloader-item--selected) {
+  background: var(--ngo-glint) !important;
+  box-shadow: inset 3px 0 0 var(--ngo-orange) !important;
+}
+
+.download-settings-modal__downloader-item--selected,
+.download-settings-modal__downloader-item--selected:hover:not(:disabled) {
+  background: var(--ngo-deep) !important;
+  background-image: repeating-linear-gradient(90deg,
+    transparent 0 9px, rgba(255,250,241,.09) 9px 10px) !important;
+  border-color: var(--ngo-deep) !important;
+  box-shadow: none !important;
+  color: var(--ngo-glint) !important;
+}
+
+.download-settings-modal__downloader-item--selected :is(.download-settings-modal__downloader-name, .download-settings-modal__check-icon) {
+  color: var(--ngo-glint) !important;
+  opacity: 1 !important;
+}
+
+.download-settings-modal__downloader-item:disabled {
+  cursor: default !important;
+  color: var(--overdose-muted-text) !important;
+}
+
+.download-settings-modal__downloader-item:disabled .download-settings-modal__downloader-name {
+  opacity: .8 !important;
+}
+
+.download-settings-modal__downloader-item:focus-visible {
+  outline: 2px dashed var(--ngo-orange) !important;
+  outline-offset: -4px !important;
+}
+
+/* Availability status colors are semantically meaningful; preserve them.
+   Only remove glow / roundness to match the pixel UI. */
+.download-settings-modal__availability-indicator {
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+.download-settings-modal__recommendation-badge .badge {
+  background: var(--ngo-paper) !important;
+  color: var(--ngo-deep) !important;
+  border: 1px solid var(--ngo-border) !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+.download-settings-modal__hydra-cloud-badge {
+  background: var(--ngo-deep) !important;
+  color: var(--ngo-glint) !important;
+  border: 1px solid var(--ngo-border) !important;
+  border-radius: 0 !important;
+}
+
+/* Download links: keep contrast and disabled-state affordance. */
+.download-settings-modal__select-files-link,
+.download-settings-modal__select-files-link :is(span, svg) {
+  color: var(--ngo-deep) !important;
+  text-shadow: none !important;
+}
+
+.download-settings-modal__select-files-link:not(:disabled):hover,
+.download-settings-modal__select-files-link:not(:disabled):hover :is(span, svg) {
+  color: var(--ngo-orange) !important;
+}
+
+.download-settings-modal__select-files-link:disabled {
+  opacity: .5 !important;
+}
+
+.download-settings-modal__hint-text,
+.download-settings-modal__downloads-path-field > span {
+  color: var(--overdose-muted-text) !important;
+}
+
+.download-settings-modal__hint-text a {
+  color: var(--ngo-deep) !important;
+  text-decoration: underline !important;
+}
+
+/* Companion torrent-file picker: replace its hardcoded black surfaces.
+   Keep the native grid and selection/expansion behavior intact. */
+.download-settings-modal__torrent-step {
+  background: var(--win95-grey) !important;
+  color: var(--ngo-ink) !important;
+}
+
+.download-settings-modal__torrent-table-head,
+.download-settings-modal__torrent-sort-label,
+.download-settings-modal__torrent-files-summary {
+  color: var(--overdose-muted-text) !important;
+}
+
+.download-settings-modal__torrent-files-feedback,
+.download-settings-modal__torrent-files-list,
+.download-settings-modal__torrent-files-scroll {
+  background: var(--ngo-paper) !important;
+  color: var(--ngo-ink) !important;
+  border-color: var(--ngo-sand) !important;
+}
+
+.download-settings-modal__torrent-file-row {
+  color: var(--ngo-ink) !important;
+  border-bottom: 1px solid var(--ngo-sand) !important;
+  background: transparent !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+.download-settings-modal__torrent-file-row:hover:not(:disabled) {
+  background: var(--ngo-raised) !important;
+}
+
+.download-settings-modal__torrent-file-row--selected,
+.download-settings-modal__torrent-file-row--selected:hover:not(:disabled) {
+  background: var(--ngo-sunken) !important;
+  box-shadow: inset 3px 0 0 var(--ngo-border) !important;
+}
+
+.download-settings-modal__torrent-file-row :is(.download-settings-modal__torrent-file-size, .download-settings-modal__torrent-folder-chevron, .download-settings-modal__torrent-node-icon) {
+  color: var(--overdose-muted-text) !important;
+}
+
+.download-settings-modal__torrent-file-row :is(.download-settings-modal__torrent-row-trigger, .download-settings-modal__torrent-file-path) {
+  color: var(--ngo-ink) !important;
+}
+
+.download-settings-modal__torrent-files-scroll::-webkit-scrollbar-track {
+  background: var(--win95-grey) !important;
+}
+
+.download-settings-modal__torrent-files-scroll::-webkit-scrollbar-thumb {
+  background: var(--ngo-sand) !important;
+  border: 1px solid var(--ngo-border) !important;
+  border-radius: 0 !important;
+}
+
+.download-settings-modal__torrent-files-scroll::-webkit-scrollbar-thumb:hover {
+  background: var(--ngo-border) !important;
+}

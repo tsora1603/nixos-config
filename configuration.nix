@@ -20,7 +20,7 @@ in
   ];
 
   fileSystems."/mnt/backup" = {
-    device = "/dev/disk/by-label/Backup";
+    device = "/dev/disk/by-label/backup";
     fsType = "ext4";
     options = [ "nofail" ];
   };

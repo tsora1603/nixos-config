@@ -1,0 +1,449 @@
+/*
+ * PLASMA OVERDOSE CREAM · PIXEL95 — Millennium Steam skin
+ * Base: ricewind012/win95-themes v2.3.0, pinned upstream stylesheet.
+ * Style direction: Needy Girl Overdose / Needy Streamer Overload pixel desktop,
+ * warm KDE Plasma Overdose Cream. No pink or purple.
+ *
+ * Intentionally DO NOT flatten the original Win95 controls or repaint game art.
+ * Pixel decorations only touch Steam chrome, navigation, labels, and panels.
+ * Native Steam CSS-module selectors are matched using their stable name fragments.
+ */
+@import url("https://rawcdn.githack.com/ricewind012/win95-themes/fbabefb43f7607612bf5f0df93bd3999c17c1de4/dist/steam.css");
+
+/* 01 — System palette. One palette powers all Win95 native component rules. */
+:root, :root.theme-dark, :root.theme-light {
+  color-scheme: light !important;
+
+  --ngo-cream: #f0ece0;
+  --ngo-white: #fffdf5;
+  --ngo-paper: #f7f5ee;
+  --ngo-taupe: #d8d0c0;
+  --ngo-sand: #e4dfd1;
+  --ngo-sand-dark: #cbbda5;
+  --ngo-selected: #e8d6b7;
+  --ngo-brown: #96703a;
+  --ngo-brown-dark: #594c40;
+  --ngo-orange: #c87922;
+  --ngo-ink: #202628;
+  --ngo-muted: #625849;
+  --ngo-green: #39734a;
+  --ngo-red: #a83232;
+  /* Loaded through system fontconfig; no external font download. */
+  --ngo-pixel-font: "DepartureMono Nerd Font", "DepartureMono Nerd Font Mono", monospace;
+
+  --color-button-face: var(--ngo-taupe);
+  --color-button-text: var(--ngo-ink);
+  --color-button-highlight: var(--ngo-white);
+  --color-button-light: var(--ngo-sand);
+  --color-button-shadow: #9a8b76;
+  --color-button-shadow-dark: var(--ngo-brown-dark);
+  --color-window: var(--ngo-cream);
+  --color-window-text: var(--ngo-ink);
+  --color-menubar: var(--ngo-taupe);
+  --color-menubar-text: var(--ngo-ink);
+  --color-active-caption-bg-start: var(--ngo-brown);
+  --color-active-caption-bg-end: #7f5d36;
+  --color-active-caption-text: var(--ngo-white);
+  --color-inactive-caption-bg-start: #a29683;
+  --color-inactive-caption-bg-end: #c1b7a6;
+  --color-inactive-caption-text: var(--ngo-ink);
+  --color-highlight: var(--ngo-selected);
+  --color-highlight-border: var(--ngo-orange);
+  --color-highlight-text: var(--ngo-ink);
+  --color-tooltip: var(--ngo-paper);
+  --color-tooltip-text: var(--ngo-ink);
+  --color-gray-text: var(--ngo-muted);
+  --color-link: #755022;
+
+  /* Keep original bevel geometry while making the whole client pixel-forward. */
+  --text-ui-font: var(--ngo-pixel-font);
+  --text-monospace-font: var(--ngo-pixel-font);
+  --text-ui-size: 11px;
+  --text-header-size: 22px;
+  --text-line: 1.2;
+  --border-size: 2px;
+  --ngo-pixel-stipple: radial-gradient(#96703a2b 0.7px, transparent 1px) 0 0 / 7px 7px;
+  --ngo-edge: inset 1px 1px 0 var(--ngo-white), inset -1px -1px 0 #907e65;
+  --ngo-tile-shadow: 3px 3px 0 #594c4080;
+}
+
+/* 02 — Typography, form controls and focus treatment. No catch-all recolor. */
+/* The Win95 variables handle most UI text; this catches Steam's unthemed
+   section headings and dialogs without recoloring or changing artwork. */
+:where(.DesktopUI, .fullheight, .friendsui-container) {
+  font-family: var(--ngo-pixel-font) !important;
+}
+
+:where(.DesktopUI, .fullheight, .friendsui-container) :is(
+  [class*="DialogBodyText"],
+  [class*="DialogHeader"],
+  [class*="DialogLabel"],
+  [class*="libraryhomeshowcases_ShowcaseHeader"],
+  [class*="allcollections_CollectionLabel"],
+  [class*="gamelistentry_Container"],
+  [class*="gamelistsectionheader_SectionName"]
+) {
+  font-family: var(--ngo-pixel-font) !important;
+}
+
+:where(body, button, input, textarea, select, option, [role="button"], [role="tab"], [role="menuitem"]) {
+  font-family: var(--ngo-pixel-font) !important;
+  /* Allow synthetic bold when only the regular pixel face is installed. */
+  font-synthesis: weight;
+}
+
+:where(button, input, textarea, select, [role="button"], [role="tab"], [role="menuitem"], [class*="DialogButton"], [class*="DialogInput"]) {
+  border-radius: 0 !important;
+}
+
+:where(input, textarea, select, [role="textbox"], [class*="DialogInput_Wrapper"]) {
+  color: var(--ngo-ink) !important;
+  background-color: var(--ngo-white) !important;
+  border-color: var(--ngo-brown) !important;
+}
+
+:where(input, textarea, select, button, [role="button"], [role="tab"], [role="menuitem"]):focus-visible {
+  outline: 2px dashed var(--ngo-orange) !important;
+  outline-offset: 2px !important;
+}
+
+:where(input[type="checkbox"], input[type="radio"], [role="checkbox"], [role="switch"]) {
+  accent-color: var(--ngo-brown) !important;
+}
+
+::selection {
+  background-color: var(--ngo-brown);
+  color: var(--ngo-white);
+}
+
+/* 03 — Retro window chrome: stripes and stepped interaction, not overlays. */
+:where(.DesktopUI, .fullheight) :is([class*="steamdesktop_TitleBar"], [class*="steamdesktop_SuperNavBar"], [class*="steamdesktop_TopBar"]) {
+  background-color: var(--ngo-taupe) !important;
+  color: var(--ngo-ink) !important;
+}
+
+:where(.DesktopUI, .fullheight) :is([class*="steamdesktop_TitleBar"], [class*="steamdesktop_SuperNavBar"]) {
+  background-image: repeating-linear-gradient(90deg,
+    transparent 0, transparent 10px,
+    #fffdf53d 10px, #fffdf53d 12px) !important;
+}
+
+:where(.DesktopUI, .fullheight) [class*="steamdesktop_SuperNavBar"] {
+  border-bottom: 1px solid var(--ngo-brown) !important;
+}
+
+:where(.DesktopUI, .fullheight) :is([class*="steamdesktop_RootMenuBar"], [class*="steamdesktop_WindowControls"]) {
+  color: var(--ngo-ink) !important;
+}
+
+:where(.DesktopUI, .fullheight) :is([class*="supernav_SuperNavMenu"], [class*="rootmenu_MenuItem"], [class*="steamdesktop_ReloadButton"]) {
+  color: var(--ngo-ink) !important;
+  transition: background-color 80ms steps(1), box-shadow 80ms steps(1) !important;
+}
+
+:where(.DesktopUI, .fullheight) :is([class*="supernav_SuperNavMenu"], [class*="rootmenu_MenuItem"]):hover {
+  background-color: var(--ngo-selected) !important;
+  box-shadow: inset 0 -2px var(--ngo-brown) !important;
+}
+
+/* 04 — Buttons, dropdowns, menus and dialog elements. Keep Win95 bevel. */
+:where(.DesktopUI, .fullheight, .friendsui-container) :is(
+  [class*="DialogButton"],
+  [class*="DropdownLabel"],
+  [class*="dropdown_Dropdown"],
+  [class*="sortingdropdowncontrolbutton_"]) {
+  border-radius: 0 !important;
+  font-family: var(--ngo-pixel-font) !important;
+  color: var(--ngo-ink) !important;
+  text-shadow: none !important;
+}
+
+:where(.DesktopUI, .fullheight, .friendsui-container) :is(
+  [class*="DialogButton"],
+  [class*="DropdownLabel"],
+  [class*="sortingdropdowncontrolbutton_"]):hover {
+  background-color: var(--ngo-selected) !important;
+  color: var(--ngo-ink) !important;
+}
+
+:where(.DesktopUI, .fullheight, .friendsui-container) :is(
+  [class*="DialogButton"],
+  [class*="DropdownLabel"],
+  [class*="sortingdropdowncontrolbutton_"]):active {
+  box-shadow: var(--border-button-sunken) !important;
+}
+
+:where(.DesktopUI, .fullheight, .friendsui-container) :is(
+  [class*="DialogContextMenu"],
+  [class*="DialogMenu"],
+  [class*="contextmenu_ContextMenu"],
+  [role="menu"],
+  [class*="DialogTooltip"],
+  [role="tooltip"]) {
+  color: var(--ngo-ink) !important;
+  background-color: var(--ngo-paper) !important;
+  border-radius: 0 !important;
+}
+
+:where(.DesktopUI, .fullheight, .friendsui-container) :is([class*="DialogTooltip"], [role="tooltip"]) {
+  border: 1px solid var(--ngo-brown) !important;
+  box-shadow: var(--ngo-tile-shadow) !important;
+}
+
+/* 05 — Main library canvas: ensure cream backgrounds get ink text. */
+:where(.DesktopUI, .fullheight) :is(
+  [class*="libraryhome_LibraryHome"],
+  [class*="libraryhome_UpdatesContainer"],
+  [class*="libraryhomeshowcases_ChildrenContainer"],
+  [class*="allcollections_ScrollContainer"],
+  [class*="collectionview_OuterContainer"],
+  [class*="appgrid_ScrollContainer"]) {
+  color: var(--ngo-ink) !important;
+}
+
+/* News captions & times were pale-on-cream in earlier screenshots. */
+:where(.DesktopUI, .fullheight) :is(
+  [class*="libraryhomenewupdates_EventTime"],
+  [class*="libraryhomenewupdates_PartnerEventRowCapsule_TextCtn"],
+  [class*="libraryhomenewupdates_PartnerEventRowCapsule_TextTitle"],
+  [class*="libraryhomenewupdates_GameName"],
+  [class*="libraryhomenewupdates_GameIconAndName"],
+  [class*="libraryhomenewupdates_EventOptions"],
+  [class*="libraryhomeshowcases_ShowcaseHeader"],
+  [class*="libraryhomeshowcases_CountDisplay"],
+  [class*="libraryhomeshowcases_SortingDropDown"],
+  [class*="libraryhomeshowcases_CollectionDropDown"],
+  [class*="appgrid_SortingDropDownLabel"],
+  [class*="appgrid_SortingDropDownItems"],
+  [class*="libraryhomeplaynext_PlayNextSubHead"],
+  [class*="libraryhomerecentgames_AddedDate"]
+) {
+  color: var(--ngo-ink) !important;
+  text-shadow: none !important;
+  opacity: 1 !important;
+}
+
+:where(.DesktopUI, .fullheight) :is(
+  [class*="libraryhomenewupdates_EventTime"],
+  [class*="libraryhomerecentgames_AddedDate"],
+  [class*="libraryhomeshowcases_CountDisplay"]
+) {
+  color: var(--ngo-muted) !important;
+  opacity: 1 !important;
+}
+
+:where(.DesktopUI, .fullheight) [class*="libraryhomenewupdates_PartnerEventRowCapsule_TextCtn"] {
+  background: var(--ngo-paper) !important;
+  border-inline-start: 2px solid var(--ngo-brown) !important;
+  padding: 4px 6px !important;
+}
+
+:where(.DesktopUI, .fullheight) [class*="libraryhomenewupdates_PartnerEventRowCapsule_TextTitle"] {
+  font-weight: 600 !important;
+  line-height: 1.2 !important;
+}
+
+:where(.DesktopUI, .fullheight) [class*="libraryhomenewupdates_EventTime"] {
+  font-size: 11px !important;
+}
+
+/* Other Steam news headings sometimes inherit dark-mode white foreground. */
+:where(.DesktopUI, .fullheight) :is(
+  [class*="libraryhomenewupdates_Header"],
+  [class*="libraryhomenewupdates_SectionTitle"],
+  [class*="libraryhomenewupdates_Headline"],
+  [class*="libraryhome_NewsTitle"],
+  [class*="libraryhomeshowcases_ShowcaseHeader"]
+) {
+  color: var(--ngo-ink) !important;
+  text-shadow: none !important;
+  opacity: 1 !important;
+}
+
+/* 06 — Shelf headers: tiny pixel strip, strong foreground and legible controls. */
+:where(.DesktopUI, .fullheight) [class*="libraryhomeshowcases_ShowcaseHeader"] {
+  background-color: var(--ngo-taupe) !important;
+  background-image: repeating-linear-gradient(90deg,
+    transparent 0 8px, #fffdf53c 8px 10px) !important;
+  border-top: 1px solid var(--ngo-white) !important;
+  border-bottom: 2px solid var(--ngo-brown) !important;
+  color: var(--ngo-ink) !important;
+  padding-block: 5px !important;
+}
+
+:where(.DesktopUI, .fullheight) :is(
+  [class*="libraryhomeshowcases_AddShowcase"],
+  [class*="libraryhomeshowcases_Collapser"],
+  [class*="libraryhomeshowcases_PageLeft"],
+  [class*="libraryhomeshowcases_PageRight"]
+) {
+  color: var(--ngo-ink) !important;
+  opacity: 1 !important;
+}
+
+:where(.DesktopUI, .fullheight) [class*="libraryhomeshowcases_AddShowcase"]:hover {
+  color: var(--ngo-brown-dark) !important;
+  background: var(--ngo-selected) !important;
+}
+
+/* 07 — Collections: preserve art; label overlay becomes a readable pixel chip. */
+:where(.DesktopUI, .fullheight) [class*="allcollections_Collection_"] {
+  border: 2px solid var(--ngo-brown-dark) !important;
+  border-radius: 0 !important;
+  box-shadow: var(--ngo-tile-shadow) !important;
+  overflow: hidden !important;
+  transition: transform 80ms steps(1), box-shadow 80ms steps(1) !important;
+}
+
+:where(.DesktopUI, .fullheight) [class*="allcollections_Collection_"]:hover {
+  transform: translate(-1px, -1px) !important;
+  box-shadow: 4px 4px 0 var(--ngo-brown-dark) !important;
+}
+
+:where(.DesktopUI, .fullheight) [class*="allcollections_CollectionLabel"] {
+  font-family: var(--ngo-pixel-font) !important;
+  color: var(--ngo-ink) !important;
+  background-color: #f7f5eef0 !important;
+  border: 1px solid var(--ngo-brown-dark) !important;
+  box-shadow: 2px 2px 0 var(--ngo-brown-dark) !important;
+  text-shadow: none !important;
+  letter-spacing: 0.3px !important;
+  padding: 2px 5px !important;
+  border-radius: 0 !important;
+}
+
+:where(.DesktopUI, .fullheight) [class*="allcollections_CollectionLabelCount"] {
+  color: var(--ngo-brown-dark) !important;
+  text-shadow: none !important;
+}
+
+:where(.DesktopUI, .fullheight) [class*="allcollections_NewCollection"] {
+  background-color: var(--ngo-sand) !important;
+  border-style: dashed !important;
+}
+
+/* 08 — Sidebar & game list: visible selected row, legible muted details. */
+:where(.DesktopUI, .fullheight) :is(
+  [class*="gamelistentry_Container"],
+  [class*="gamelistsectionheader_Container"],
+  [class*="gamelistsectionheader_SectionHeaderContent"],
+  [class*="gamelistsectionheader_SectionCount"]
+) {
+  text-shadow: none !important;
+}
+
+:where(.DesktopUI, .fullheight) :is(
+  [class*="gamelistsectionheader_SectionHeaderContent"],
+  [class*="gamelistsectionheader_SectionCount"]
+) {
+  color: var(--ngo-ink) !important;
+}
+
+:where(.DesktopUI, .fullheight) [class*="gamelistentry_Container"]:hover,
+:where(.DesktopUI, .fullheight) [class*="gamelistsectionheader_Container"]:hover {
+  background-color: var(--ngo-selected) !important;
+}
+
+:where(.DesktopUI, .fullheight) [class*="gamelistentry_Container"][class*="Selected"] {
+  background-color: var(--ngo-selected) !important;
+  color: var(--ngo-ink) !important;
+}
+
+/* 09 — Portrait shelves, progress, dividers and content cards. */
+:where(.DesktopUI, .fullheight) [class*="appportrait_LibraryItemBox"] {
+  border-radius: 0 !important;
+  box-shadow: 2px 2px 0 #594c4050 !important;
+}
+
+:where(.DesktopUI, .fullheight) :is(
+  [class*="progressbar_ProgressBar"],
+  [class*="gamelistbar_ProgressBar"]
+) {
+  border-radius: 0 !important;
+  border: 1px solid var(--ngo-brown) !important;
+}
+
+:where(.DesktopUI, .fullheight) :is(
+  [class*="progressbar_Fill"],
+  [class*="progressbar_ProgressBarInner"]
+) {
+  background-color: var(--ngo-brown) !important;
+  border-radius: 0 !important;
+}
+
+/* 10 — Friends/chat theme uses the same system tokens but keeps status hues. */
+:where(.friendsui-container, .fullheight) :is(
+  [class*="friendsListContainer"],
+  [class*="friendListHeaderContainer"],
+  [class*="chatHeader"],
+  [class*="currentUserContainer"]
+) {
+  font-family: var(--ngo-pixel-font) !important;
+  border-radius: 0 !important;
+}
+
+:where(.friendsui-container, .fullheight) :is(
+  [class*="friendListHeaderContainer"],
+  [class*="currentUserContainer"],
+  [class*="chatHeader"]
+) {
+  background-color: var(--ngo-taupe) !important;
+  color: var(--ngo-ink) !important;
+  border-bottom: 1px solid var(--ngo-brown) !important;
+}
+
+/* 11 — Pixelated motion only, accessible focus, and respect reduced motion. */
+:where(.DesktopUI, .friendsui-container, .fullheight) :is(button, [role="button"], [role="tab"]) {
+  transition-timing-function: steps(1, end) !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :where(.DesktopUI, .friendsui-container, .fullheight) :is(button, [role="button"], [role="tab"], [class*="allcollections_Collection_"]) {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+/* 12 — KDE/KWin owns the window frame and min/max/close buttons.
+ * Hide only Steam's duplicated client-side window-control/caption strip.
+ * Keep Steam/View/Friends menus, Store/Library navigation and account controls.
+ */
+:where(.DesktopUI, .fullheight) :is(
+  [class*="steamdesktop_WindowControls"],
+  .window-controls
+) {
+  display: none !important;
+  height: 0 !important;
+  min-height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* The upstream Win95 skin gives the titlebar area its own height/gap.
+   Let the surviving Steam menubar determine that area's height naturally. */
+:where(.DesktopUI, .fullheight) [class*="steamdesktop_TitleBar"] {
+  height: auto !important;
+  min-height: 0 !important;
+}
+
+
+/* 13 — Remove Steam's second, decorative Win95 caption under KWin's titlebar.
+ * Upstream win95-themes styles the .title-area separately in shared_dialog.scss.
+ * The old #WindowControls rule hides the buttons but not the title-area itself.
+ * Scope to desktop Steam so overlay and separate popup/dialog windows keep
+ * their own independent titlebars.
+ */
+:where(.DesktopUI) .title-area {
+  display: none !important;
+  height: 0 !important;
+  min-height: 0 !important;
+  max-height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+}
+
+/* Keep Steam's main menu and its navigation visible immediately below KDE. */
+:where(.DesktopUI) [class*="steamdesktop_TitleBar"] {
+  row-gap: 0 !important;
+}

@@ -1,0 +1,1013 @@
+/**
+ * @name PlasmaOverdosePixelCream
+ * @author Community Remix
+ * @description Cream/taupe pixel-art BetterDiscord theme with no pink hues; matching Plasma-Overdose-Cream KDE colors.
+ * @version 1.6.9
+ */
+
+/*
+ * PLASMA OVERDOSE / PIXEL DISCORD
+ * ---------------------------------------------------------------
+ * Original KDE inspiration: https://github.com/Notify-ctrl/Plasma-Overdose
+ * Based on its published KDE Plasma-Overdose color scheme.
+ * Independent CSS adaptation; not affiliated with KDE or the game.
+ *
+ * CONFIGURATION:
+ *   Change --ngo-* colors below to customize the palette.
+ *   Primary: cream #f0ece0, taupe #d8d0c0, brown #96703a.
+ *   --ngo-font follows your system UI font; local DepartureMono Nerd Font fallback.
+ *   Set --ngo-frame-size: 1px for thinner panel frames.
+ *
+ * Requires no wallpaper or image downloads; decorative pixel sprites
+ * are embedded directly in this theme. No external fonts are downloaded;
+ * the typeface follows the desktop font configuration.
+ */
+
+:root {
+  /* Exact base RGB values: user-provided Plasma-Overdose-Cream KDE colors file */
+  --ngo-window: #d8d0c0;           /* KDE Window BackgroundNormal */
+  --ngo-view: #f0ece0;             /* KDE View BackgroundNormal */
+  --ngo-button: #d8d0c0;           /* KDE Button BackgroundNormal */
+  --ngo-titlebar: #d8d0c0;         /* KDE WM activeBackground */
+  --ngo-selection: #96703a;        /* KDE Selection BackgroundNormal */
+  --ngo-ink: #202628;              /* KDE View/Window ForegroundNormal */
+  --ngo-accent: #96703a;           /* KDE WM activeBlend */
+  --ngo-alert: #c87922;         /* KDE DecorationHover: orange indicators */
+  --ngo-link: #96703a;             /* KDE ForegroundLink */
+
+  /* Companion shades blended from KDE colors for readable layer contrast. */
+  /* No pink/pastel-pink: highlights use warm cream, sand and amber instead. */
+  --ngo-soft-highlight: #e4dfd1;
+  --ngo-code-bg: #e6e7e8;
+  --ngo-danger: #a83232;
+  --ngo-muted-ink: #6a5c46;
+  --ngo-highlight: #f7f5ee;
+  --ngo-shadow: #8a7c64;
+  --ngo-hairline: #cbbda5;
+  --ngo-hover: #c87922;
+  --ngo-positive: #39734a;
+  --ngo-speaking: #2f9f60;       /* Visible green border when speaking in voice */
+  --ngo-selection-soft: #dcd1bb;
+  --ngo-deep-accent: #7d6036;
+  /* Hydra Pixel95-style channel/DM buttons. */
+  --ngo-nav-face: #e4dfd1;
+  --ngo-nav-glint: #fffaf1;
+  --ngo-nav-bevel: inset 2px 2px 0 var(--ngo-nav-glint),
+                   inset -2px -2px 0 var(--ngo-shadow);
+  --ngo-nav-shadow: 2px 2px 0 var(--ngo-deep-accent);
+  --ngo-font: system-ui, "DepartureMono Nerd Font", "DepartureMono Nerd Font Mono", sans-serif;
+  --ngo-frame-size: 2px;
+  --ngo-heart: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAOCAYAAAAmL5yKAAAAgUlEQVR42mNgoBAwwhjTCqz+w9hZE44xIivCJ8cIU2DE+QIueO67BFwhPjkGBgYGRnQFMEXIAJs8zBAWZAn9mjMQRosJ0WHAhC5wkQTNOMMAH0APAyZKo5EJFjXoAUeM7SguIGQINs0YXsBlCC7NWMMA3RB8mvGCaQVW/5GTMM0AAE4iTDtGq+QbAAAAAElFTkSuQmCC");
+}
+
+/* 01. Discord design tokens: both legacy and current visual refresh. */
+:root, .theme-light, .theme-dark, .visual-refresh {
+  color-scheme: light;
+  --font-primary: var(--ngo-font);
+  --font-display: var(--ngo-font);
+  --font-headline: var(--ngo-font);
+  --font-code: ui-monospace, "DepartureMono Nerd Font Mono", monospace;
+
+  --background-primary: var(--ngo-view);
+  --background-secondary: var(--ngo-window);
+  --background-secondary-alt: var(--ngo-button);
+  --background-tertiary: var(--ngo-titlebar);
+  --background-accent: var(--ngo-selection-soft);
+  --background-floating: var(--ngo-window);
+  --background-mobile-primary: var(--ngo-view);
+  --background-mobile-secondary: var(--ngo-window);
+  --background-base-lowest: var(--ngo-titlebar);
+  --background-base-lower: var(--ngo-window);
+  --background-base-low: var(--ngo-view);
+  --background-surface-low: var(--ngo-window);
+  --background-surface-high: var(--ngo-button);
+  --background-surface-higher: var(--ngo-soft-highlight);
+  --background-surface-highest: var(--ngo-titlebar);
+  --background-nested-floating: var(--ngo-view);
+  --bg-base-primary: var(--ngo-view);
+  --bg-base-secondary: var(--ngo-window);
+  --bg-base-tertiary: var(--ngo-titlebar);
+  --bg-surface-overlay: var(--ngo-window);
+  --bg-surface-raised: var(--ngo-view);
+  --bg-overlay-1: var(--ngo-view);
+  --bg-overlay-2: var(--ngo-window);
+  --bg-overlay-3: var(--ngo-titlebar);
+  --chat-background-default: var(--ngo-view);
+  --home-background: var(--ngo-window);
+  --input-background: var(--ngo-view);
+  --modal-background: var(--ngo-window);
+  --modal-footer-background: var(--ngo-button);
+  --channeltextarea-background: var(--ngo-button);
+  --activity-card-background: var(--ngo-view);
+
+  --text-normal: var(--ngo-ink);
+  --text-primary: var(--ngo-ink);
+  --text-default: var(--ngo-ink);
+  --text-strong: var(--ngo-ink);
+  --text-secondary: var(--ngo-muted-ink);
+  --text-muted: #6a5c46;
+  --text-link: var(--ngo-deep-accent);
+  --text-brand: var(--ngo-deep-accent);
+  --header-primary: var(--ngo-ink);
+  --header-secondary: var(--ngo-muted-ink);
+  --channels-default: var(--ngo-muted-ink);
+  --interactive-normal: var(--ngo-ink);
+  --interactive-hover: var(--ngo-hover);
+  --interactive-active: #202628;
+  --interactive-muted: #8a7c64;
+  --icon-primary: var(--ngo-ink);
+  --icon-secondary: var(--ngo-muted-ink);
+  --icon-muted: #8a7c64;
+
+  --background-modifier-hover: #e7e2d4;
+  --background-modifier-active: #dcd1bb;
+  --background-modifier-selected: var(--ngo-selection-soft);
+  --background-modifier-accent: #cbbda5;
+  --background-mod-subtle: #eae6d9;
+  --background-mod-normal: var(--ngo-soft-highlight);
+  --background-mod-strong: #c8b9a0;
+  --background-mentioned: #eee2c9;
+  --background-mentioned-hover: #e8d7b7;
+  --background-message-hover: var(--ngo-highlight);
+  --background-message-highlight: #efe3ca;
+  --background-message-highlight-hover: #e6d5b4;
+  --background-message-automod: #e9e0d1;
+  --background-message-automod-hover: #e4d6c0;
+
+  --status-speaking: var(--ngo-speaking);
+  --brand-500: var(--ngo-accent);
+  --brand-560: var(--ngo-ink);
+  --brand-experiment: var(--ngo-accent);
+  --control-brand-foreground: var(--ngo-accent);
+  --button-secondary-background: var(--ngo-button);
+  --button-secondary-background-hover: #cfc3ad;
+  --button-secondary-background-active: var(--ngo-soft-highlight);
+  --button-positive-background: var(--ngo-positive);
+  --button-positive-background-hover: #356745;
+  --button-danger-background: var(--ngo-danger);
+  --button-danger-background-hover: #8e3030;
+  --button-outline-brand-text: var(--ngo-ink);
+  --button-outline-brand-border: var(--ngo-accent);
+  --button-outline-brand-background-hover: var(--ngo-selection-soft);
+
+  --scrollbar-thin-thumb: #8a7c64;
+  --scrollbar-thin-track: #d8d0c0;
+  --scrollbar-auto-thumb: #8a7c64;
+  --scrollbar-auto-track: #d8d0c0;
+  --scrollbar-auto-scrollbar-color-thumb: #8a7c64;
+  --scrollbar-auto-scrollbar-color-track: #d8d0c0;
+  --scrollbar-auto-scrollbar-color: #8a7c64 #d8d0c0;
+  --border-subtle: #cbbda5;
+  --border-normal: #96703a;
+  --border-strong: var(--ngo-accent);
+  --border-faint: #e4ddcf;
+  --divider-subtle: #e4ddcf;
+  --divider-default: #cbbda5;
+
+  --radius-xs: 0px;
+  --radius-sm: 0px;
+  --radius-md: 0px;
+  --radius-lg: 0px;
+  --radius-xl: 0px;
+  --radius-xxl: 0px;
+  --radius-round: 0px;
+  --elevation-low: 2px 2px 0 var(--ngo-shadow);
+  --elevation-medium: 3px 3px 0 var(--ngo-shadow);
+  --elevation-high: 5px 5px 0 #8a7c64;
+}
+
+/* 02. Base canvas. The pixel wallpaper is CSS-only. */
+html, body, #app-mount, #app-mount [class*="app_"],
+#app-mount [class*="bg_"] {
+  background-color: var(--ngo-window);
+  color: var(--ngo-ink);
+}
+
+#app-mount {
+  font-family: var(--ngo-font);
+  background-image:
+    radial-gradient(circle at 2px 2px, #e4dfd1 1px, transparent 1px),
+    linear-gradient(135deg, #d8d0c0, #f0ece0);
+  background-size: 12px 12px, auto;
+}
+
+/* Prevent the default dark Discord typography from bleeding through. */
+#app-mount [class*="markup_"],
+#app-mount [class*="messageContent_"],
+#app-mount [class*="username_"],
+#app-mount [class*="name_"],
+#app-mount [class*="topic_"],
+#app-mount h1, #app-mount h2, #app-mount h3 {
+  color: var(--ngo-ink);
+}
+
+#app-mount ::selection {
+  background: var(--ngo-selection);
+  color: #ffffff;
+}
+
+/* 03. KDE-style cream window framing. Fallbacks match both pre- and post-refresh. */
+#app-mount [class*="guilds_"],
+#app-mount [class*="sidebarList_"],
+#app-mount [class*="sidebar_"],
+#app-mount [class*="chatContent_"],
+#app-mount [class*="membersWrap_"],
+#app-mount [class*="nowPlayingColumn_"],
+#app-mount [class*="peopleColumn_"] {
+  border-radius: 0 !important;
+}
+
+#app-mount [class*="guilds_"] {
+  background-color: var(--ngo-titlebar) !important;
+  background-image:
+    linear-gradient(90deg, #ffffff45 1px, transparent 1px),
+    linear-gradient(0deg, #ffffff45 1px, transparent 1px);
+  background-size: 12px 12px;
+  border-right: var(--ngo-frame-size) solid var(--ngo-accent);
+}
+
+#app-mount [class*="sidebarList_"],
+#app-mount [class*="sidebar_"][class*="has_"],
+#app-mount [class*="sidebar_"]:not([class*="profile_"]) {
+  background: var(--ngo-window);
+  border-right: var(--ngo-frame-size) solid var(--ngo-accent);
+}
+
+#app-mount [class*="chatContent_"],
+#app-mount [class*="messagesWrapper_"],
+#app-mount [class*="peopleColumn_"],
+#app-mount [class*="page_"][class*="container_"] {
+  background-color: var(--ngo-view);
+}
+
+#app-mount [class*="membersWrap_"],
+#app-mount [class*="members_"],
+#app-mount [class*="nowPlayingColumn_"] {
+  background-color: var(--ngo-window);
+}
+
+#app-mount [class*="membersWrap_"] {
+  border-left: var(--ngo-frame-size) solid var(--ngo-accent);
+}
+
+/* 04. Window title bars: actual channel/server title, not fake buttons. */
+#app-mount [class*="titleBar_"],
+#app-mount [class*="subtitleContainer_"] > [class*="title_"],
+#app-mount [class*="chat_"] > [class*="title_"],
+#app-mount [class*="container_"][class*="themed_"][class*="title_"] {
+  border-radius: 0 !important;
+  background-color: var(--ngo-titlebar) !important;
+  border-bottom: var(--ngo-frame-size) solid var(--ngo-accent);
+  box-shadow: inset 0 2px 0 #ffffff;
+  background-image: repeating-linear-gradient(90deg,
+    transparent 0, transparent 7px, #ffffff32 7px, #ffffff32 10px);
+}
+
+#app-mount [class*="headerContent_"] [class*="name_"],
+#app-mount [class*="title_"] [class*="text_"],
+#app-mount [class*="titleWrapper_"] {
+  font-weight: 700;
+  letter-spacing: 0.015em;
+}
+
+/* A slim, pixelated rail beneath sidebar server headers. */
+#app-mount [class*="header_"][class*="headerGlass_"] ,
+#app-mount [class*="header_"].hasBanner,
+#app-mount [class*="headerContent_"] {
+  border-bottom: 1px solid var(--ngo-hairline);
+}
+
+/* 05. Servers and channels: square tiles, checker accents. */
+#app-mount [class*="guilds_"] [class*="wrapper_"] svg foreignObject,
+#app-mount [class*="guilds_"] [class*="childWrapper_"],
+#app-mount [class*="guilds_"] [class*="icon_"] {
+  border-radius: 0 !important;
+}
+
+#app-mount [class*="guilds_"] [class*="childWrapper_"] {
+  background: var(--ngo-button);
+  color: var(--ngo-ink);
+  border: 1px solid var(--ngo-accent);
+  box-shadow: 2px 2px 0 var(--ngo-shadow);
+}
+
+#app-mount [class*="guilds_"] [class*="wrapper_"]:hover [class*="childWrapper_"] {
+  background: var(--ngo-selection-soft);
+  transform: translate(-1px,-1px);
+  box-shadow: 3px 3px 0 var(--ngo-shadow);
+}
+
+#app-mount [class*="guilds_"] [class*="pill_"] span {
+  background: var(--ngo-alert) !important;
+  border-radius: 0;
+}
+
+#app-mount [class*="wrapper_"][class*="modeSelected_"],
+#app-mount [class*="wrapper_"][class*="modeSelected_"] [class*="link_"],
+#app-mount [class*="interactiveSelected_"],
+#app-mount [class*="selected_"][class*="channel_"] {
+  background: var(--ngo-selection-soft) !important;
+  color: var(--ngo-ink) !important;
+}
+
+#app-mount [class*="modeSelected_"] [class*="link_"] {
+  border-left: 3px solid var(--ngo-accent);
+  box-shadow: inset 0 0 0 1px #ffffff88;
+}
+
+#app-mount [class*="containerDefault_"] [class*="wrapper_"]:hover,
+#app-mount [class*="interactive_"]:hover,
+#app-mount [class*="member_"]:hover {
+  background-color: var(--ngo-soft-highlight);
+}
+
+/* 05b. Hydra Pixel95 navigation cards: one card per actual clickable row.
+   Server channels (text, voice, stages) use link_; DMs use the direct
+   interactive child of channel_. Parent wrappers remain undecorated so
+   hovering the card never reveals a duplicate card/halo. */
+#app-mount [class*="privateChannels_"] [class*="channel_"],
+#app-mount [class*="containerDefault_"] [class*="wrapper_"],
+#app-mount [class*="containerDefault_"] [class*="channel_"] {
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  transform: none !important;
+}
+
+/* Same raised cream button geometry used by Hydra's main sidebar. */
+#app-mount [class*="privateChannels_"] [class*="channel_"] > :is([class*="interactive_"], [class*="linkButton_"], [class*="link_"]),
+#app-mount [class*="containerDefault_"] [class*="link_"] {
+  box-sizing: border-box;
+  min-height: 34px;
+  margin: 3px 7px 5px 5px;
+  border: 2px solid var(--ngo-deep-accent) !important;
+  border-radius: 0 !important;
+  background-color: var(--ngo-nav-face) !important;
+  background-image: linear-gradient(180deg, rgba(255, 250, 241, .4), transparent 60%) !important;
+  color: var(--ngo-ink) !important;
+  box-shadow: var(--ngo-nav-bevel), var(--ngo-nav-shadow) !important;
+  transform: none !important;
+  transition: background-color .12s linear, border-color .12s linear;
+}
+
+/* Hover recolors only this same button; its shadow and size don't change. */
+#app-mount [class*="privateChannels_"] [class*="channel_"] > :is([class*="interactive_"], [class*="linkButton_"], [class*="link_"]):hover,
+#app-mount [class*="containerDefault_"] [class*="link_"]:hover {
+  background-color: var(--ngo-nav-glint) !important;
+  border-color: var(--ngo-alert) !important;
+}
+
+/* Click lowers the existing bevel rather than creating a second border. */
+#app-mount [class*="privateChannels_"] [class*="channel_"] > :is([class*="interactive_"], [class*="linkButton_"], [class*="link_"]):active,
+#app-mount [class*="containerDefault_"] [class*="link_"]:active {
+  box-shadow: inset 2px 2px 0 var(--ngo-shadow),
+              inset -2px -2px 0 var(--ngo-nav-glint) !important;
+  transform: none !important;
+}
+
+/* Hydra-style selected button: warm striped brown, no black/white inset
+   outline or extra frame. Includes the selected DM's hover state. */
+#app-mount [class*="privateChannels_"] [class*="channel_"][class*="selected_"] > :is([class*="interactive_"], [class*="linkButton_"], [class*="link_"]),
+#app-mount [class*="privateChannels_"] [class*="channel_"] > [class*="interactiveSelected_"],
+#app-mount [class*="containerDefault_"] [class*="modeSelected_"] [class*="link_"],
+#app-mount [class*="containerDefault_"] [class*="selected_"] [class*="link_"],
+#app-mount [class*="privateChannels_"] [class*="channel_"][class*="selected_"] > :is([class*="interactive_"], [class*="linkButton_"], [class*="link_"]):hover,
+#app-mount [class*="privateChannels_"] [class*="channel_"] > [class*="interactiveSelected_"]:hover,
+#app-mount [class*="containerDefault_"] [class*="modeSelected_"] [class*="link_"]:hover,
+#app-mount [class*="containerDefault_"] [class*="selected_"] [class*="link_"]:hover {
+  background-color: var(--ngo-deep-accent) !important;
+  background-image: repeating-linear-gradient(45deg,
+    rgba(255, 250, 241, .09) 0 2px, transparent 2px 6px) !important;
+  color: var(--ngo-nav-glint) !important;
+  border-color: var(--ngo-deep-accent) !important;
+  box-shadow: none !important;
+  transform: none !important;
+}
+
+/* Discord assigns some names/icons an explicit dark foreground. Lighten only
+   the selected clickable card's label/icon (not voice participants, role
+   badges, status indicators, or the channel's outer wrapper). */
+#app-mount [class*="privateChannels_"] [class*="channel_"][class*="selected_"] > :is([class*="interactive_"], [class*="linkButton_"], [class*="link_"]) :is([class*="name_"], [class*="icon_"]),
+#app-mount [class*="privateChannels_"] [class*="channel_"] > [class*="interactiveSelected_"] :is([class*="name_"], [class*="icon_"]),
+#app-mount [class*="containerDefault_"] [class*="modeSelected_"] [class*="link_"] :is([class*="name_"], [class*="icon_"]),
+#app-mount [class*="containerDefault_"] [class*="selected_"] [class*="link_"] :is([class*="name_"], [class*="icon_"]) {
+  color: var(--ngo-nav-glint) !important;
+}
+
+/* Unread channels retain a warm orange border while idle. */
+#app-mount [class*="containerDefault_"] [class*="modeUnread_"] [class*="link_"]:not(:hover) {
+  border-left-color: var(--ngo-alert) !important;
+}
+
+/* Keyboard navigation remains clearly visible; unlike selection it can
+   intentionally add an accessible focus outline. */
+#app-mount [class*="privateChannels_"] [class*="channel_"] > :is([class*="interactive_"], [class*="linkButton_"], [class*="link_"]):focus-visible,
+#app-mount [class*="containerDefault_"] [class*="link_"]:focus-visible {
+  outline: 2px dashed var(--ngo-hover);
+  outline-offset: 2px;
+}
+
+/* Restrict the orange accent to genuine channel unread pips and count badges.
+   The old global [class*="unread_"] selector also painted sidebar scroll
+   navigation controls as full-width orange rectangles. */
+#app-mount [class*="containerDefault_"] [class*="unread_"],
+#app-mount [class*="numberBadge_"] {
+  background: var(--ngo-alert) !important;
+  color: var(--ngo-ink) !important;
+  border-radius: 0 !important;
+  box-shadow: 1px 1px 0 var(--ngo-ink);
+}
+
+/* Remove top/bottom 'jump to unread channels' overlays in the channel list.
+   Normal unread pips next to channel names and mention badges stay visible. */
+#app-mount [class*="unreadTop_"],
+#app-mount [class*="unreadBottom_"] {
+  display: none !important;
+}
+
+#app-mount [class*="categoryIcon_"] {
+  color: var(--ngo-deep-accent);
+}
+
+/* 06. Messages: readable surfaces, retro message controls. */
+#app-mount [class*="message_"][class*="cozy_"]:hover,
+#app-mount [class*="message_"][class*="compact_"]:hover {
+  background: #f7f5ee !important;
+}
+
+#app-mount [class*="mentioned_"] {
+  background: #eee2c9 !important;
+  border-left: 3px solid var(--ngo-alert);
+}
+
+#app-mount [class*="mentioned_"]::before {
+  background: var(--ngo-alert) !important;
+  border-radius: 0;
+}
+
+#app-mount [class*="replying_"] {
+  background: #e6e7e8 !important;
+  border-left: 3px solid #c87922;
+}
+
+#app-mount [class*="message_"] [class*="timestamp_"],
+#app-mount [class*="message_"] [class*="edited_"] {
+  color: var(--ngo-muted-ink);
+  opacity: .95;
+}
+
+/* 06b. Squared user avatars throughout chat, DMs, member lists and popouts.
+   Keep actual photographs crisp; only remove circular clipping. */
+#app-mount img[class*="avatar_"]:not(:is([class*="voiceUser"] *, [class*="voiceUsers"] *)),
+#app-mount [class*="avatarWrapper_"] img:not(:is([class*="voiceUser"] *, [class*="voiceUsers"] *)),
+#app-mount [class*="avatarContainer_"] img:not(:is([class*="voiceUser"] *, [class*="voiceUsers"] *)),
+#app-mount [class*="avatarStack_"] img:not(:is([class*="voiceUser"] *, [class*="voiceUsers"] *)),
+#app-mount [class*="replyAvatar_"]:not(:is([class*="voiceUser"] *, [class*="voiceUsers"] *)),
+#app-mount [class*="avatarStack_"]:not(:is([class*="voiceUser"] *, [class*="voiceUsers"] *)),
+#app-mount [class*="avatar_"]:not([class*="avatarDecoration_"]):not(:is([class*="voiceUser"] *, [class*="voiceUsers"] *)) {
+  border-radius: 0 !important;
+  image-rendering: auto; /* no pixelation of profile pictures */
+}
+
+/* Discord sometimes rounds avatars with an SVG mask rather than CSS.
+   Only unmask avatar graphics; leave user status/decorations alone. */
+#app-mount svg foreignObject[mask*="avatar"]:not(:is([class*="voiceUser"] *, [class*="voiceUsers"] *)),
+#app-mount [class*="avatarWrapper_"] svg foreignObject:not(:is([class*="voiceUser"] *, [class*="voiceUsers"] *)),
+#app-mount [class*="avatarContainer_"] svg foreignObject:not(:is([class*="voiceUser"] *, [class*="voiceUsers"] *)) {
+  -webkit-mask: none !important;
+  mask: none !important;
+  clip-path: none !important;
+  border-radius: 0 !important;
+}
+
+/* 06b.1. One pixel-card frame and one shadow per avatar.
+   Discord uses both regular <img> avatars and SVG/foreignObject wrappers.
+   Never decorate the nested IMG when its SVG is already the card. */
+#app-mount img[class*="avatar_"]:not([class*="avatarDecoration_"]):not(svg img):not(:is([class*="voiceUser"] *, [class*="voiceUsers"] *)),
+#app-mount img[class*="replyAvatar_"]:not(svg img):not(:is([class*="voiceUser"] *, [class*="voiceUsers"] *)),
+#app-mount [class*="avatarStack_"] img:not(svg img):not(:is([class*="voiceUser"] *, [class*="voiceUsers"] *)),
+#app-mount [class*="avatar_"][style*="background-image"]:not(img):not(:is([class*="voiceUser"] *, [class*="voiceUsers"] *)),
+#app-mount [class*="avatarWrapper_"] svg:has(foreignObject):not(:is([class*="voiceUser"] *, [class*="voiceUsers"] *)),
+#app-mount [class*="avatarContainer_"] svg:has(foreignObject):not(:is([class*="voiceUser"] *, [class*="voiceUsers"] *)) {
+  box-sizing: border-box;
+  border: 2px solid var(--ngo-hairline) !important;
+  border-radius: 0 !important;
+  background-color: var(--ngo-view);
+  box-shadow: 2px 2px 0 var(--ngo-shadow) !important;
+  image-rendering: auto;
+  transition: border-color .12s linear, background-color .12s linear;
+}
+
+/* Remove secondary frame and shadow from a picture inside an SVG avatar.
+   Keep the visible SVG's own border/shadow and status indicators intact. */
+#app-mount [class*="avatarWrapper_"] svg:has(foreignObject) img:not(:is([class*="voiceUser"] *, [class*="voiceUsers"] *)),
+#app-mount [class*="avatarContainer_"] svg:has(foreignObject) img:not(:is([class*="voiceUser"] *, [class*="voiceUsers"] *)),
+#app-mount svg[class*="avatar_"]:has(foreignObject) img:not(:is([class*="voiceUser"] *, [class*="voiceUsers"] *)) {
+  border: 0 !important;
+  box-shadow: none !important;
+  filter: none !important;
+  background: transparent !important;
+}
+
+/* Hover changes the border, not the shadow offset. This prevents the
+   doubled/stair-stepped shadow caused by changing both layered frames. */
+#app-mount img[class*="avatar_"]:not([class*="avatarDecoration_"]):not(svg img):hover:not(:is([class*="voiceUser"] *, [class*="voiceUsers"] *)),
+#app-mount img[class*="replyAvatar_"]:not(svg img):hover:not(:is([class*="voiceUser"] *, [class*="voiceUsers"] *)),
+#app-mount [class*="avatarStack_"] img:not(svg img):hover:not(:is([class*="voiceUser"] *, [class*="voiceUsers"] *)),
+#app-mount [class*="avatar_"][style*="background-image"]:not(img):hover:not(:is([class*="voiceUser"] *, [class*="voiceUsers"] *)),
+#app-mount [class*="avatarWrapper_"] svg:has(foreignObject):hover:not(:is([class*="voiceUser"] *, [class*="voiceUsers"] *)),
+#app-mount [class*="avatarContainer_"] svg:has(foreignObject):hover:not(:is([class*="voiceUser"] *, [class*="voiceUsers"] *)) {
+  border-color: var(--ngo-accent) !important;
+  box-shadow: 2px 2px 0 var(--ngo-shadow) !important;
+}
+
+/* 06b.2. Native voice speaking indicator.
+   The pixel-card rules above deliberately EXCLUDE voice-channel users:
+   Discord needs to own the speaking box-shadow and avatar SVG masks. The
+   following rules provide a fallback only for genuine speaking-state classes,
+   without continuously drawing a green ring on idle/muted users. */
+#app-mount [class*="voiceUser"] [class*="avatarSpeaking"],
+#app-mount [class*="voiceUsers"] [class*="avatarSpeaking"],
+#app-mount [class*="voiceUser"] [class*="avatar"][class*="speaking"],
+#app-mount [class*="voiceUser"] [class*="speaking"][class*="avatar"] {
+  /* The original 1.6.2 targeted outline/border only; the native state uses
+     box-shadow, which was previously displaced by our !important card shadow. */
+  box-shadow: 0 0 0 3px var(--ngo-speaking), 2px 2px 0 var(--ngo-shadow) !important;
+  border-color: var(--ngo-speaking) !important;
+  border-radius: 0 !important;
+}
+
+/* Some Discord builds add the speaking state to the voice-user ROW instead
+   of the avatar. Draw the fallback around the avatar container, not the row.
+   Avoid a second ring if a child already has an avatarSpeaking class. */
+#app-mount [class*="voiceUser"][class*="speaking"] [class*="avatarContainer"]:not(:has([class*="avatarSpeaking"])),
+#app-mount [class*="voiceUser"]:has([class*="usernameSpeaking"]):not(:has([class*="avatarSpeaking"])) [class*="avatarContainer"] {
+  box-shadow: 0 0 0 3px var(--ngo-speaking), 2px 2px 0 var(--ngo-shadow) !important;
+  border-color: var(--ngo-speaking) !important;
+  border-radius: 0 !important;
+}
+
+/* 06c.0. Keep the author card, server tag(s), and timestamp on one
+   vertically centered message-header row. Only the header is a flexbox:
+   the parent message and its content remain untouched. */
+#app-mount [class*="message_"] h3[class*="header_"] {
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  min-width: 0;
+  column-gap: 6px;
+  row-gap: 0;
+}
+
+/* Within the author group, center the name and guild/bot tag together. */
+#app-mount [class*="message_"] h3[class*="header_"] > [class*="headerText_"] {
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  flex: 0 1 auto;
+  gap: 4px;
+  min-width: 0;
+  max-width: 100%;
+  vertical-align: middle;
+}
+
+#app-mount [class*="message_"] h3[class*="header_"] [class*="clanTagChiplet"],
+#app-mount [class*="message_"] h3[class*="header_"] [class*="botTag_"],
+#app-mount [class*="message_"] h3[class*="header_"] [class*="timestamp_"] {
+  align-self: center;
+  flex-shrink: 0;
+  margin-block: 0;
+  vertical-align: middle;
+}
+
+/* 06c. One chip per chat username: compact KDE-style raised pixel card.
+   Do not decorate the enclosing message header to avoid nested cards. */
+#app-mount [class*="message_"] [class*="username_"] {
+  display: inline-flex;
+  box-sizing: border-box;
+  position: relative;
+  align-items: center;
+  align-self: center;
+  vertical-align: middle;
+  line-height: 1.2;
+  padding: 2px 5px;
+  margin: 0;
+  border: 1px solid var(--ngo-hairline);
+  border-radius: 0 !important;
+  background: var(--ngo-highlight);
+  box-shadow: inset 1px 1px 0 #ffffff, 2px 2px 0 var(--ngo-shadow);
+  font-weight: 700;
+  color: var(--ngo-deep-accent);
+  /* Pale role colors (yellow, mint, pastel green) need a dark keyline to
+     read on a light card; this retains each user's assigned role color. */
+  -webkit-text-stroke: .55px rgba(32, 38, 40, .88);
+  paint-order: stroke fill;
+  text-shadow: 0 1px 0 rgba(32, 38, 40, .42);
+  transition: background-color .12s linear, border-color .12s linear,
+              box-shadow .12s linear, transform .12s linear;
+}
+
+#app-mount [class*="message_"] [class*="username_"]:hover {
+  background: var(--ngo-view);
+  border-color: var(--ngo-accent);
+  box-shadow: inset 1px 1px 0 #ffffff, 3px 3px 0 var(--ngo-shadow);
+  transform: translate(-1px, -1px);
+}
+
+#app-mount [class*="message_"] [class*="username_"]:active {
+  background: var(--ngo-highlight);
+  box-shadow: 1px 1px 0 var(--ngo-shadow);
+  transform: translate(1px, 1px);
+}
+
+#app-mount [class*="markup_"] a,
+#app-mount [class*="anchor_"] {
+  color: var(--ngo-deep-accent);
+  text-decoration-color: var(--ngo-deep-accent);
+}
+
+#app-mount [class*="markup_"] code,
+#app-mount [class*="markup_"] pre,
+#app-mount [class*="codeBlock_"] {
+  background: var(--ngo-code-bg) !important;
+  border: 1px solid var(--ngo-hairline);
+  border-radius: 0;
+  color: var(--ngo-ink);
+}
+
+#app-mount [class*="markup_"] blockquote,
+#app-mount [class*="blockquoteContainer_"] {
+  border-left-color: var(--ngo-accent) !important;
+}
+
+#app-mount [class*="embedFull_"] {
+  background: var(--ngo-window);
+  border: 2px solid var(--ngo-hairline);
+  border-left: 4px solid var(--ngo-accent);
+  border-radius: 0;
+  box-shadow: 2px 2px 0 var(--ngo-soft-highlight);
+}
+
+#app-mount [class*="reaction_"] {
+  background: var(--ngo-window);
+  border: 1px solid var(--ngo-hairline);
+  border-radius: 0;
+  color: var(--ngo-ink);
+}
+
+#app-mount [class*="reaction_"]:hover,
+#app-mount [class*="reactionMe_"] {
+  background: var(--ngo-selection-soft) !important;
+  border-color: var(--ngo-accent) !important;
+}
+
+#app-mount [class*="buttonContainer_"] [class*="buttons_"] [class*="wrapper_"] {
+  background: var(--ngo-window);
+  border: 1px solid var(--ngo-accent);
+  border-radius: 0;
+  box-shadow: 2px 2px 0 var(--ngo-shadow);
+}
+
+/* 07. Chat composer resembles the game's JINE input window. */
+#app-mount [class*="channelTextArea_"] {
+  background: var(--ngo-button) !important;
+  border: 2px solid var(--ngo-accent);
+  border-radius: 0 !important;
+  box-shadow: inset 2px 2px 0 #fff, 3px 3px 0 var(--ngo-shadow);
+  margin-bottom: 10px;
+}
+
+#app-mount [class*="scrollableContainer_"] {
+  border-radius: 0 !important;
+  background: transparent;
+}
+
+#app-mount [class*="channelTextArea_"]:focus-within {
+  outline: 2px solid #fff;
+  outline-offset: -5px;
+  box-shadow: inset 2px 2px 0 #fff, 3px 3px 0 var(--ngo-accent);
+}
+
+#app-mount [class*="placeholder_"] {
+  color: #6a5c46;
+}
+
+#app-mount [class*="typing_"] {
+  color: var(--ngo-muted-ink);
+}
+
+/* 08. Buttons and forms: sharp, beveled pixel UI. */
+#app-mount button[class*="lookFilled_"],
+#app-mount button[class*="lookOutlined_"],
+#app-mount button[class*="lookInverted_"],
+#app-mount [class*="button_"][class*="colorBrand_"],
+#app-mount [class*="button_"][class*="colorPrimary_"] {
+  border-radius: 0 !important;
+  border: 1px solid var(--ngo-accent);
+  box-shadow: inset 1px 1px 0 #ffffffa6, 2px 2px 0 var(--ngo-shadow);
+  transition: background-color .12s linear, transform .12s linear;
+}
+
+#app-mount button[class*="lookFilled_"]:active,
+#app-mount [class*="button_"][class*="colorBrand_"]:active {
+  transform: translate(2px,2px);
+  box-shadow: inset 1px 1px 0 #ffffffa6;
+}
+
+#app-mount [class*="lookFilled_"][class*="colorBrand_"] {
+  background: var(--ngo-deep-accent);
+  color: #fff;
+}
+
+#app-mount [class*="lookFilled_"][class*="colorBrand_"]:hover {
+  background: var(--ngo-accent);
+}
+
+#app-mount input:not([type="checkbox"]):not([type="radio"]),
+#app-mount textarea,
+#app-mount [class*="inputDefault_"] {
+  border-radius: 0 !important;
+  border-color: var(--ngo-hairline);
+  background-color: var(--ngo-view);
+  color: var(--ngo-ink);
+}
+
+#app-mount input:focus-visible,
+#app-mount textarea:focus-visible,
+#app-mount button:focus-visible,
+#app-mount [role="button"]:focus-visible {
+  outline: 2px dashed var(--ngo-hover);
+  outline-offset: 2px;
+}
+
+#app-mount [role="switch"][aria-checked="true"] {
+  background-color: var(--ngo-accent) !important;
+}
+
+#app-mount [role="checkbox"][aria-checked="true"] {
+  background-color: var(--ngo-accent);
+  border-color: var(--ngo-accent);
+}
+
+#app-mount [class*="slider_"] [class*="barFill_"] {
+  background-color: var(--ngo-accent);
+}
+
+/* 09. Retro panel popups, search, modals and tooltips. */
+#app-mount [role="dialog"],
+#app-mount [role="menu"],
+#app-mount [class*="userPopout_"] ,
+#app-mount [class*="autocomplete_"] ,
+#app-mount [class*="messagesPopoutWrap_"] ,
+#app-mount [class*="quickswitcher_"] ,
+#app-mount [class*="tooltip_"] {
+  border: 2px solid var(--ngo-accent) !important;
+  border-radius: 0 !important;
+  box-shadow:
+    inset 2px 2px 0 #fff,
+    inset -2px -2px 0 #e6e0d3,
+    4px 4px 0 var(--ngo-shadow) !important;
+  background-color: var(--ngo-window);
+  color: var(--ngo-ink);
+}
+
+#app-mount [role="menu"] [role^="menuitem"]:hover,
+#app-mount [class*="option_"][class*="selected_"] {
+  background: var(--ngo-selection-soft) !important;
+  color: var(--ngo-ink) !important;
+}
+
+#app-mount [class*="root_"][class*="modal_"] [class*="header_"] {
+  background: var(--ngo-titlebar);
+  border-bottom: 2px solid var(--ngo-accent);
+}
+
+#app-mount [class*="card_"]:not([class*="cardWrapper_"]),
+#app-mount [class*="container_"][class*="accountProfileCard_"] {
+  border-radius: 0;
+}
+
+/* 10. User panel and details. */
+#app-mount [class*="panels_"] {
+  background: var(--ngo-button);
+  border-top: 2px solid var(--ngo-accent);
+  box-shadow: inset 0 2px 0 #fff;
+}
+
+#app-mount [class*="userPanelOuter_"] {
+  background: var(--ngo-window);
+  border-left: 2px solid var(--ngo-accent);
+}
+
+#app-mount [class*="customStatus_"],
+#app-mount [class*="nameTag_"] {
+  color: var(--ngo-ink);
+}
+
+/* 11. Small game-like detail: pixel-heart channel header ornament. */
+#app-mount [class*="chat_"] > [class*="title_"]::after {
+  content: "";
+  width: 18px;
+  height: 18px;
+  flex: 0 0 18px;
+  margin-left: auto;
+  margin-right: 8px;
+  background: var(--ngo-heart) center / contain no-repeat;
+  image-rendering: pixelated;
+  opacity: .9;
+  pointer-events: none;
+}
+
+/* System messages, dividers, unread banners. */
+#app-mount [class*="divider_"][class*="isUnread_"] {
+  border-color: var(--ngo-alert);
+}
+
+#app-mount [class*="unreadPill_"] {
+  background: var(--ngo-alert);
+  border-radius: 0;
+  box-shadow: 2px 2px 0 var(--ngo-shadow);
+}
+
+#app-mount [class*="newMessagesBar_"] ,
+#app-mount [class*="jumpToPresentBar_"] {
+  background: var(--ngo-accent) !important;
+  border: 1px solid #fff;
+  border-radius: 0 !important;
+  box-shadow: 2px 2px 0 var(--ngo-shadow);
+}
+
+#app-mount [class*="newMessagesBar_"] *,
+#app-mount [class*="jumpToPresentBar_"] * {
+  color: #ffffff !important;
+}
+
+#app-mount [class*="progressBar_"] {
+  background-color: var(--ngo-alert);
+}
+
+/* Compact squared pixel scrollbars (Chromium / Electron). */
+#app-mount ::-webkit-scrollbar { width: 10px; height: 10px; }
+#app-mount ::-webkit-scrollbar-track { background: var(--ngo-button); }
+#app-mount ::-webkit-scrollbar-thumb {
+  border: 2px solid var(--ngo-button);
+  background: var(--ngo-hairline);
+  border-radius: 0;
+}
+#app-mount ::-webkit-scrollbar-thumb:hover { background: var(--ngo-accent); }
+
+/* Accessible reduced-motion setting, no flashing/animated UI. */
+@media (prefers-reduced-motion: reduce) {
+  #app-mount button,
+  #app-mount [class*="childWrapper_"] { transition: none !important; }
+}
+
+/* Work well on small windows: no ornamental corner if it crowds title. */
+@media (max-width: 820px) {
+  #app-mount [class*="chat_"] > [class*="title_"]::after { display: none; }
+  #app-mount [class*="guilds_"] { border-right-width: 1px; }
+  #app-mount [class*="membersWrap_"] { border-left-width: 1px; }
+}
+
+
+/* 12. Hydra Pixel95-inspired Settings -------------------------------------
+   Scoped to the Settings side rail and content pane; ordinary chat, server
+   channels, and popouts keep their existing styling. Only the clickable
+   navigation item gets a card, never its containing category/wrapper. */
+
+/* Left navigation / right settings canvas, including modern and legacy views. */
+#app-mount [class*="standardSidebarView_"] [class*="sidebarRegion_"],
+#app-mount [class*="standardSidebarView_"] [class*="sidebarRegionScroller_"],
+#app-mount [class*="settingsSidebar_"] {
+  background-color: var(--ngo-window) !important;
+}
+
+#app-mount [class*="standardSidebarView_"] [class*="contentRegion_"],
+#app-mount [class*="standardSidebarView_"] [class*="contentRegionScroller_"] {
+  background-color: var(--ngo-view) !important;
+}
+
+#app-mount [class*="standardSidebarView_"] [class*="sidebarRegion_"] {
+  border-right: 2px solid var(--ngo-deep-accent);
+}
+
+/* Styling the item itself avoids doubled card outlines on hover. Class name
+   alternatives cover Discord's old item tabs and newer settings navigation. */
+#app-mount [class*="sidebarRegion_"] [class*="side_"] [class*="item_"],
+#app-mount [class*="sidebarRegion_"] [role="tab"],
+#app-mount [class*="settingsSidebar_"] [class*="item_"],
+#app-mount [class*="settingsSidebar_"] [role="tab"],
+#app-mount [class*="settingsSidebar_"] [class*="navItem_"] {
+  box-sizing: border-box;
+  border: 2px solid var(--ngo-deep-accent) !important;
+  border-radius: 0 !important;
+  background-color: var(--ngo-nav-face) !important;
+  background-image: linear-gradient(180deg, rgba(255, 250, 241, .4), transparent 60%) !important;
+  color: var(--ngo-ink) !important;
+  box-shadow: var(--ngo-nav-bevel), var(--ngo-nav-shadow) !important;
+  margin-top: 3px;
+  margin-bottom: 5px;
+  transition: background-color .12s linear, border-color .12s linear;
+}
+
+/* Hover recolors the same card; do not add another wrapper or drop shadow. */
+#app-mount [class*="sidebarRegion_"] [class*="side_"] [class*="item_"]:hover,
+#app-mount [class*="sidebarRegion_"] [role="tab"]:hover,
+#app-mount [class*="settingsSidebar_"] [class*="item_"]:hover,
+#app-mount [class*="settingsSidebar_"] [role="tab"]:hover,
+#app-mount [class*="settingsSidebar_"] [class*="navItem_"]:hover {
+  background-color: var(--ngo-nav-glint) !important;
+  border-color: var(--ngo-alert) !important;
+}
+
+/* Active settings entry: brown diagonal pixels without the old white ring. */
+#app-mount [class*="sidebarRegion_"] [class*="side_"] [class*="item_"]:is([class*="selected_"], [class*="active_"] , [aria-selected="true"]),
+#app-mount [class*="sidebarRegion_"] [role="tab"][aria-selected="true"],
+#app-mount [class*="sidebarRegion_"] [role="tab"][aria-current="page"],
+#app-mount [class*="settingsSidebar_"] [class*="item_"]:is([class*="selected_"], [class*="active_"], [aria-selected="true"]),
+#app-mount [class*="settingsSidebar_"] [role="tab"][aria-selected="true"],
+#app-mount [class*="settingsSidebar_"] [class*="navItem_"]:is([class*="selected_"], [class*="active_"], [aria-current="page"]),
+#app-mount [class*="sidebarRegion_"] [class*="side_"] [class*="item_"]:is([class*="selected_"], [class*="active_"] , [aria-selected="true"]):hover,
+#app-mount [class*="sidebarRegion_"] [role="tab"][aria-selected="true"]:hover,
+#app-mount [class*="settingsSidebar_"] [class*="item_"]:is([class*="selected_"], [class*="active_"], [aria-selected="true"]):hover {
+  background-color: var(--ngo-deep-accent) !important;
+  background-image: repeating-linear-gradient(45deg,
+    rgba(255, 250, 241, .09) 0 2px, transparent 2px 6px) !important;
+  border-color: var(--ngo-deep-accent) !important;
+  color: var(--ngo-nav-glint) !important;
+  box-shadow: none !important;
+}
+
+/* Labels and icons may have their own explicit color in Discord/Vencord. */
+#app-mount [class*="sidebarRegion_"] [class*="side_"] [class*="item_"]:is([class*="selected_"], [class*="active_"] , [aria-selected="true"]) :is(svg, [class*="icon_"], [class*="label_"], [class*="name_"], [class*="text_"]),
+#app-mount [class*="sidebarRegion_"] [role="tab"][aria-selected="true"] :is(svg, [class*="icon_"], [class*="label_"], [class*="name_"], [class*="text_"]),
+#app-mount [class*="settingsSidebar_"] [class*="item_"]:is([class*="selected_"], [class*="active_"], [aria-selected="true"]) :is(svg, [class*="icon_"], [class*="label_"], [class*="name_"], [class*="text_"]),
+#app-mount [class*="settingsSidebar_"] [role="tab"][aria-selected="true"] :is(svg, [class*="icon_"], [class*="label_"], [class*="name_"], [class*="text_"]) {
+  color: var(--ngo-nav-glint) !important;
+}
+
+/* Preserve the indentation and dividers for settings subpages/categories. */
+#app-mount [class*="sidebarRegion_"] [class*="header_"],
+#app-mount [class*="settingsSidebar_"] [class*="header_"] {
+  color: var(--ngo-muted-ink);
+}
+#app-mount [class*="sidebarRegion_"] [class*="separator_"],
+#app-mount [class*="settingsSidebar_"] [class*="separator_"] {
+  background-color: var(--ngo-hairline);
+}
+
+/* Content headings use a quiet pixel rule instead of an enormous card. */
+#app-mount [class*="standardSidebarView_"] [class*="contentRegion_"] :is(h2, h3) {
+  color: var(--ngo-ink) !important;
+  text-shadow: none;
+  border-bottom: 1px solid var(--ngo-hairline);
+  padding-bottom: 6px;
+}
+
+#app-mount [class*="standardSidebarView_"] [class*="contentRegion_"] :is([class*="divider_"], hr) {
+  border-color: var(--ngo-hairline) !important;
+}
+
+/* Beveled Edit/Save/Cancel controls. Don't repaint destructive buttons or
+   the top-right close action; text and enabled/disabled states remain native. */
+#app-mount [class*="contentRegion_"] button[class*="button_"]:not([class*="closeButton_"]):not([class*="colorRed_"]):not([class*="colorDanger_"]),
+#app-mount [class*="contentRegion_"] button[class*="lookFilled_"]:not([class*="colorRed_"]):not([class*="colorDanger_"]) {
+  border: 2px solid var(--ngo-deep-accent) !important;
+  border-radius: 0 !important;
+  background-color: var(--ngo-nav-face) !important;
+  background-image: linear-gradient(180deg, rgba(255, 250, 241, .4), transparent 60%) !important;
+  box-shadow: var(--ngo-nav-bevel), var(--ngo-nav-shadow) !important;
+  color: var(--ngo-ink) !important;
+}
+
+#app-mount [class*="contentRegion_"] button[class*="button_"]:not([class*="closeButton_"]):not([class*="colorRed_"]):not([class*="colorDanger_"]):hover:enabled,
+#app-mount [class*="contentRegion_"] button[class*="lookFilled_"]:not([class*="colorRed_"]):not([class*="colorDanger_"]):hover:enabled {
+  background-color: var(--ngo-nav-glint) !important;
+  border-color: var(--ngo-alert) !important;
+}
+
+#app-mount [class*="contentRegion_"] button[class*="button_"]:not([class*="closeButton_"]):not([class*="colorRed_"]):not([class*="colorDanger_"]):active:enabled,
+#app-mount [class*="contentRegion_"] button[class*="lookFilled_"]:not([class*="colorRed_"]):not([class*="colorDanger_"]):active:enabled {
+  box-shadow: inset 2px 2px 0 var(--ngo-shadow), inset -2px -2px 0 var(--ngo-nav-glint) !important;
+  transform: none !important;
+}
+
+#app-mount [class*="contentRegion_"] button:disabled {
+  opacity: .58;
+  cursor: not-allowed;
+}
+
+/* Existing settings cards and account-field containers: a single quiet
+   outer frame, not nested frames on every text line and control. */
+#app-mount [class*="contentRegion_"] :is([class*="fieldList_"], [class*="accountProfileCard_"]) {
+  border: 1px solid var(--ngo-hairline) !important;
+  border-radius: 0 !important;
+  background-color: var(--ngo-highlight) !important;
+}
+
+/* Focus treatment is intentionally distinct from the selected-tab state. */
+#app-mount [class*="sidebarRegion_"] :is([role="tab"], [class*="item_"]):focus-visible,
+#app-mount [class*="settingsSidebar_"] :is([role="tab"], [class*="item_"]):focus-visible {
+  outline: 2px dashed var(--ngo-alert) !important;
+  outline-offset: 2px;
+}
