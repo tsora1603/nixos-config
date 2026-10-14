@@ -226,7 +226,7 @@ in
       # Meaningful empty shortcuts: prevent KDE defaults from colliding
       # with Karousel navigation and the custom Meta+W browser launcher.
       kwin.Overview = [ ];
-      kwin."Edit Tiles" = [ ];
+      kwin."Edit Tiles" = "Meta+Shift+T";
       kwin."Window Quick Tile Left" = [ ];
       kwin."Window Quick Tile Right" = [ ];
       kwin."Window Quick Tile Top" = [ ];

@@ -2234,3 +2234,178 @@ body,
 .download-settings-modal__torrent-files-scroll::-webkit-scrollbar-thumb:hover {
   background: var(--ngo-border) !important;
 }
+/* ========================================================================
+   5. Downloads page — active download hero, speed graph and queued items
+   ======================================================================== */
+
+/* Keep the game artwork and logo. Fade its lower half into the cream UI
+   instead of the native black gradient. */
+.downloads__container,
+.downloads__groups {
+  background-color: var(--ngo-paper) !important;
+}
+
+.download-group--hero {
+  background-color: var(--ngo-paper) !important;
+  border-bottom: 2px solid var(--ngo-deep) !important;
+}
+
+.download-group__hero-overlay {
+  background: linear-gradient(
+    to bottom,
+    rgba(32, 38, 40, .36) 0%,
+    rgba(32, 38, 40, .20) 28%,
+    rgba(216, 208, 192, .48) 48%,
+    rgba(240, 236, 224, .88) 72%,
+    var(--ngo-paper) 100%
+  ) !important;
+}
+
+/* Opaque, raised pixel panel keeps live progress readable regardless of
+   which cover image happens to be behind it. */
+.download-group--hero .download-group__hero-progress {
+  background: var(--ngo-raised) !important;
+  background-image: linear-gradient(180deg,
+    rgba(255, 250, 241, .45), transparent 72%) !important;
+  padding: 10px 12px !important;
+  border: 2px solid var(--ngo-deep) !important;
+  box-shadow: var(--ngo-bevel), var(--ngo-outer-step) !important;
+  color: var(--ngo-ink) !important;
+}
+
+.download-group--hero :is(
+  .download-group__progress-size,
+  .download-group__progress-time,
+  .download-group__progress-status,
+  .download-group__progress-size svg,
+  .download-group__progress-time svg
+) {
+  color: var(--ngo-ink) !important;
+  text-shadow: none !important;
+}
+
+.download-group--hero .download-group__progress-percentage,
+.download-group--hero .download-group__progress-percentage span {
+  color: var(--ngo-deep) !important;
+  text-shadow: none !important;
+}
+
+/* Pause, Resume and Cancel are real raised buttons, not dark glass chips. */
+.download-group--hero .download-group__glass-btn,
+.download-group--hero .download-group__glass-btn:is(:visited, :enabled) {
+  background: var(--ngo-raised) !important;
+  background-image: linear-gradient(180deg,
+    rgba(255, 250, 241, .55), transparent 70%) !important;
+  color: var(--ngo-ink) !important;
+  border: 2px solid var(--ngo-deep) !important;
+  border-radius: 0 !important;
+  backdrop-filter: none !important;
+  box-shadow: var(--ngo-bevel), var(--ngo-outer-step) !important;
+  text-shadow: none !important;
+  transition: none !important;
+}
+
+.download-group--hero .download-group__glass-btn svg {
+  color: inherit !important;
+}
+
+.download-group--hero .download-group__glass-btn:hover:not(:disabled) {
+  background: var(--ngo-glint) !important;
+  border-color: var(--ngo-orange) !important;
+  color: var(--ngo-ink) !important;
+}
+
+.download-group--hero .download-group__glass-btn:active:not(:disabled) {
+  background: var(--ngo-sunken) !important;
+  box-shadow: var(--ngo-press) !important;
+  transform: translate(1px, 1px) !important;
+}
+
+/* The original stats card uses black translucent glass and white labels. */
+.download-group--hero .download-group__hero-stats {
+  background: var(--ngo-raised) !important;
+  background-image: linear-gradient(180deg,
+    rgba(255, 250, 241, .45), transparent 80%) !important;
+  color: var(--ngo-ink) !important;
+  border: 2px solid var(--ngo-deep) !important;
+  border-radius: 0 !important;
+  backdrop-filter: none !important;
+  box-shadow: inset 2px 2px 0 var(--ngo-glint),
+    inset -2px -2px 0 var(--ngo-sand), var(--ngo-outer-step) !important;
+}
+
+.download-group--hero .download-group__stats-column {
+  border-right: 1px solid var(--ngo-sand) !important;
+}
+
+.download-group--hero .download-group__stat-label {
+  color: var(--overdose-muted-text) !important;
+  opacity: 1 !important;
+  text-shadow: none !important;
+}
+
+.download-group--hero .download-group__stat-value {
+  color: var(--ngo-ink) !important;
+  text-shadow: none !important;
+}
+
+.download-group--hero .download-group__stat-item > span,
+.download-group--hero .download-group__stat-item > span svg {
+  color: var(--ngo-deep) !important;
+}
+
+/* Recessed analog-display treatment for the speed-history graph. The graph
+   itself is painted into a canvas by Hydra, so a CSS filter gives its
+   per-game colored bars a warm monochrome tone without touching game art. */
+.download-group--hero .download-group__speed-chart {
+  background: var(--ngo-sunken) !important;
+  border: 2px solid var(--ngo-deep) !important;
+  box-shadow: var(--ngo-press) !important;
+  padding: 4px 8px !important;
+}
+
+.download-group--hero .download-group__speed-chart-canvas {
+  filter: grayscale(1) sepia(.92) saturate(2.1) hue-rotate(345deg)
+    contrast(1.35) brightness(.83) !important;
+}
+
+/* The queue/completed view uses different components than the hero view. */
+.download-group:not(.download-group--hero) .download-group__simple-card {
+  background: var(--ngo-raised) !important;
+  color: var(--ngo-ink) !important;
+  border: 2px solid var(--ngo-deep) !important;
+  padding: 10px !important;
+  box-shadow: var(--ngo-bevel), var(--ngo-outer-step) !important;
+}
+
+.download-group__simple-thumbnail {
+  background: var(--ngo-sunken) !important;
+  border: 2px solid var(--ngo-deep) !important;
+  border-radius: 0 !important;
+}
+
+.download-group__simple-title,
+.download-group__simple-meta-row,
+.download-group__simple-size,
+.download-group__simple-extracting,
+.download-group__simple-progress-text {
+  color: var(--ngo-ink) !important;
+}
+
+.download-group__simple-action-btn,
+.download-group__simple-menu-btn {
+  color: var(--ngo-ink) !important;
+  border-radius: 0 !important;
+}
+
+.downloads__no-downloads {
+  color: var(--ngo-ink) !important;
+}
+
+.downloads__arrow-icon {
+  background: var(--ngo-raised) !important;
+  color: var(--ngo-deep) !important;
+  border: 2px solid var(--ngo-deep) !important;
+  border-radius: 0 !important;
+  box-shadow: var(--ngo-bevel), var(--ngo-outer-step) !important;
+}
