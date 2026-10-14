@@ -6,7 +6,7 @@
       appBadge = true;
       arRPC = true;
       checkUpdates = true;
-      customTitleBar = true;
+      customTitleBar = false;
       minimizeToTray = true;
       tray = true;
       splashTheming = true;
