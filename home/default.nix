@@ -3,6 +3,7 @@
   imports = [
     ./home-programs.nix
     ./shell.nix
+    ./ssh.nix
     ./git.nix
     ./ghostty.nix
     ./fastfetch.nix
