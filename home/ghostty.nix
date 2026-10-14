@@ -1,12 +1,14 @@
-{ ... }:
+{ pkgs, ... }:
 {
   programs.ghostty = {
     enable = true;
+
     settings = {
       font-family = "DepartureMono Nerd Font Mono";
       font-size = 12;
       theme = "plasma-overdose-cream";
     };
+ 
     themes = {
       plasma-overdose-cream = {
         # Main UI
@@ -41,4 +43,9 @@
       };
     };    
   };
+  
+  xdg.configFile."systemd/user/app-com.mitchellh.ghostty.service.d/zz-gtk-input.conf".text = ''
+    [Service]
+    Environment=GTK_IM_MODULE=simple
+  '';
 }
