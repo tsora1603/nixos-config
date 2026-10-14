@@ -32,6 +32,5 @@
 
   xdg.configFile = {
     "fish/functions" = { source = ./fish/functions; recursive = true; };
-    "fish/conf.d" = { source = ./fish/conf.d; recursive = true; };
   };
 }
