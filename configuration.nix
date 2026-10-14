@@ -26,9 +26,6 @@ in
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   nixpkgs.config.allowUnfree = true;
 
-  # Fish as the login shell (home-manager's programs.fish only configures it).
-  programs.fish.enable = true;
-
   users.users.tsora = {
     isNormalUser = true;
     shell = pkgs.fish;
@@ -114,6 +111,7 @@ in
   };
 
   programs = {
+    fish.enable = true;
     steam.enable = true;
     steam.package = pkgs.millennium-steam;
     qylock = {
@@ -158,6 +156,7 @@ in
     telegram-desktop
   
     # Other stuff
+    steam-run # to run FHS applications/scripts
     (import ./packages/tidaler.nix { inherit pkgs; })
     parsec-bin
     yacreader
