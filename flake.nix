@@ -18,6 +18,8 @@
     millennium.url = "github:SteamClientHomebrew/Millennium?dir=packages/nix";
   
     qylock.url = "github:Darkkal44/qylock";
+
+    nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";
   };
 
   outputs = { self, nixpkgs, home-manager, ... }@inputs: {
@@ -29,6 +31,7 @@
         home-manager.nixosModules.home-manager
 
         inputs.qylock.nixosModules.default
+        inputs.nix-flatpak.nixosModules.nix-flatpak
       ];
     };
   };

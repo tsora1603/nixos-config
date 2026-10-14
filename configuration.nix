@@ -12,6 +12,7 @@ in
     # Include the results of the hardware scan.
     # NOTE: with flakes, this file must be tracked by git (`git add`).
     ./hardware-configuration.nix
+    ./flatpaks.nix
   ];
 
   nixpkgs.overlays = [
