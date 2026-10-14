@@ -12,8 +12,6 @@
 
     bash.enable = true;
     eza.enable = true;
-    fastfetch.enable = true;   
-    git.enable = true;
     btop.enable = true;
   };
 

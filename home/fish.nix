@@ -14,10 +14,10 @@
       shellAbbrs = {
         "ns" = "nh os switch";
         "nt" = "nh os test";
-        "nx" = "cd /etc/nixos";
-        "nh" = "cd /etc/nixos/home";
+        "nx" = "cd ~/nixos";
+        "nh" = "cd ~/nixos/home";
         "sn" = "sudo nano";
-        "sx" = "sudo nano /etc/nixos/configuration.nix";        
+        "sx" = "sudo nano ~/nixos/configuration.nix";        
       };
 
       interactiveShellInit = ''
