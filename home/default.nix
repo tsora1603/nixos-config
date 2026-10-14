@@ -1,7 +1,7 @@
 { ... }:
 {
   imports = [
-    ./home-programs.nix
+    ./home.nix
     ./shell.nix
     ./ssh.nix
     ./git.nix

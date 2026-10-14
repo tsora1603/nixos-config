@@ -4,7 +4,7 @@
     enable = true;
 
     settings = {
-      font-family = "DepartureMono Nerd Font Mono";
+      font-family = "DepartureMono Nerd Font";
       font-size = 12;
       theme = "plasma-overdose-cream";
     };
