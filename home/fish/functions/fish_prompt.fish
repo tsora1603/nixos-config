@@ -19,7 +19,10 @@ function fish_prompt
     set -l right_len (math (string length --visible $git_text) + 1)
 
     set -l dots_len (math $COLUMNS - $left_len - $right_len)
-    set -l dots (string repeat -n $dots_len ·)
+    set -l dots ""
+    if test $dots_len -gt 0
+      set dots (string repeat -n $dots_len ·)
+    end
 
     # transient prompts
     if contains -- --final-rendering $argv

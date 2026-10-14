@@ -98,7 +98,7 @@
     },
     {
       "type": "wm",
-      "key": "{#white}{$3}{#yellow} │  └ ",
+      "key": "{#white}{$3}{#yellow} │  ├ ",
       "format": "{pretty-name} {version}"
     },
     {
@@ -125,12 +125,12 @@
     {
       "type": "command",
       "key": "{#white}{$3}{#green} ├ ",
-      "text": "cpu-temp-icon.sh"
+      "text": "/home/tsora/.config/fastfetch/cpu-temp-icon.sh"
     },
     {
       "type": "command",
       "key": "{#white}{$3}{#green} ├󰾲 ",
-      "text": "gpu-temp-icon.sh"
+      "text": "/home/tsora/.config/fastfetch/gpu-temp-icon.sh"
     },
     {
       "type": "memory",
@@ -149,14 +149,14 @@
     },
     {
       "type": "disk",
-      "key": "{#white}{$3}{#cyan} ├ [{name}]  ",
+      "key": "{#white}{$3}{#cyan} ├ [{name}]          ",
       "format": "{size-percentage-bar} | {size-free} Free",
       "folders": "/mnt/backup",
       "hideFS": "autofs"
     },
     {
       "type": "disk",
-      "key": "{#white}{$4}{#cyan} └ [{name}]         ",
+      "key": "{#white}{$4}{#cyan} └ [{name}]  ",
       "format": "{size-percentage-bar} | {size-free} Free",
       "folders": "/mnt/extrastuff2",
       "hideFS": "autofs"

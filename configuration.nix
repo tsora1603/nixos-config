@@ -6,7 +6,6 @@
 
 let
   system = pkgs.stdenv.hostPlatform.system;
-  pkgs-unstable = inputs.nixpkgs-unstable.legacyPackages.${system};
 in
 {
   imports = [
@@ -74,7 +73,7 @@ in
   networking.networkmanager.enable = true;
 
   # Set your time zone (defaults to UTC until you set this), e.g.:
-  # time.timeZone = "Region/City";
+  time.timeZone = "America/Sao_Paulo";
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
@@ -108,7 +107,6 @@ in
     };
     flatpak.enable = true;
     fwupd.enable = true;
-    qbittorrent.enable = true;
   };
 
   programs = {
@@ -162,15 +160,12 @@ in
     hydralauncher
     bitwarden-desktop
     qbittorrent-enhanced
+    lm_sensors # for fastfetch
+    pciutils   # for fastfetch
   ];
 
   environment.localBinInPath = true;
-
-  environment.etc."sddm.conf.d/zz-qylock.conf".text = ''
-    [Theme]
-    Current=${config.programs.qylock.theme}
-  '';
-
+  
   environment.plasma6.excludePackages = with pkgs; [
     kdePackages.elisa          # Music player
     kdePackages.kdepim-runtime # Akonadi agents
