@@ -116,7 +116,7 @@ in
     steam.package = pkgs.millennium-steam;
     qylock = {
       enable = true;
-      theme = "pixel-hollowknight";
+      theme = "nier-automata";
       sddm.enable = true;
       quickshell.enable = false;
     };
@@ -165,10 +165,17 @@ in
     qbittorrent-enhanced
     lm_sensors # for fastfetch
     pciutils   # for fastfetch
+    _7zip-zstd-rar
   ];
 
   environment.localBinInPath = true;
   
+  # Prevents KDE from overriding Qylock theme
+  environment.etc."sddm.conf.d/zz-qylock.conf".text = ''
+    [Theme]
+    Current=${config.services.displayManager.sddm.theme}
+  '';
+
   environment.plasma6.excludePackages = with pkgs; [
     kdePackages.elisa          # Music player
     kdePackages.kdepim-runtime # Akonadi agents

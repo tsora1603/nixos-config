@@ -2409,3 +2409,765 @@ body,
   border-radius: 0 !important;
   box-shadow: var(--ngo-bevel), var(--ngo-outer-step) !important;
 }
+
+
+/* ------------------------------------------------------------------------
+   Download hero refinements: tighter cards + high-contrast speed graph
+   The speed history is drawn by Hydra into a canvas (not SVG/HTML bars),
+   so ordinary CSS bar color rules cannot change its individual bars.
+   White canvas pixels against a dark-brown inset display stay legible.
+   ------------------------------------------------------------------------ */
+.download-group--hero .download-group__hero-content {
+  row-gap: 8px !important;
+}
+
+.download-group--hero .download-group__hero-stats {
+  margin-top: 0 !important;
+}
+
+.download-group--hero .download-group__speed-chart {
+  background: #54432c !important;
+  border-color: var(--ngo-deep) !important;
+  box-shadow: inset 2px 2px 0 #332718, inset -2px -2px 0 #8f7550 !important;
+}
+
+/* Painted canvas has colored filled bars and alpha-only background bars.
+   The filter keeps both alpha levels while making filled bars bright ivory. */
+.download-group--hero .download-group__speed-chart-canvas {
+  filter: brightness(0) invert(1) !important;
+  opacity: 1 !important;
+}
+
+
+/* ========================================================================
+   PIXEL95 / DOWNLOAD ITEM ACTION MENU
+   Hydra renders this Radix popup in a portal outside the download card,
+   so the menu must be themed by its own .dropdown-menu__* classes.
+   ======================================================================== */
+
+.dropdown-menu__content {
+  background: var(--ngo-paper) !important;
+  background-image: repeating-linear-gradient(
+    90deg, transparent 0 11px, rgba(150, 112, 58, .035) 11px 12px
+  ) !important;
+  color: var(--ngo-ink) !important;
+  border: 2px solid var(--ngo-deep) !important;
+  border-radius: 0 !important;
+  padding: 3px !important;
+  backdrop-filter: none !important;
+  box-shadow:
+    inset 2px 2px 0 var(--ngo-glint),
+    inset -2px -2px 0 var(--ngo-sand),
+    3px 3px 0 var(--ngo-deep) !important;
+}
+
+.dropdown-menu__group {
+  background: transparent !important;
+  color: inherit !important;
+  padding: 2px !important;
+}
+
+.dropdown-menu__title-bar {
+  color: var(--ngo-deep) !important;
+  background: var(--ngo-raised) !important;
+  border-bottom: 1px solid var(--ngo-border) !important;
+  font-weight: 700 !important;
+}
+
+.dropdown-menu__separator {
+  background: var(--ngo-border) !important;
+  height: 1px !important;
+  margin-block: 2px !important;
+}
+
+.dropdown-menu__item {
+  min-height: 30px !important;
+  background: transparent !important;
+  border: 1px solid transparent !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  color: var(--ngo-ink) !important;
+  font-size: 12px !important;
+  opacity: 1 !important;
+  transition: none !important;
+}
+
+.dropdown-menu__item .dropdown-menu__item-icon,
+.dropdown-menu__item .dropdown-menu__item-icon svg {
+  color: inherit !important;
+  opacity: 1 !important;
+}
+
+.dropdown-menu__item:not(.dropdown-menu__item--disabled):not([data-disabled]):is(
+  :hover, :focus, :focus-visible, [data-highlighted]
+) {
+  background: var(--ngo-deep) !important;
+  color: var(--ngo-glint) !important;
+  border-color: var(--ngo-border) !important;
+}
+
+.dropdown-menu__item:not(.dropdown-menu__item--disabled):not([data-disabled]):is(
+  :hover, :focus, :focus-visible, [data-highlighted]
+) .dropdown-menu__item-icon,
+.dropdown-menu__item:not(.dropdown-menu__item--disabled):not([data-disabled]):is(
+  :hover, :focus, :focus-visible, [data-highlighted]
+) .dropdown-menu__item-icon svg {
+  color: var(--ngo-glint) !important;
+}
+
+.dropdown-menu__item--disabled,
+.dropdown-menu__item[data-disabled] {
+  background: transparent !important;
+  color: var(--overdose-muted-text) !important;
+  opacity: .65 !important;
+  cursor: default !important;
+}
+
+.dropdown-menu__item--disabled:is(:hover, :focus, [data-highlighted]),
+.dropdown-menu__item[data-disabled]:is(:hover, :focus, [data-highlighted]) {
+  background: transparent !important;
+  color: var(--overdose-muted-text) !important;
+  border-color: transparent !important;
+}
+
+
+/* Remove the stray top brown bar when the dropdown has no title */
+.dropdown-menu__content > .dropdown-menu__separator:first-child {
+  display: none !important;
+}
+
+
+/* ========================================================================
+   PIXEL95 / NOTIFICATIONS BELL + UNREAD COUNTER
+   The bell is an icon-only control in some Hydra builds; other builds
+   include it within the profile menu. Cover both without changing
+   general-purpose buttons or other navigation.
+   ======================================================================== */
+
+:is(button, [role="button"]):is(
+  [aria-label*="notification" i],
+  [title*="notification" i],
+  [class*="notification"][class*="button"],
+  [class*="notification"][class*="trigger"]
+),
+:is(button, [role="button"]):has(
+  svg.octicon-bell,
+  svg.lucide-bell,
+  svg[class*="bell"],
+  .octicon-bell,
+  .lucide-bell
+) {
+  background: var(--ngo-raised) !important;
+  background-image: linear-gradient(180deg, rgba(255,250,241,.58), transparent 60%) !important;
+  color: var(--ngo-ink) !important;
+  border: 2px solid var(--ngo-deep) !important;
+  border-radius: 0 !important;
+  box-shadow: var(--ngo-bevel), 2px 2px 0 var(--ngo-deep) !important;
+  backdrop-filter: none !important;
+  transition: none !important;
+}
+
+:is(button, [role="button"]):is(
+  [aria-label*="notification" i],
+  [title*="notification" i],
+  [class*="notification"][class*="button"],
+  [class*="notification"][class*="trigger"]
+):hover,
+:is(button, [role="button"]):has(
+  svg.octicon-bell, svg.lucide-bell, svg[class*="bell"], .octicon-bell, .lucide-bell
+):hover {
+  background: var(--ngo-glint) !important;
+  color: var(--ngo-ink) !important;
+  border-color: var(--ngo-orange) !important;
+}
+
+:is(button, [role="button"]):is(
+  [aria-label*="notification" i],
+  [title*="notification" i],
+  [class*="notification"][class*="button"],
+  [class*="notification"][class*="trigger"]
+) svg,
+:is(button, [role="button"]):has(
+  svg.octicon-bell, svg.lucide-bell, svg[class*="bell"], .octicon-bell, .lucide-bell
+) svg {
+  color: var(--ngo-ink) !important;
+  stroke: currentColor !important;
+}
+
+/* Number bubbles: replace generic green with the warm brown/orange accent. */
+.sidebar-profile__dropdown-badge,
+:is([class*="notification" i], [class*="bell" i]) > :is(
+  [class*="badge" i], [class*="count" i], [class*="counter" i]
+),
+:is(button, [role="button"]):has(
+  svg.octicon-bell, svg.lucide-bell, svg[class*="bell"], .octicon-bell, .lucide-bell
+) > :is(small, [class*="badge" i], [class*="count" i]) {
+  background: var(--ngo-orange) !important;
+  background-image: none !important;
+  border: 1px solid var(--ngo-deep) !important;
+  border-radius: 0 !important;
+  box-shadow: 1px 1px 0 var(--ngo-deep) !important;
+  color: var(--ngo-ink) !important;
+  opacity: 1 !important;
+  text-shadow: none !important;
+  font-weight: 700 !important;
+}
+
+/* Keep the profile-menu bell's label and icon readable. */
+.sidebar-profile__dropdown-item:has(svg.octicon-bell) {
+  background: var(--ngo-raised) !important;
+  border: 1px solid var(--ngo-deep) !important;
+  box-shadow: inset 1px 1px 0 var(--ngo-glint) !important;
+  color: var(--ngo-ink) !important;
+}
+.sidebar-profile__dropdown-item:has(svg.octicon-bell):hover {
+  background: var(--ngo-glint) !important;
+  border-color: var(--ngo-orange) !important;
+  color: var(--ngo-ink) !important;
+}
+
+
+/* ========================================================================
+   PIXEL95 / PROFILE SIDECARDS
+   Unifies the profile's Stats, Badges, Recent Activity, etc. cards with
+   the game-details ProtonDB, Achievements and Stats sidebar treatment.
+   ======================================================================== */
+
+/* Identical outer border, square shape, crisp shallow shadow. */
+.profile-content__right-content .profile-section {
+  background: var(--ngo-paper) !important;
+  border: 2px solid var(--ngo-deep) !important;
+  border-radius: 0 !important;
+  box-shadow: inset 2px 2px 0 var(--ngo-glint),
+    2px 2px 0 var(--ngo-sand) !important;
+}
+
+/* Identical brown vertical-stripe header to game-page sidebar cards. */
+.profile-content__right-content .profile-section__header {
+  background-color: var(--ngo-deep) !important;
+  background-image: repeating-linear-gradient(90deg,
+    rgba(255,250,241,.08) 0 1px, transparent 1px 10px) !important;
+  border-bottom: 1px solid var(--ngo-border) !important;
+}
+
+.profile-content__right-content .profile-section__header:hover {
+  background-color: var(--ngo-border) !important;
+}
+
+/* Keep text, chevron and optional action on the brown title strip ivory. */
+.profile-content__right-content .profile-section__button,
+.profile-content__right-content .profile-section__button:hover,
+.profile-content__right-content .profile-section__button :is(span, svg),
+.profile-content__right-content .profile-section__header > .profile-section__action {
+  color: var(--ngo-glint) !important;
+}
+
+/* The entire header is already the click target; no extra nested bevel. */
+.profile-content__right-content .profile-section__button,
+.profile-content__right-content .profile-section__button:hover,
+.profile-content__right-content .profile-section__button:active {
+  background: transparent !important;
+  background-image: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  text-shadow: none !important;
+}
+
+/* Small count is a contrasting cream pixel tag (Badges 2, etc.). */
+.profile-content__right-content .profile-section__count,
+.profile-content__right-content .profile-section__button .profile-section__count {
+  background: var(--ngo-paper) !important;
+  color: var(--ngo-ink) !important;
+  border: 1px solid var(--ngo-border) !important;
+  border-radius: 0 !important;
+  box-shadow: 1px 1px 0 rgba(32,38,40,.28) !important;
+  padding: 2px 6px !important;
+}
+
+/* Same cream panel used inside game-page sidebar cards. */
+.profile-content__right-content .profile-section__content {
+  background: var(--ngo-paper) !important;
+  color: var(--ngo-ink) !important;
+}
+
+.profile-content__right-content .profile-section__content :is(
+  .user-stats__box, .badges-box__box, .recent-games__box,
+  .friends-box__box
+) {
+  background: transparent !important;
+  color: var(--ngo-ink) !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* Readable profile stat names, badge copy and recent game text. */
+.profile-content__right-content .profile-section__content :is(
+  .user-stats__list-item,
+  .user-stats__list-title,
+  .user-stats__list-description,
+  .user-stats__stats-row,
+  .badges-box__item,
+  .badges-box__item-title,
+  .badges-box__item-description,
+  .recent-games__list-item,
+  .recent-games__game-title,
+  .recent-games__game-description
+) {
+  color: var(--ngo-ink) !important;
+}
+
+/* Avoid floating pale mini-cards inside the now-unified cream surface. */
+.profile-content__right-content .profile-section__content :is(
+  .user-stats__list-item, .badges-box__item, .recent-games__list-item
+) {
+  background: transparent !important;
+  border-radius: 0 !important;
+}
+
+.profile-content__right-content .profile-section__content :is(
+  .user-stats__list-item, .badges-box__item, .recent-games__list-item
+):hover {
+  background: rgba(150,112,58,.12) !important;
+}
+
+/* ========================================================================
+   PIXEL95 / PROFILE LIBRARY SORT CONTROLS (legacy Hydra layout)
+   Older Hydra releases render inline .sort-options__* buttons instead of
+   newer .filter-dropdown__* selectors. Keep both versions supported.
+   ======================================================================== */
+.sort-options__container {
+  color: var(--ngo-ink) !important;
+  gap: 7px !important;
+}
+
+.sort-options__label {
+  color: var(--ngo-deep) !important;
+  font-weight: 700 !important;
+  text-shadow: none !important;
+  opacity: 1 !important;
+}
+
+.sort-options__options {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  align-items: center !important;
+  gap: 6px !important;
+}
+
+/* Buttons already supply their own borders, so remove textual dividers. */
+.sort-options__separator {
+  display: none !important;
+}
+
+.sort-options__option,
+.sort-options__option:not(.active) {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  min-height: 32px !important;
+  padding: 5px 10px !important;
+  background-color: var(--ngo-raised) !important;
+  background-image: linear-gradient(180deg, rgba(255,250,241,.5), transparent 65%) !important;
+  color: var(--ngo-ink) !important;
+  border: 2px solid var(--ngo-deep) !important;
+  border-radius: 0 !important;
+  box-shadow: inset 2px 2px 0 var(--ngo-glint), inset -2px -2px 0 var(--ngo-sand), 1px 1px 0 var(--ngo-deep) !important;
+  font-weight: 500 !important;
+  font-size: 12px !important;
+  opacity: 1 !important;
+  text-shadow: none !important;
+  transition: none !important;
+}
+
+.sort-options__option :is(span, svg),
+.sort-options__option:not(.active) :is(span, svg) {
+  color: var(--ngo-ink) !important;
+  opacity: 1 !important;
+}
+
+.sort-options__option:not(.active):hover:not(:disabled) {
+  background-color: var(--ngo-glint) !important;
+  border-color: var(--ngo-orange) !important;
+}
+
+.sort-options__option.active,
+.sort-options__option.active:hover:not(:disabled) {
+  background-color: var(--ngo-deep) !important;
+  background-image: repeating-linear-gradient(90deg, rgba(255,250,241,.09) 0 1px, transparent 1px 9px) !important;
+  color: var(--ngo-glint) !important;
+  border-color: var(--ngo-deep) !important;
+  box-shadow: var(--ngo-press) !important;
+  font-weight: 700 !important;
+}
+
+.sort-options__option.active :is(span, svg),
+.sort-options__option.active:hover :is(span, svg) {
+  color: var(--ngo-glint) !important;
+}
+
+.sort-options__option:disabled {
+  opacity: .5 !important;
+  cursor: not-allowed !important;
+}
+
+.sort-options__option:focus-visible {
+  outline: 2px dashed var(--ngo-orange) !important;
+  outline-offset: 2px !important;
+}
+
+
+/* ========================================================================
+   WorkWonders changelog — iframe-friendly Pixel95 color approximation
+
+   WorkWonders renders this widget in a cross-origin iframe. Hydra's CSS
+   cannot style individual text, backgrounds or buttons inside it. CSS
+   filters tint the entire rendered iframe, including any branding/images.
+   ======================================================================== */
+
+/* The WorkWonders container spans the height of Hydra's window,
+   even though the actual popup is anchored at its bottom.
+   A border on the container causes a full-height vertical brown line. */
+#workwonders-changelog-mini-container,
+.workwonders-changelog-mini-container {
+  border: 0 !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* Reverse the dark SDK UI into a warm cream surface with darker ink.
+   This is image-level tinting, not per-element styling. */
+#workwonders-changelog-mini-iframe,
+iframe.workwonders-changelog-mini-iframe {
+  filter: invert(1) sepia(.28) saturate(.70) hue-rotate(340deg)
+    brightness(.96) contrast(1.02) !important;
+  border-radius: 0 !important;
+}
+
+/* The same safeguard for the full changelog widget's wrapper. */
+#workwonders-changelog-container {
+  border: 0 !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+#workwonders-changelog-iframe,
+iframe.workwonders-changelog-iframe {
+  filter: invert(1) sepia(.28) saturate(.70) hue-rotate(340deg)
+    brightness(.96) contrast(1.02) !important;
+  border-radius: 0 !important;
+}
+
+/* ========================================================================
+   PLASMA OVERDOSE CREAM / PIXEL95 — CUSTOM ACHIEVEMENT NOTIFICATIONS
+
+   Hydra renders achievement notifications in a dedicated window / Shadow DOM.
+   Keep all palette tokens scoped to .achievement-notification so this design
+   works even if the document-level :root variables are not available there.
+   The existing Hydra entrance/expansion/exit animations remain intact.
+   ======================================================================== */
+
+.achievement-notification {
+  --pixel-notify-paper: #f0ece0;
+  --pixel-notify-raised: #e4dfd1;
+  --pixel-notify-glint: #fffaf1;
+  --pixel-notify-ink: #202628;
+  --pixel-notify-deep: #7d6036;
+  --pixel-notify-border: #96703a;
+  --pixel-notify-sand: #cbbda5;
+  --pixel-notify-muted: #6a5c46;
+  --pixel-notify-orange: #c87922;
+  font-family: 'DepartureMono Nerd Font', 'DepartureMono Nerd Font Mono', monospace !important;
+  color: var(--pixel-notify-ink) !important;
+}
+
+/* Single clean Pixel95 frame: avoid the old inset light outline that
+   looked like a second vertical border on the left edge. */
+.achievement-notification__outer-container {
+  background: var(--pixel-notify-paper) !important;
+  border: 2px solid var(--pixel-notify-deep) !important;
+  border-radius: 0 !important;
+  outline: none !important;
+  box-shadow:
+    2px 2px 0 var(--pixel-notify-border),
+    4px 4px 0 rgba(32, 38, 40, .45) !important;
+}
+
+/* A warm, paper-like face with tiny vertical pixels. Preserve Hydra's layout
+   and its original width animation to avoid clipping text mid-notification. */
+.achievement-notification__container {
+  background-color: var(--pixel-notify-paper) !important;
+  background-image: repeating-linear-gradient(90deg,
+    rgba(150,112,58,.040) 0 1px, transparent 1px 10px) !important;
+  color: var(--pixel-notify-ink) !important;
+  border-left: 4px solid var(--pixel-notify-border) !important;
+  border-radius: 0 !important;
+  box-shadow: inset 0 2px 0 var(--pixel-notify-glint), inset 0 -2px 0 var(--pixel-notify-sand) !important;
+}
+
+.achievement-notification__content {
+  color: var(--pixel-notify-ink) !important;
+}
+
+/* Game achievement artwork: recessed picture frame instead of glowing badge. */
+/* At the start of Hydra's 80px-width entrance animation, shift the
+   64px logo image 5px left to keep its right border inside the popup.
+   Transforming only the image leaves text, layout, and timing unchanged. */
+.achievement-notification__icon {
+  transform: translateX(-5px) !important;
+  border: 2px solid var(--pixel-notify-deep) !important;
+  border-radius: 0 !important;
+  background: var(--pixel-notify-raised) !important;
+  box-shadow:
+    inset 1px 1px 0 var(--pixel-notify-glint),
+    inset -1px -1px 0 var(--pixel-notify-sand) !important;
+  object-fit: cover !important;
+  image-rendering: auto;
+}
+
+.achievement-notification__text-container {
+  min-width: 0 !important;
+  gap: 5px !important;
+  color: var(--pixel-notify-ink) !important;
+}
+
+.achievement-notification__title,
+.achievement-notification__description {
+  font-family: 'DepartureMono Nerd Font', 'DepartureMono Nerd Font Mono', monospace !important;
+  color: var(--pixel-notify-ink) !important;
+  text-shadow: none !important;
+}
+
+.achievement-notification__title {
+  font-size: 13px !important;
+  font-weight: 800 !important;
+  line-height: 1.25 !important;
+}
+
+.achievement-notification__description {
+  font-size: 11px !important;
+  line-height: 1.4 !important;
+  color: var(--pixel-notify-muted) !important;
+  opacity: 1 !important;
+}
+
+.achievement-notification__hidden-icon,
+.achievement-notification__hidden-icon svg {
+  color: var(--pixel-notify-deep) !important;
+  opacity: .85 !important;
+}
+
+/* Hydra points chip, positioned by Hydra for each screen corner. */
+.achievement-notification__chip {
+  background: var(--pixel-notify-orange) !important;
+  background-image: repeating-linear-gradient(90deg,
+    rgba(255,250,241,.16) 0 1px, transparent 1px 7px) !important;
+  border: 2px solid var(--pixel-notify-deep) !important;
+  border-radius: 0 !important;
+  box-shadow: 2px 2px 0 rgba(32,38,40,.4) !important;
+  color: var(--pixel-notify-glint) !important;
+}
+
+.achievement-notification__chip__label,
+.achievement-notification__chip__icon {
+  color: var(--pixel-notify-glint) !important;
+  fill: var(--pixel-notify-glint) !important;
+  font-weight: 800 !important;
+  font-size: 11px !important;
+}
+
+.achievement-notification__chip__icon path {
+  fill: var(--pixel-notify-glint) !important;
+}
+
+/* Rare: orange-gold game-archive accent, not Hydra's default gold glow. */
+.achievement-notification--rare .achievement-notification__outer-container {
+  border-color: var(--pixel-notify-orange) !important;
+  box-shadow: 2px 2px 0 var(--pixel-notify-deep), 4px 4px 0 rgba(32,38,40,.45) !important;
+}
+
+.achievement-notification--rare .achievement-notification__container {
+  border-left-color: var(--pixel-notify-orange) !important;
+}
+
+.achievement-notification--rare .achievement-notification__icon {
+  border-color: var(--pixel-notify-orange) !important;
+  outline: 1px solid var(--pixel-notify-deep) !important;
+  box-shadow: inset 1px 1px 0 var(--pixel-notify-glint), inset -1px -1px 0 var(--pixel-notify-sand) !important;
+}
+
+.achievement-notification--rare .achievement-notification__chip {
+  background-color: var(--pixel-notify-orange) !important;
+  background-image: repeating-linear-gradient(90deg,
+    rgba(255,250,241,.16) 0 1px, transparent 1px 7px) !important;
+}
+
+.achievement-notification--rare .achievement-notification__trophy-overlay {
+  background: var(--pixel-notify-orange) !important;
+}
+
+/* Platinum: silver/ivory award plate with the same brown Pixel95 chrome. */
+.achievement-notification--platinum .achievement-notification__outer-container {
+  border-color: var(--pixel-notify-deep) !important;
+  box-shadow: 2px 2px 0 #aebec1, 4px 4px 0 rgba(32,38,40,.45) !important;
+}
+
+.achievement-notification--platinum .achievement-notification__container {
+  background-color: #e9e9e2 !important;
+  background-image: repeating-linear-gradient(90deg,
+    rgba(125,96,54,.05) 0 1px, transparent 1px 10px) !important;
+  border-left-color: #92a7aa !important;
+}
+
+.achievement-notification--platinum .achievement-notification__icon {
+  border-color: #82979a !important;
+  outline: 1px solid var(--pixel-notify-deep) !important;
+  box-shadow: inset 1px 1px 0 #ffffff, inset -1px -1px 0 #b3bdbc !important;
+}
+
+.achievement-notification--platinum .achievement-notification__chip {
+  background: #82979a !important;
+  background-image: repeating-linear-gradient(90deg,
+    rgba(255,250,241,.15) 0 1px, transparent 1px 7px) !important;
+  border-color: var(--pixel-notify-deep) !important;
+}
+
+.achievement-notification--platinum .achievement-notification__trophy-overlay {
+  background: #d5e0de !important;
+}
+
+/* Hidden achievements remain clearly identified without losing contrast. */
+.achievement-notification--hidden .achievement-notification__icon {
+  border-color: var(--pixel-notify-muted) !important;
+}
+
+/* Warm up Hydra's initial masking flash, without changing its animation. */
+.achievement-notification__dark-overlay {
+  background: var(--pixel-notify-deep) !important;
+}
+
+/* Preserve the existing timing for entering, expanding and leaving.
+   Hydra controls .achievement-notification--closing and --paused. */
+
+/* ========================================================================
+   PLASMA OVERDOSE CREAM / PIXEL95 — LIBRARY RIGHT-CLICK MENUS
+   Hydra's game context menus are portaled to document.body and do not use
+   .dropdown-menu, so they need their own styles. Includes nested submenus.
+   ======================================================================== */
+
+.context-menu,
+.context-menu .context-menu__submenu {
+  background-color: var(--ngo-paper, #f0ece0) !important;
+  background-image: repeating-linear-gradient(90deg,
+    rgba(150, 112, 58, 0.032) 0 1px,
+    transparent 1px 12px) !important;
+  color: var(--ngo-ink, #202628) !important;
+  border: 2px solid var(--ngo-deep, #7d6036) !important;
+  border-radius: 0 !important;
+  padding: 4px !important;
+  box-shadow:
+    inset 1px 1px 0 var(--ngo-glint, #fffaf1),
+    inset -1px -1px 0 var(--ngo-sand, #cbbda5),
+    3px 3px 0 rgba(32, 38, 40, .33) !important;
+  backdrop-filter: none !important;
+}
+
+/* Native menu positioning, nested popout direction, and entrance animation
+   remain controlled by Hydra. Only adjust the visible seam between menus. */
+.context-menu .context-menu__submenu {
+  margin-left: -1px !important;
+  margin-right: -1px !important;
+}
+
+.context-menu__list,
+.context-menu__item-container {
+  background: transparent !important;
+  color: inherit !important;
+}
+
+.context-menu__item {
+  min-height: 30px !important;
+  padding: 6px 10px !important;
+  background: transparent !important;
+  color: var(--ngo-ink, #202628) !important;
+  border: 1px solid transparent !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  font-size: 12px !important;
+  font-weight: 500 !important;
+  text-shadow: none !important;
+  transition: none !important;
+}
+
+.context-menu__item-icon,
+.context-menu__item-icon svg,
+.context-menu__item-arrow,
+.context-menu__item-trailing-icon,
+.context-menu__item-trailing-icon svg {
+  color: inherit !important;
+}
+
+.context-menu__item:not(.context-menu__item--disabled):not(:disabled):is(
+  :hover, :focus-visible, .context-menu__item--active
+) {
+  background: var(--ngo-deep, #7d6036) !important;
+  color: var(--ngo-glint, #fffaf1) !important;
+  border-color: var(--ngo-border, #96703a) !important;
+}
+
+.context-menu__item:not(.context-menu__item--disabled):not(:disabled):active {
+  background: var(--ngo-border, #96703a) !important;
+  color: var(--ngo-glint, #fffaf1) !important;
+}
+
+.context-menu__item:focus-visible {
+  outline: 1px dotted var(--ngo-orange, #c87922) !important;
+  outline-offset: -3px !important;
+}
+
+.context-menu__item--disabled,
+.context-menu__item:disabled {
+  opacity: 0.55 !important;
+  color: var(--overdose-muted-text, #6a5c46) !important;
+  background: transparent !important;
+  cursor: not-allowed !important;
+}
+
+/* Destructive actions use a warm rust accent, not Hydra's default pink. */
+.context-menu__item--danger:not(:disabled) {
+  color: #944d27 !important;
+}
+
+.context-menu__item--danger:not(.context-menu__item--disabled):not(:disabled):is(
+  :hover, :focus-visible, .context-menu__item--active
+) {
+  background: #944d27 !important;
+  color: var(--ngo-glint, #fffaf1) !important;
+  border-color: var(--ngo-deep, #7d6036) !important;
+}
+
+.context-menu__item--danger:not(.context-menu__item--disabled):not(:disabled):active {
+  background: #783a1c !important;
+  color: var(--ngo-glint, #fffaf1) !important;
+}
+
+/* Avoid the oddly placed first-item border Hydra adds to danger buttons;
+   keep explicit separators as a consistent sunken rule instead. */
+.context-menu__item--danger:first-of-type {
+  border-top: 1px solid transparent !important;
+  margin-top: 0 !important;
+}
+
+.context-menu__separator {
+  height: 2px !important;
+  margin: 4px 5px !important;
+  background: linear-gradient(to bottom,
+    var(--ngo-sand, #cbbda5) 0 1px,
+    var(--ngo-glint, #fffaf1) 1px 2px) !important;
+  border: none !important;
+  border-radius: 0 !important;
+}
+
+.context-menu__content {
+  border-top: 1px solid var(--ngo-border, #96703a) !important;
+  color: var(--ngo-ink, #202628) !important;
+}
