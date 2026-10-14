@@ -8,9 +8,11 @@
       HostName = "github.com";
       User = "git";
       
-      IdentifyFile = "~/.ssh/id_ed25519_github";
+      IdentityFile = "~/.ssh/id_ed25519_github";
       IdentitiesOnly = true;
       AddKeysToAgent = "yes";
     };
   };
+
+  services.ssh-agent.enable = true;
 }
