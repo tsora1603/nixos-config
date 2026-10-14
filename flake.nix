@@ -20,6 +20,12 @@
     qylock.url = "github:Darkkal44/qylock";
 
     nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";
+
+    plasma-manager = {
+      url = "github:nix-community/plasma-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.home-manager.follows = "home-manager";
+    };
   };
 
   outputs = { self, nixpkgs, home-manager, ... }@inputs: {

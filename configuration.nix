@@ -44,7 +44,12 @@ in
     useGlobalPkgs = true;
     useUserPackages = true;
     extraSpecialArgs = { inherit inputs; };
-    users.tsora = import ./home;
+    users.tsora = {
+      imports = [
+        ./home.nix
+        inputs.plasma-manager.homeModules.plasma-manager
+      ];
+    };
   };
 
   fonts.packages = [ pkgs.cozette pkgs.nerd-fonts.departure-mono ];
