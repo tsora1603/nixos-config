@@ -1,14 +1,14 @@
 { ... }:
 {
   imports = [
-    ./home.nix
-    ./shell.nix
-    ./ssh.nix
-    ./git.nix
-    ./ghostty.nix
     ./fastfetch.nix
     ./fish.nix
+    ./ghostty.nix
+    ./git.nix
+    ./home.nix
     ./kwin.nix
+    ./shell.nix
+    ./ssh.nix
     ./vesktop.nix
     ./yazi.nix
   ];

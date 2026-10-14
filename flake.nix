@@ -35,7 +35,6 @@
       modules = [
         ./configuration.nix
         home-manager.nixosModules.home-manager
-
         inputs.qylock.nixosModules.default
         inputs.nix-flatpak.nixosModules.nix-flatpak
       ];

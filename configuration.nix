@@ -9,8 +9,6 @@ let
 in
 {
   imports = [
-    # Include the results of the hardware scan.
-    # NOTE: with flakes, this file must be tracked by git (`git add`).
     ./hardware-configuration.nix
     ./flatpaks.nix
   ];
@@ -46,7 +44,7 @@ in
     extraSpecialArgs = { inherit inputs; };
     users.tsora = {
       imports = [
-        ./home.nix
+        ./home/default.nix
         inputs.plasma-manager.homeModules.plasma-manager
       ];
     };
