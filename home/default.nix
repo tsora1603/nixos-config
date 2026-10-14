@@ -9,6 +9,7 @@
     ./fastfetch.nix
     ./fish.nix
     ./vesktop.nix
+    ./yazi.nix
   ];
 
   home.stateVersion = "26.05";
