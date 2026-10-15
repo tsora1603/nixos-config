@@ -1,12 +1,12 @@
 { ... }:
 {
   imports = [
+    ./kde
     ./fastfetch.nix
     ./fish.nix
     ./ghostty.nix
     ./git.nix
     ./home.nix
-    ./kde
     ./shell.nix
     ./ssh.nix
     ./vesktop.nix

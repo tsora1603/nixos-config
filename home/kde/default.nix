@@ -1,7 +1,8 @@
 { ... }:
 {
   imports = [
+    ./plasma-modules
     ./floating-panel.nix
-    ./kwin.nix
+    ./wallpaper-hot-reload.nix
   ];
 }
