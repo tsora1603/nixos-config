@@ -2,6 +2,12 @@
 { pkgs, ... }:
 {
   programs.plasma = {
+    workspace = {
+      lookAndFeel = "PlasmaOverdoseCream";
+      theme = "Plasma-Overdose-Classic";
+      colorScheme = "PlasmaOverdoseCream";
+    };
+
     configFile = {
       kdeglobals = {
         General = {
@@ -20,8 +26,8 @@
         };
         Icons.Theme = "pixora";
         KDE = {
-          DefaultDarkLookAndFeel = "com.github.huppiflupp.nt-legacy-desert-nacht";
-          DefaultLightLookAndFeel = "com.github.huppiflupp.nt-legacy-desert";
+          DefaultDarkLookAndFeel = "PlasmaOverdoseCream";
+          DefaultLightLookAndFeel = "PlasmaOverdoseCream";
           contrast = 2;
           frameContrast = 0.2;
         };
@@ -35,7 +41,10 @@
           inactiveForeground = "32,38,40";
         };
       };
-      ksplashrc.KSplash.Theme = "com.github.huppiflupp.nt-legacy-desert";
+      ksplashrc.KSplash = {
+        Theme = "PlasmaOverdoseCream";
+        Engine = "KSplashQML";
+      };
     };
   };
 }

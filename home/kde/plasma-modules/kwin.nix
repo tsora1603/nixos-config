@@ -41,7 +41,10 @@
         };
         # XWayland and window decorations
         Xwayland.Scale = 1.1;
-        "org.kde.kdecoration2".theme = "Plasma-Overdose-KWinDeco";
+        "org.kde.kdecoration2" = {
+          library = "org.kde.kwin.aurorae";
+          theme = "Plasma-Overdose-KWinDeco";
+        };
       };
       kwinrulesrc = {
         # Dolphin

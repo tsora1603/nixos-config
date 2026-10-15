@@ -30,15 +30,14 @@ A Steam skin made to closely match the companion **PlasmaOverdoseCream-Hydra.css
 
 ## Install on your NixOS + Home Manager configuration
 
-Your existing declarative mapping is compatible with this archive:
+Home Manager uses the repository's theme directory directly:
 
 ```nix
 home.file.".steam/steam/millennium/themes/PlasmaOverdoseCream".source =
-  config.lib.file.mkOutOfStoreSymlink
-    "${config.home.homeDirectory}/nixos/themes/steam/PlasmaOverdoseCream";
+  ../themes/steam/PlasmaOverdoseCream;
 ```
 
-If your `~/nixos/themes/steam/PlasmaOverdoseCream` directory already exists, **back up its contents**, then overwrite only these files with the files from this archive:
+Edit the theme files in this repository:
 
 ```text
 PlasmaOverdoseCream/
@@ -50,7 +49,7 @@ PlasmaOverdoseCream/
         └── steam.js
 ```
 
-The directory name and `skin.json` metadata are maintained, so Millennium can continue recognizing your existing theme. **You do not need `nh os switch` after editing files inside the already linked directory**: out-of-store directory symlinks expose the updated files immediately. In Steam, reload the Millennium theme or fully restart Steam to apply the CSS.
+Rebuild with `nh os switch` after editing the repository files, then reload the theme in Millennium or fully restart Steam. Home Manager links the stored theme without downloading a base stylesheet or rewriting its CSS. The CSS's own remote Win95 import remains unchanged and still requires network access.
 
 If instead you install manually, place the `PlasmaOverdoseCream` folder at `~/.steam/steam/millennium/themes/PlasmaOverdoseCream/` (for this Steam installation) and select **Plasma Overdose Cream · Pixel95** in Millennium.
 

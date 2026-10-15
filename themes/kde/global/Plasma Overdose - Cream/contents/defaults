@@ -21,7 +21,7 @@ library=org.kde.kwin.aurorae
 theme=Plasma-Overdose-KWinDeco
 
 [ksplashrc][KSplash]
-Theme=Plasma Overdose - Cream
+Theme=PlasmaOverdoseCream
 Engine=KSplashQML
 
 [plasmarc][Theme]

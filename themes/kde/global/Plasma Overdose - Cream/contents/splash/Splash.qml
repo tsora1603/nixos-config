@@ -5,7 +5,7 @@ Rectangle {
     color: "#a89878"
     property int stage
 
-    // NT zeigte beim Start ein schlichtes Feld mit Produktnamen.
+    // Cream pixel-style splash with a progress indicator.
     Rectangle {
         anchors.centerIn: parent
         width: Math.min(parent.width * 0.5, 460)
@@ -22,7 +22,7 @@ Rectangle {
             Text {
                 anchors { left: parent.left; leftMargin: 8
                            verticalCenter: parent.verticalCenter }
-                text: "NT Legacy Wueste"
+                text: "Plasma Overdose Cream"
                 color: "#ffffff"
                 font.bold: true
                 font.pixelSize: 13

@@ -109,17 +109,22 @@ Log out and back in after changing this part of the configuration.
 
 Installing theme assets and selecting them are separate steps.
 
-`home/kde/assets.nix` installs pinned versions of Pixora, NT Legacy
-and the Plasma Overdose KWin decoration. It also installs the bundled
-cream cursor theme.
+`themes/` is the source for my custom themes. Nothing downloads or
+rewrites an upstream theme during the Nix build.
 
-The Plasma modules then select the relevant components: icons, fonts,
-cursor, splash screen and window decoration. The desktop’s appearance
-is assembled from several pieces rather than one global theme.
+`home/home.nix` links the local cream color scheme, cursor,
+global theme, Plasma style and KWin decoration into their individual
+locations under `~/.local/share/`. It doesn't replace the parent theme
+directories, so other installed themes can coexist.
 
-There are additional local assets under `themes/kde/`. Being in that
-directory doesn’t automatically install or activate an asset;
-`assets.nix` and the Plasma modules determine what gets used.
+The Plasma modules select my local `PlasmaOverdoseCream` global theme,
+`Plasma-Overdose-Classic` Plasma style, cream color scheme, cursor,
+splash screen and KWin decoration. The upstream Plasma Overdose theme
+was a starting point; its original package and NT Legacy aren't installed.
+
+Pixora remains the selected icon theme. Its Nix package is planned
+separately; for now its files need to be installed already, since this
+config doesn't include or download them.
 
 ### Application themes
 
@@ -132,12 +137,19 @@ expect them:
 | Vesktop | `~/.config/vesktop/themes/` |
 | Hydra | `~/Documents/Themes/Hydra` |
 
-Steam’s theme combines my overrides with a pinned Win95 base stylesheet.
-Nix bundles that stylesheet locally during the build, so loading the
-installed theme doesn’t require downloading its base CSS.
+Hydra, Steam and Vesktop use the files in `themes/hydralauncher/`,
+`themes/steam/` and `themes/vesktop/` directly, without Nix substitutions
+or downloaded theme builders. Their CSS is kept as written.
 
-Placing the theme files doesn’t necessarily select them inside each
-application. Application-side theme selection may still be needed.
+The checked-in Steam CSS still has its own remote Win95 `@import`.
+That's part of the theme file, not an extra Nix download; loading that
+base stylesheet still needs network access.
+
+Placing the theme files doesn't select them inside each application.
+In Hydra, import `~/Documents/Themes/Hydra/PlasmaOverdoseCream-Hydra.css`
+in the appearance settings and enable it. Hydra stores imported CSS in
+its own database, so re-import it after changing the file and rebuilding.
+Select the matching local theme in Millennium and Vesktop as well.
 
 ## Wallpapers
 
@@ -226,7 +238,6 @@ This setup uses and builds on:
 - NixOS, Home Manager and Plasma Manager
 - KDE Plasma and Karousel
 - Pixora icons
-- NT Legacy by huppiflupp
-- Plasma Overdose by Notify-ctrl
+- Plasma Overdose by Notify-ctrl (the base for my local KDE theme)
 - Millennium and ricewind012’s Win95 Steam theme
 - Qylock

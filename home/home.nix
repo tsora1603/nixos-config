@@ -1,26 +1,5 @@
-{ pkgs, ... }:
+{ ... }:
 
-let
-  win95 = pkgs.fetchurl {
-    url =
-      "https://raw.githubusercontent.com/ricewind012/win95-themes/"
-      + "fbabefb43f7607612bf5f0df93bd3999c17c1de4/dist/steam.css";
-    hash = "sha256-GRZ/EP+4CcCOYvHbjm/XcLGuTyT9fxIZt5DzC5binaM=";
-  };
-
-  steamTheme = pkgs.runCommand "plasma-overdose-cream-steam" { } ''
-    mkdir -p "$out"
-    cp -r ${../themes/steam/PlasmaOverdoseCream}/. "$out/"
-    chmod -R u+w "$out"
-
-    cp ${win95} "$out/upstream-win95.css"
-
-    substituteInPlace "$out/steam_import.css" \
-      --replace-fail \
-      'https://rawcdn.githack.com/ricewind012/win95-themes/fbabefb43f7607612bf5f0df93bd3999c17c1de4/dist/steam.css' \
-      'upstream-win95.css'
-  '';
-in
 {
   home.file = {
     "Pictures/Wallpapers".source = ../wallpapers;
@@ -29,10 +8,28 @@ in
       ../themes/hydralauncher;
 
     ".steam/steam/millennium/themes/PlasmaOverdoseCream".source =
-      steamTheme;
+      ../themes/steam/PlasmaOverdoseCream;
 
     ".config/vesktop/themes/PlasmaOverdoseCream-Vesktop.css".source =
       ../themes/vesktop/PlasmaOverdoseCream-Vesktop.css;
+  };
+
+  # Install each local KDE component separately so other themes can coexist.
+  xdg.dataFile = {
+    "color-schemes/PlasmaOverdoseCream.colors".source =
+      ../themes/kde/colors/PlasmaOverdoseCream.colors;
+
+    "icons/Plasma-Overdose-Cream".source =
+      ../themes/kde/cursors/Plasma-Overdose-Cream-cursor;
+
+    "plasma/look-and-feel/PlasmaOverdoseCream".source =
+      ../themes/kde/global + "/Plasma Overdose - Cream";
+
+    "plasma/desktoptheme/Plasma-Overdose-Classic".source =
+      ../themes/kde/plasma-styles/Plasma-Overdose-Classic;
+
+    "kwin/decorations/Plasma-Overdose-KWinDeco".source =
+      ../themes/kde/window-decorations/Plasma-Overdose-KWinDeco;
   };
 
   programs.onlyoffice.enable = true;
