@@ -15,7 +15,7 @@
         "ns" = "nh os switch";
         "nt" = "nh os test";
         "nx" = "cd ~/nixos";
-        "nh" = "cd ~/nixos/home";
+        "nxh" = "cd ~/nixos/home";
         "sn" = "sudo nano";
         "sx" = "sudo nano ~/nixos/configuration.nix";        
       };
