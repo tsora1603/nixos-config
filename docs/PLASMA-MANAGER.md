@@ -1,4 +1,4 @@
-# KDE: organized by what you want to change
+# KDE: Modularized
 
 [`home/kde/default.nix`](../home/kde/default.nix) imports the desktop modules. 
 Most preferences live under [`home/kde/plasma-modules/`](../home/kde/plasma-modules):
