@@ -16,7 +16,7 @@
     };
 
     millennium.url = "github:SteamClientHomebrew/Millennium?dir=packages/nix";
-  
+
     qylock.url = "github:Darkkal44/qylock";
 
     nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";
@@ -39,11 +39,7 @@
         inputs.qylock.nixosModules.default
         inputs.nix-flatpak.nixosModules.nix-flatpak
       ];
-<<<<<<< HEAD
-    };
-=======
     }; # nixosSystem ends here
->>>>>>> f7bac0e (some fixes)
 
     packages.x86_64-linux.tidaler =
       let
@@ -53,9 +49,5 @@
 
     checks.x86_64-linux.tidaler =
       self.packages.x86_64-linux.tidaler;
-<<<<<<< HEAD
   };
-=======
-};
->>>>>>> f7bac0e (some fixes)
 }
