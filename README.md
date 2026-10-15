@@ -39,7 +39,7 @@ unstable input, while other inputs provide:
 - `plasma-manager`; 
 - `nix-flatpak` (for declarative flatpak managing); 
 - `millennium` (for Steam ricing); 
-- `qylock` (for beautiful `sddm` screens); 
+- `qylock` (for the awesome `sddm` screens); 
 
 ## Validate and apply
 
