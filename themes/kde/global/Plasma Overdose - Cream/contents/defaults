@@ -1,5 +1,5 @@
 [kcminputrc][Mouse]
-cursorTheme=NTLegacy_cursors
+cursorTheme=Plasma-Overdose-Cream
 
 [kdeglobals][General]
 ColorScheme=PlasmaOverdoseCream
@@ -20,5 +20,9 @@ LayoutName=org.kde.breeze.desktop
 library=org.kde.kwin.aurorae
 theme=Plasma-Overdose-KWinDeco
 
+[ksplashrc][KSplash]
+Theme=Plasma Overdose - Cream
+Engine=KSplashQML
+
 [plasmarc][Theme]
-name=Plasma-Overdose-Cream
+name=Plasma-Overdose-Classic

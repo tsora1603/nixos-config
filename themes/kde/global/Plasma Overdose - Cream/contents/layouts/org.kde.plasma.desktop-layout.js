@@ -19,9 +19,10 @@ var layout = {
                     "DialogWidth": "810"
                 },
                 "/General": {
-                    "changedPositions": "{\"desktop:/hydralauncher.desktop\":[\"3127x1309\",\"0\",\"1\"],\"desktop:/org.kde.discover.desktop\":[\"3127x1309\",\"1\",\"0\"],\"desktop:/org.vinegarhq.Sober.desktop\":[\"3127x1309\",\"0\",\"2\"],\"desktop:/steam.desktop\":[\"3127x1309\",\"0\",\"0\"]}",
+                    "arrangement": "1",
+                    "changedPositions": "{}",
                     "lastResolution": "3127x1309",
-                    "positions": "{\"3127x1309\":[\"1\",\"28\",\"desktop:/org.kde.discover.desktop\",\"1\",\"0\",\"desktop:/org.vinegarhq.Sober.desktop\",\"0\",\"2\",\"desktop:/hydralauncher.desktop\",\"0\",\"1\",\"desktop:/steam.desktop\",\"0\",\"0\"]}",
+                    "positions": "{\"3127x1309\":[\"19\",\"11\",\"desktop:/steam.desktop\",\"18\",\"8\",\"desktop:/hydralauncher.desktop\",\"18\",\"9\",\"desktop:/The Adventures of Elliot The Millennium Tales.desktop\",\"8\",\"2\",\"desktop:/main.xml\",\"0\",\"2\",\"desktop:/io.mrarm.mcpelauncher.desktop\",\"8\",\"3\",\"desktop:/org.kde.discover.desktop\",\"1\",\"0\",\"desktop:/Aseprite.desktop\",\"18\",\"7\",\"desktop:/org.vinegarhq.Sober.desktop\",\"8\",\"4\"]}",
                     "sortMode": "-1"
                 },
                 "/Wallpaper/org.kde.image/General": {
@@ -42,6 +43,9 @@ var layout = {
                     "immutability": "1",
                     "lastScreen": "1",
                     "wallpaperplugin": "org.kde.image"
+                },
+                "/Wallpaper/org.kde.image/General": {
+                    "Image": "file:///home/tsora/Pictures/Wallpapers/MONITOR2/Permanent/old-pc.png"
                 }
             },
             "wallpaperPlugin": "org.kde.image"
@@ -54,8 +58,8 @@ var layout = {
                 {
                     "config": {
                         "/": {
-                            "popupHeight": "549",
-                            "popupWidth": "772"
+                            "popupHeight": "545",
+                            "popupWidth": "780"
                         },
                         "/ConfigDialog": {
                             "DialogHeight": "630",
@@ -74,15 +78,14 @@ var layout = {
                             "DialogWidth": "810"
                         },
                         "/General": {
-                            "launchers": "preferred://filemanager,preferred://browser,applications:vesktop.desktop,applications:org.kde.discover.desktop"
+                            "groupedTaskVisualization": "3",
+                            "highlightWindows": "true",
+                            "launchers": "preferred://filemanager,preferred://browser,file:///nix/store/bsvz84v6p7z3fbcgjqxlckdljpmfw5fp-user-environment/share/applications/vesktop.desktop,file:///nix/store/bbaf7ply9nhl6dv16wan0a7jvgar7l41-system-path/share/applications/org.kde.discover.desktop",
+                            "separateLaunchers": "false",
+                            "taskMaxWidth": "Wide"
                         }
                     },
                     "plugin": "org.kde.plasma.icontasks"
-                },
-                {
-                    "config": {
-                    },
-                    "plugin": "org.kde.plasma.marginsseparator"
                 },
                 {
                     "config": {
@@ -91,16 +94,8 @@ var layout = {
                 },
                 {
                     "config": {
-                        "/": {
-                            "popupHeight": "450",
-                            "popupWidth": "560"
-                        },
-                        "/ConfigDialog": {
-                            "DialogHeight": "630",
-                            "DialogWidth": "810"
-                        }
                     },
-                    "plugin": "org.kde.plasma.digitalclock"
+                    "plugin": "org.kde.plasma.marginsseparator"
                 },
                 {
                     "config": {
@@ -110,19 +105,37 @@ var layout = {
                         }
                     },
                     "plugin": "org.kde.plasma.showdesktop"
+                },
+                {
+                    "config": {
+                    },
+                    "plugin": "org.kde.plasma.marginsseparator"
+                },
+                {
+                    "config": {
+                        "/": {
+                            "popupHeight": "400",
+                            "popupWidth": "560"
+                        },
+                        "/ConfigDialog": {
+                            "DialogHeight": "630",
+                            "DialogWidth": "810"
+                        }
+                    },
+                    "plugin": "org.kde.plasma.analogclock"
                 }
             ],
             "config": {
                 "/": {
-                    "formfactor": "3",
+                    "formfactor": "2",
                     "immutability": "1",
                     "lastScreen": "0",
                     "wallpaperplugin": "org.kde.image"
                 }
             },
-            "height": 3.1,
+            "height": 4.2,
             "hiding": "normal",
-            "location": "left",
+            "location": "bottom",
             "maximumLength": 65.45,
             "minimumLength": 65.45,
             "offset": 0

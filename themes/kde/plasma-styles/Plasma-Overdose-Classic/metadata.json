@@ -1,0 +1,18 @@
+{
+  "KPlugin": {
+    "Authors": [
+      {
+        "Name": "Notify-ctrl",
+        "Email": "notify-ctrl@qq.com"
+      }
+    ],
+    "Category": "",
+    "Id": "Plasma-Overdose-Classic-Cream-Taskbar-Fixed",
+    "License": "GPLv3",
+    "Name": "Plasma Overdose — Classic Cream (Taskbar Fixed)",
+    "Name[zh_CN]": "Plasma 重度依赖",
+    "Version": "1.6.0",
+    "Description": "Bigger retro buttons for every pinned/running app; uniform pressed bronze fill without horizontal stripes; original colors and shadows preserved."
+  },
+  "X-Plasma-API": "5.0"
+}
