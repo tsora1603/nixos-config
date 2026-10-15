@@ -1,50 +1,95 @@
-# Plasma Overdose Cream · Pixel95 — DepartureMono Nerd Font (Millennium)
+# Plasma Overdose Cream · Pixel95 — Steam / Millennium
 
-A Needy Girl Overdose-inspired, cream-first Steam theme based on the **original Windows 95 Millennium theme by ricewind012**. This is a separate theme, not an update layered over older custom Steam CSS.
+**Version 3.0.1 — Hydra visual parity edition**
 
-## Design
+A Steam skin made to closely match the companion **PlasmaOverdoseCream-Hydra.css** theme, using the same cream-and-brown Windows 95 / Needy Girl Overdose design language. This is an update of the supplied Steam theme, preserving its Windows 95 base and compatibility with your NixOS + KDE/KWin setup.
 
-- Original Win95 components, window shapes, menus, dialog layout and interactions are retained.
-- Cream `#f0ece0`, taupe `#d8d0c0`, off-white, sand, warm brown `#96703a`, accent orange `#c87922`, charcoal `#202628`. **No pink or purple.**
-- DepartureMono Nerd Font (locally installed through NixOS/fontconfig), with monospaced fallbacks. No font files are bundled and no font CDN is used. Normal UI text uses an 11px pixel grid.
-- Pixel stripe title/nav and shelf headers, square/beveled buttons, stepped hover transitions, readable category labels and sidebar, sharp window/chrome borders, subtle pixel-art decorations.
-- Targeted ink/muted color rules for Steam Library **What's New**, update cards, shelf headings, collection controls, labels and dates, avoiding pale-on-cream text.
-- Game and collection artwork are **not recolored or pixelated**. The collection label is a light rectangular overlay to make its title readable.
+**v3.0.1 fix:** Removed duplicate inset/outer borders on Steam library collection and sorting dropdown selectors while keeping one Win95 bevel.
 
-## Required font (NixOS)
+## Visual system
 
-Install the font with your other declarative NixOS settings:
+| Element | Color |
+|---|---|
+| Main paper | `#f0ece0` |
+| Taupe application panels | `#d8d0c0` |
+| Raised controls | `#e4dfd1` |
+| Highlights / light bevels | `#fffaf1` |
+| Warm brown borders | `#96703a` |
+| Deep brown titlebar / selected rows | `#7d6036` |
+| Orange focus / progress accents | `#c87922` |
+| Dark ink | `#202628` |
+
+- Brown vertically striped Steam navigation, library shelf bars, side panels, and game-section headers, borrowing the **same** pattern as Hydra.
+- Square beige buttons with layered light/dark pixel bevels, physical pressed states, and orange hover borders.
+- Dark, readable labels on cream surfaces; ivory labels on striped dark-brown headers.
+- Sunken input controls and progress tracks; striped orange progress fills.
+- Pixel-outlined game covers and collection tiles. **Game artwork, avatars, video, and covers remain unfiltered.**
+- Warm cream right-click menus, popups and tooltips, selected game rows, profile/friends headers and, where Steam selectors allow, notification toasts.
+- `DepartureMono Nerd Font` with local/system fontconfig and monospace fallback. **No font files are bundled.**
+- Steam's native status colors for friends and critical errors are preserved.
+
+## Install on your NixOS + Home Manager configuration
+
+Your existing declarative mapping is compatible with this archive:
 
 ```nix
-fonts.packages = with pkgs; [
-  nerd-fonts.departure-mono
-];
+home.file.".steam/steam/millennium/themes/PlasmaOverdoseCream".source =
+  config.lib.file.mkOutOfStoreSymlink
+    "${config.home.homeDirectory}/nixos/themes/steam/PlasmaOverdoseCream";
 ```
 
-Run `nh os switch` and restart Steam. If you already define `fonts.packages`, simply append `nerd-fonts.departure-mono` rather than adding a duplicate declaration. Check availability with `fc-match -f '%{family}\n' 'DepartureMono Nerd Font'`.
+If your `~/nixos/themes/steam/PlasmaOverdoseCream` directory already exists, **back up its contents**, then overwrite only these files with the files from this archive:
 
-## KDE native window titlebar (v2.1.3)
+```text
+PlasmaOverdoseCream/
+├── README.md
+├── skin.json
+├── steam_import.css
+└── src/
+    └── steam/
+        └── steam.js
+```
 
-This version hides both Steam-owned titlebar elements: the internal minimize/maximize/close controls AND the decorative brown Win95 caption that says "Steam". The caption uses `.title-area`, a separate selector in the original Win95 base. The KDE/KWin native window decoration remains visible and provides those functions. Steam/View/Friends menus, Store/Library navigation, and notification/account controls are intentionally preserved.
+The directory name and `skin.json` metadata are maintained, so Millennium can continue recognizing your existing theme. **You do not need `nh os switch` after editing files inside the already linked directory**: out-of-store directory symlinks expose the updated files immediately. In Steam, reload the Millennium theme or fully restart Steam to apply the CSS.
 
-This CSS **does not enable** KDE decorations; configure the native titlebar separately in KDE/your window rules as needed. This skin targets Steam's main desktop window, not separate popup windows or the game overlay. If your Steam version renders the menu bar inside `.title-area`, reload the earlier release and report a screenshot.
+If instead you install manually, place the `PlasmaOverdoseCream` folder at `~/.steam/steam/millennium/themes/PlasmaOverdoseCream/` (for this Steam installation) and select **Plasma Overdose Cream · Pixel95** in Millennium.
 
-## Install
+## Required font
 
-1. Fully exit Steam.
-2. Extract ZIP into `~/.steam/steam/steamui/skins/`. Your result should be `skins/Plasma-Overdose-Cream-Pixel95/skin.json`.
-3. Start Steam, select **Plasma Overdose Cream · Pixel95** in Millennium's theme selector, and reload the skin. Disable earlier Plasma Overdose Cream themes.
-4. Test Steam Library Home (including What's New, collection and Favorites shelves), a collection page, a game page, Settings and Friends/Chat.
+Install DepartureMono via NixOS if you have not already:
 
-## Technical notes
+```nix
+fonts.packages = with pkgs; [ nerd-fonts.departure-mono ];
+```
 
-- **Upstream:** https://github.com/ricewind012/win95-themes (2.3.0 base), pinned original stylesheet via the same CDN used by upstream. The original stylesheet requires network access for its CDN on first load.
-- **Source of customization:** `steam_import.css`, organized into numbered sections. Edit `--ngo-*`/`--color-*` tokens in section 01 for colors. No external JavaScript. `src/steam/steam.js` remains from the upstream/base skin.
-- DepartureMono Nerd Font is a separately installed system font. Add `fonts.packages = with pkgs; [ nerd-fonts.departure-mono ];` to NixOS, rebuild, and open a fresh Steam session. Verify with `fc-match -f '%{family}\n' 'DepartureMono Nerd Font'`. The theme never downloads font files.
-- Steam's CSS module class names can change on Steam updates; the new rules match class name fragments and intentionally avoid overriding game art and artwork text.
-- **Validation:** CSS parsed successfully and bundle structure checked, but this package has **not been tested inside a live Steam client**. Any selectors whose module names changed may need adjustments after visual testing.
+Check with `fc-match -f '%{family}\n' 'DepartureMono Nerd Font'`.
+
+## Structure and customization
+
+- `steam_import.css` is the main theme. **§01** holds the palette; **§14–27** provides specific overrides inspired by Hydra. For consistent results, edit the colors in §01 and adjust the `--ngo-header-stripes` variable in §14 if changing your palette.
+- `skin.json` contains Millennium's existing three window patches for desktop, other Steam windows, and Friends.
+- `src/steam/steam.js` is **unchanged** from the supplied theme; only the CSS and descriptive metadata are updated.
+- The theme still uses the pinned Windows 95 upstream base from [`ricewind012/win95-themes`](https://github.com/ricewind012/win95-themes), imported over HTTPS at the top of `steam_import.css`. Its stylesheet must be accessible when Steam loads the theme. No extra JavaScript or executable dependencies were introduced.
+
+### KDE native titlebar
+
+The prior behavior is retained: Steam's duplicated Win95 caption and client-side min/max/close controls are hidden for the main desktop window so your KDE/KWin decoration can provide them. The Steam/View/Friends menu, main Steam navigation, and account controls are preserved. It doesn't *enable* KWin decorations, and it doesn't attempt to change popup titlebars or the game overlay.
+
+### Compatibility limits
+
+Steam and Hydra have different page structures: CSS can reproduce the palette, pixel typography, bevels, panel chrome and states, but it cannot make all layouts or behaviors literally identical. Steam's generated CSS module classes can change after updates. Targeted selectors are used to keep the design reasonably resilient. Custom CSS can't style proprietary webpage contents (store/community web content) unless a separate Millennium patch targets those web views; this package intentionally preserves its original window patch scope.
+
+**Checks:** CSS syntax, JSON validity, JavaScript syntax and archive structure are verified. Visual behavior requires testing in your installed Steam client. Please send screenshots of any panel whose text or borders still look wrong.
 
 ## Credits
 
-- Base: [ricewind012/win95-themes](https://github.com/ricewind012/win95-themes)
-- Visual inspiration: *Needy Girl Overdose / Needy Streamer Overload* and Plasma Overdose Cream KDE
+- Windows 95 base: [ricewind012/win95-themes](https://github.com/ricewind012/win95-themes)
+- Design reference: *Plasma Overdose Cream / Pixel95* Hydra theme and *Needy Girl Overdose*
+
+### Dropdown cleanup
+
+This revision corrects a broad `DialogDropDown` match that unintentionally styled individual option rows and current-value labels with full input borders. The new rule targets the actual dropdown control and leaves the menu rows flat while preserving the selection highlight.
+
+## Game details contrast update (3.0.2)
+
+Improved contrast for Last Launched / Usage Time, Friends, Notes, Recordings and Screenshots, and Activity captions using the Steam appdetailsplaysection and appdetailssectionheader controls. Existing dropdown fixes and the Steam library structure are retained.

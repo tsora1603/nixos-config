@@ -15,17 +15,17 @@
   color-scheme: light !important;
 
   --ngo-cream: #f0ece0;
-  --ngo-white: #fffdf5;
-  --ngo-paper: #f7f5ee;
+  --ngo-white: #fffaf1;
+  --ngo-paper: #f0ece0;
   --ngo-taupe: #d8d0c0;
   --ngo-sand: #e4dfd1;
   --ngo-sand-dark: #cbbda5;
   --ngo-selected: #e8d6b7;
   --ngo-brown: #96703a;
-  --ngo-brown-dark: #594c40;
+  --ngo-brown-dark: #7d6036;
   --ngo-orange: #c87922;
   --ngo-ink: #202628;
-  --ngo-muted: #625849;
+  --ngo-muted: #6a5c46;
   --ngo-green: #39734a;
   --ngo-red: #a83232;
   /* Loaded through system fontconfig; no external font download. */
@@ -35,14 +35,14 @@
   --color-button-text: var(--ngo-ink);
   --color-button-highlight: var(--ngo-white);
   --color-button-light: var(--ngo-sand);
-  --color-button-shadow: #9a8b76;
+  --color-button-shadow: #987f60;
   --color-button-shadow-dark: var(--ngo-brown-dark);
   --color-window: var(--ngo-cream);
   --color-window-text: var(--ngo-ink);
   --color-menubar: var(--ngo-taupe);
   --color-menubar-text: var(--ngo-ink);
-  --color-active-caption-bg-start: var(--ngo-brown);
-  --color-active-caption-bg-end: #7f5d36;
+  --color-active-caption-bg-start: var(--ngo-brown-dark);
+  --color-active-caption-bg-end: var(--ngo-brown);
   --color-active-caption-text: var(--ngo-white);
   --color-inactive-caption-bg-start: #a29683;
   --color-inactive-caption-bg-end: #c1b7a6;
@@ -58,13 +58,13 @@
   /* Keep original bevel geometry while making the whole client pixel-forward. */
   --text-ui-font: var(--ngo-pixel-font);
   --text-monospace-font: var(--ngo-pixel-font);
-  --text-ui-size: 11px;
+  --text-ui-size: 12px;
   --text-header-size: 22px;
   --text-line: 1.2;
   --border-size: 2px;
   --ngo-pixel-stipple: radial-gradient(#96703a2b 0.7px, transparent 1px) 0 0 / 7px 7px;
   --ngo-edge: inset 1px 1px 0 var(--ngo-white), inset -1px -1px 0 #907e65;
-  --ngo-tile-shadow: 3px 3px 0 #594c4080;
+  --ngo-tile-shadow: 3px 3px 0 #7d603680;
 }
 
 /* 02 — Typography, form controls and focus treatment. No catch-all recolor. */
@@ -446,4 +446,884 @@
 /* Keep Steam's main menu and its navigation visible immediately below KDE. */
 :where(.DesktopUI) [class*="steamdesktop_TitleBar"] {
   row-gap: 0 !important;
+}
+
+/* ============================================================================
+ * 14–26 · HYDRA PIXEL95 PARITY LAYER (2026-10-14)
+ *
+ * Design source: PlasmaOverdoseCream-Hydra.css. All controls use its actual
+ * palette and bevel language, adapted to Steam's own DOM/CSS modules.
+ *
+ * The upstream Win95 skin, KDE-owned titlebar rules, native popup positions,
+ * and unmodified artwork are deliberately retained. New selectors are scoped
+ * to known Steam components; Steam's own status colors keep their meaning.
+ * ============================================================================ */
+
+/* 14 — Hydra's semantic aliases. The palette above in §01 is authoritative. */
+:root, :root.theme-dark, :root.theme-light {
+  --ngo-line: var(--ngo-brown);
+  --ngo-sunken: #dcd1bb;
+  --ngo-ivory: var(--ngo-white);
+  --ngo-pixel-grid: repeating-linear-gradient(90deg, rgba(150,112,58,.05) 0 1px, transparent 1px 12px);
+  --ngo-header-stripes: repeating-linear-gradient(90deg, transparent 0 8px, rgba(255,250,241,.12) 8px 10px), linear-gradient(90deg, #7d6036, #96703a);
+  --ngo-bevel-raise: inset 2px 2px 0 #fffaf1, inset -2px -2px 0 #b7a689;
+  --ngo-bevel-sink: inset 2px 2px 0 #92795d, inset -2px -2px 0 #fffaf1;
+  --ngo-shadow-step: 2px 2px 0 #7d6036;
+  --ngo-card-shadow: inset 2px 2px 0 #fffaf1, 2px 2px 0 #cbbda5;
+  --ngo-departure: var(--ngo-pixel-font);
+}
+
+/* Slight pixel-paper pattern only on application surfaces, never images/video. */
+:where(.DesktopUI, .fullheight) :is(
+  [class*="libraryhome_LibraryHome"],
+  [class*="libraryhome_UpdatesContainer"],
+  [class*="libraryhomeshowcases_ChildrenContainer"],
+  [class*="allcollections_ScrollContainer"],
+  [class*="collectionview_OuterContainer"],
+  [class*="appgrid_ScrollContainer"],
+  [class*="downloadpage_DownloadsPage"]
+) {
+  background-color: var(--ngo-taupe) !important;
+  color: var(--ngo-ink) !important;
+  background-image: var(--ngo-pixel-grid) !important;
+}
+
+/* 15 — Hydra's iconic brown, vertically striped chrome across Steam's bars. */
+:where(.DesktopUI, .fullheight) :is(
+  [class*="steamdesktop_SuperNavBar"],
+  [class*="steamdesktop_TopBar"]
+) {
+  background: var(--ngo-header-stripes) !important;
+  color: var(--ngo-ivory) !important;
+  border-bottom: 2px solid var(--ngo-ink) !important;
+  box-shadow: inset 0 2px 0 rgba(255,250,241,.18), inset 0 -1px 0 #513e2a !important;
+}
+
+:where(.DesktopUI, .fullheight) :is(
+  [class*="steamdesktop_SuperNavBar"],
+  [class*="steamdesktop_TopBar"]
+) :is(
+  [class*="steamdesktop_RootMenuBar"],
+  [class*="supernav_SuperNavMenu"],
+  [class*="rootmenu_MenuItem"],
+  [class*="steamdesktop_ReloadButton"]
+) {
+  color: var(--ngo-ivory) !important;
+  text-shadow: 1px 1px 0 rgba(32,38,40,.52) !important;
+}
+
+:where(.DesktopUI, .fullheight) :is(
+  [class*="steamdesktop_SuperNavBar"],
+  [class*="steamdesktop_TopBar"]
+) :is(
+  [class*="supernav_SuperNavMenu"],
+  [class*="rootmenu_MenuItem"]
+):is(:hover, :focus-visible, [class*="Selected"], [class*="Active"]) {
+  background-color: rgba(32,38,40,.25) !important;
+  box-shadow: inset 0 -3px 0 var(--ngo-orange) !important;
+  color: var(--ngo-ivory) !important;
+}
+
+/* Keep native KDE titlebar and Steam internal caption suppression from §§12–13. */
+:where(.DesktopUI) .title-area,
+:where(.DesktopUI, .fullheight) [class*="steamdesktop_WindowControls"] {
+  display: none !important;
+}
+
+/* 16 — Raised rectangular buttons: same recessed/pressed logic as Hydra. */
+:where(.DesktopUI, .fullheight, .friendsui-container) :is(
+  [class*="DialogButton_"],
+  [class*="sortingdropdowncontrolbutton_"],
+  [class*="libraryhomeshowcases_AddShowcase"],
+  [class*="libraryhomeshowcases_PageLeft"],
+  [class*="libraryhomeshowcases_PageRight"],
+  [class*="appdetailsprimarylinkssection_LinkInner"],
+  [class*="appactionbutton_PlayButton"],
+  [class*="appactionbutton_InstallButton"],
+  [class*="downloaditem_Button"],
+  [class*="downloads_Button"]
+) {
+  background-color: var(--ngo-sand) !important;
+  background-image: linear-gradient(180deg, rgba(255,250,241,.45), transparent 60%) !important;
+  color: var(--ngo-ink) !important;
+  border: 2px solid var(--ngo-brown-dark) !important;
+  border-radius: 0 !important;
+  box-shadow: var(--ngo-bevel-raise), var(--ngo-shadow-step) !important;
+  text-shadow: none !important;
+  transition: none !important;
+}
+
+:where(.DesktopUI, .fullheight, .friendsui-container) :is(
+  [class*="DialogButton_"],
+  [class*="sortingdropdowncontrolbutton_"],
+  [class*="libraryhomeshowcases_AddShowcase"],
+  [class*="libraryhomeshowcases_PageLeft"],
+  [class*="libraryhomeshowcases_PageRight"],
+  [class*="appdetailsprimarylinkssection_LinkInner"],
+  [class*="appactionbutton_PlayButton"],
+  [class*="appactionbutton_InstallButton"],
+  [class*="downloaditem_Button"],
+  [class*="downloads_Button"]
+):hover:not(:disabled) {
+  background-color: var(--ngo-ivory) !important;
+  border-color: var(--ngo-orange) !important;
+  color: var(--ngo-ink) !important;
+}
+
+:where(.DesktopUI, .fullheight, .friendsui-container) :is(
+  [class*="DialogButton_"],
+  [class*="sortingdropdowncontrolbutton_"],
+  [class*="appdetailsprimarylinkssection_LinkInner"],
+  [class*="appactionbutton_PlayButton"],
+  [class*="appactionbutton_InstallButton"],
+  [class*="downloaditem_Button"],
+  [class*="downloads_Button"]
+):active:not(:disabled) {
+  background: var(--ngo-sunken) !important;
+  box-shadow: var(--ngo-bevel-sink) !important;
+  border-color: var(--ngo-brown-dark) !important;
+}
+
+/* Preserve legibility when icon and text have their own CSS-module colors. */
+:where(.DesktopUI, .fullheight) :is(
+  [class*="appactionbutton_PlayButton"],
+  [class*="appactionbutton_InstallButton"],
+  [class*="appdetailsprimarylinkssection_LinkInner"]
+) :is(span, svg, path) {
+  color: var(--ngo-ink) !important;
+}
+
+/* 17 — Sunken input fields, type, pill badges, tooltips and focus. */
+:where(.DesktopUI, .fullheight, .friendsui-container) :is(
+  [class*="DialogInput_Wrapper"],
+  [class*="DialogInputBase"],
+  .DialogDropDown,
+  [class*="DialogTextInputBase"],
+  [class*="dropdown_Dropdown"]:not([class*="DropdownLabel"]):not([class*="DropdownMenu"])
+) {
+  background-color: var(--ngo-ivory) !important;
+  border: 2px solid var(--ngo-brown-dark) !important;
+  border-radius: 0 !important;
+  box-shadow: var(--ngo-bevel-sink) !important;
+  color: var(--ngo-ink) !important;
+}
+
+:where(.DesktopUI, .fullheight, .friendsui-container) :is(
+  input:not([type="checkbox"]):not([type="radio"]),
+  textarea,
+  select,
+  [role="textbox"]
+) {
+  border-radius: 0 !important;
+  color: var(--ngo-ink) !important;
+  caret-color: var(--ngo-brown-dark) !important;
+}
+
+:where(.DesktopUI, .fullheight, .friendsui-container) :is(
+  input, textarea, select, button, [role="button"], [role="menuitem"], [role="tab"]
+):focus-visible {
+  outline: 2px dashed var(--ngo-orange) !important;
+  outline-offset: 2px !important;
+}
+
+:where(.DesktopUI, .fullheight, .friendsui-container) :is(
+  [class*="DialogTooltip"],
+  [role="tooltip"]
+) {
+  background: var(--ngo-paper) !important;
+  border: 2px solid var(--ngo-brown-dark) !important;
+  border-radius: 0 !important;
+  color: var(--ngo-ink) !important;
+  box-shadow: var(--ngo-card-shadow) !important;
+  backdrop-filter: none !important;
+}
+
+/* Popup menu, unlike a top navigation bar, must always remain cream/ink. */
+:where(.DesktopUI, .fullheight, .friendsui-container) :is(
+  [class*="DialogContextMenu"],
+  [class*="DialogMenu_"],
+  [class*="contextmenu_ContextMenu"],
+  [role="menu"]
+) {
+  background: var(--ngo-paper) !important;
+  color: var(--ngo-ink) !important;
+  border: 2px solid var(--ngo-brown-dark) !important;
+  border-radius: 0 !important;
+  box-shadow: 3px 3px 0 var(--ngo-brown-dark) !important;
+  backdrop-filter: none !important;
+}
+
+:where(.DesktopUI, .fullheight, .friendsui-container) :is(
+  [class*="DialogContextMenuItem"],
+  [class*="DialogMenuItem"],
+  [role="menuitem"]
+) {
+  color: var(--ngo-ink) !important;
+  border-radius: 0 !important;
+  text-shadow: none !important;
+}
+
+:where(.DesktopUI, .fullheight, .friendsui-container) :is(
+  [class*="DialogContextMenuItem"],
+  [class*="DialogMenuItem"],
+  [role="menuitem"]
+):is(:hover, :focus-visible, [aria-selected="true"]) {
+  background: var(--ngo-brown-dark) !important;
+  color: var(--ngo-ivory) !important;
+}
+
+/* 18 — Library sidebar: taupe frame, cream list, distinct brown selection. */
+:where(.DesktopUI, .fullheight) :is(
+  [class*="gamelistbar_Container"],
+  [class*="gamelistbar_GameListBar"],
+  [class*="gamelistbar_GameListContainer"],
+  [class*="gamelist_GameList"],
+  [class*="gamelistsectionheader_Container"]
+) {
+  background-color: var(--ngo-taupe) !important;
+  color: var(--ngo-ink) !important;
+}
+
+:where(.DesktopUI, .fullheight) :is(
+  [class*="gamelistentry_Container"],
+  [class*="gamelistsectionheader_SectionHeaderContent"]
+) {
+  font-family: var(--ngo-departure) !important;
+  color: var(--ngo-ink) !important;
+  border-radius: 0 !important;
+  text-shadow: none !important;
+}
+
+:where(.DesktopUI, .fullheight) [class*="gamelistentry_Container"]:hover {
+  background: var(--ngo-selected) !important;
+  color: var(--ngo-ink) !important;
+}
+
+:where(.DesktopUI, .fullheight) [class*="gamelistentry_Container"][class*="Selected"],
+:where(.DesktopUI, .fullheight) [class*="gamelistentry_Container"][class*="selected"] {
+  background: var(--ngo-header-stripes) !important;
+  color: var(--ngo-ivory) !important;
+  box-shadow: inset 3px 0 0 var(--ngo-orange) !important;
+}
+
+:where(.DesktopUI, .fullheight) [class*="gamelistentry_Container"][class*="Selected"] :is(span, div, svg),
+:where(.DesktopUI, .fullheight) [class*="gamelistentry_Container"][class*="selected"] :is(span, div, svg) {
+  color: var(--ngo-ivory) !important;
+  text-shadow: none !important;
+}
+
+/* Sidebar dividers resemble Hydra's taskbar separators. */
+:where(.DesktopUI, .fullheight) :is(
+  [class*="gamelistsectionheader_Container"],
+  [class*="gamelistsectionheader_SectionHeaderContent"]
+) {
+  border-bottom: 1px solid var(--ngo-sand-dark) !important;
+}
+
+/* 19 — Hydra-style library shelf headers and card frames. */
+:where(.DesktopUI, .fullheight) [class*="libraryhomeshowcases_ShowcaseHeader"] {
+  background: var(--ngo-header-stripes) !important;
+  border: 2px solid var(--ngo-brown-dark) !important;
+  box-shadow: inset 0 2px rgba(255,250,241,.16), var(--ngo-shadow-step) !important;
+  color: var(--ngo-ivory) !important;
+  border-radius: 0 !important;
+  text-shadow: 1px 1px 0 var(--ngo-ink) !important;
+  padding: 6px 10px !important;
+}
+
+:where(.DesktopUI, .fullheight) [class*="libraryhomeshowcases_ShowcaseHeader"] :is(
+  h1, h2, h3, span, a, svg
+) {
+  color: var(--ngo-ivory) !important;
+  text-shadow: none !important;
+}
+
+/* Count chips stay dark on ivory even when nested inside brown headers. */
+:where(.DesktopUI, .fullheight) [class*="libraryhomeshowcases_ShowcaseHeader"] [class*="CountDisplay"] {
+  color: var(--ngo-ink) !important;
+  background: var(--ngo-paper) !important;
+  text-shadow: none !important;
+}
+
+:where(.DesktopUI, .fullheight) [class*="libraryhomeshowcases_ShowcaseHeader"] [class*="CountDisplay"] :is(span, svg) {
+  color: var(--ngo-ink) !important;
+}
+
+/* Shelf sorting selectors may be rendered as beige select buttons. */
+:where(.DesktopUI, .fullheight) [class*="libraryhomeshowcases_ShowcaseHeader"] :is(
+  [class*="SortingDropDown"], [class*="CollectionDropDown"]
+) {
+  background-color: var(--ngo-sand) !important;
+  border: 1px solid var(--ngo-brown-dark) !important;
+  color: var(--ngo-ink) !important;
+  text-shadow: none !important;
+}
+
+:where(.DesktopUI, .fullheight) [class*="libraryhomeshowcases_ShowcaseHeader"] :is(
+  [class*="SortingDropDown"], [class*="CollectionDropDown"]
+) :is(span, svg) { color: var(--ngo-ink) !important; }
+
+/* Buttons inside a shelf header remain standalone raised buttons. */
+:where(.DesktopUI, .fullheight) [class*="libraryhomeshowcases_ShowcaseHeader"] :is(
+  [class*="AddShowcase"], [class*="PageLeft"], [class*="PageRight"]
+) {
+  color: var(--ngo-ink) !important;
+  text-shadow: none !important;
+}
+
+:where(.DesktopUI, .fullheight) :is(
+  [class*="libraryhomeshowcases_Showcase"],
+  [class*="libraryhomenewupdates_UpdatesContainer"],
+  [class*="libraryhomeplaynext_Container"]
+) {
+  border-radius: 0 !important;
+}
+
+:where(.DesktopUI, .fullheight) [class*="appportrait_LibraryItemBox"] {
+  border: 2px solid var(--ngo-brown-dark) !important;
+  border-radius: 0 !important;
+  box-shadow: 2px 2px 0 var(--ngo-ink), 4px 4px 0 var(--ngo-sand-dark) !important;
+  overflow: hidden !important;
+  transition: none !important;
+}
+
+:where(.DesktopUI, .fullheight) [class*="appportrait_LibraryItemBox"]:hover {
+  border-color: var(--ngo-orange) !important;
+  box-shadow: 2px 2px 0 var(--ngo-brown-dark), 4px 4px 0 var(--ngo-sand-dark) !important;
+}
+
+/* Preserve the image; fix only the info/status overlays atop covers. */
+:where(.DesktopUI, .fullheight) :is(
+  [class*="appportrait_RecentGameFooter"],
+  [class*="appportrait_Footer"],
+  [class*="appportrait_Subtitle"]
+) {
+  color: var(--ngo-ink) !important;
+  text-shadow: none !important;
+}
+
+/* News feed cards: cream copy panels and warm separators, not washed-out type. */
+:where(.DesktopUI, .fullheight) :is(
+  [class*="libraryhomenewupdates_PartnerEventRowCapsule_TextCtn"],
+  [class*="libraryhomenewupdates_EventDetails"],
+  [class*="libraryhomeplaynext_PlayNextSubHead"]
+) {
+  color: var(--ngo-ink) !important;
+  background-color: var(--ngo-paper) !important;
+  border-color: var(--ngo-brown-dark) !important;
+}
+
+:where(.DesktopUI, .fullheight) :is(
+  [class*="libraryhomenewupdates_EventTime"],
+  [class*="libraryhomerecentgames_AddedDate"]
+) {
+  color: var(--ngo-muted) !important;
+  opacity: 1 !important;
+}
+
+/* 20 — Game pages: same composition as Hydra's hero toolbar + sidecards. */
+:where(.DesktopUI, .fullheight) [class*="appdetailsplaysection_PlayBar"] {
+  background: var(--ngo-taupe) !important;
+  border: 2px solid var(--ngo-brown-dark) !important;
+  box-shadow: var(--ngo-card-shadow) !important;
+  color: var(--ngo-ink) !important;
+  border-radius: 0 !important;
+}
+
+:where(.DesktopUI, .fullheight) :is(
+  [class*="appdetailsplaysection_GameStat"],
+  [class*="appdetailsplaysection_StatusAndStats"],
+  [class*="appdetailsplaysection_GameStatsSection"],
+  [class*="appdetailsplaysection_Playtime"],
+  [class*="appdetailsplaysection_LastPlayed"]
+) {
+  color: var(--ngo-ink) !important;
+  text-shadow: none !important;
+}
+
+:where(.DesktopUI, .fullheight) :is(
+  [class*="appdetailssection_Container"],
+  [class*="appdetailsachievementssection_Container"],
+  [class*="appdetailsactivitysection_Container"],
+  [class*="appdetailscommunityfeed_Container"]
+) {
+  background-color: var(--ngo-paper) !important;
+  border: 2px solid var(--ngo-brown-dark) !important;
+  border-radius: 0 !important;
+  color: var(--ngo-ink) !important;
+  box-shadow: var(--ngo-card-shadow) !important;
+}
+
+/* Section headers reflect Hydra's brown, striped sidebar card titles. */
+:where(.DesktopUI, .fullheight) :is(
+  [class*="appdetailssection_Header"],
+  [class*="appdetailssection_Highlight"],
+  [class*="appdetailsachievementssection_Header"],
+  [class*="appdetailsactivitysection_Header"],
+  [class*="appdetailscommunityfeed_Header"]
+) {
+  background: var(--ngo-header-stripes) !important;
+  color: var(--ngo-ivory) !important;
+  border-bottom: 2px solid var(--ngo-brown-dark) !important;
+  text-shadow: 1px 1px 0 var(--ngo-ink) !important;
+  border-radius: 0 !important;
+}
+
+:where(.DesktopUI, .fullheight) :is(
+  [class*="appdetailssection_Header"],
+  [class*="appdetailssection_Highlight"],
+  [class*="appdetailsachievementssection_Header"],
+  [class*="appdetailsactivitysection_Header"],
+  [class*="appdetailscommunityfeed_Header"]
+) :is(span, h1, h2, h3, svg) {
+  color: var(--ngo-ivory) !important;
+  text-shadow: none !important;
+}
+
+/* Cream content text without recoloring text printed over artwork. */
+:where(.DesktopUI, .fullheight) :is(
+  [class*="appdetailsplaysection_PlayBar"],
+  [class*="appdetailsachievementssection_Container"],
+  [class*="appdetailsactivitysection_Container"],
+  [class*="appdetailsprimarylinkssection_LinkInner"]
+) :is([class*="Label"], [class*="Stat"], [class*="Description"], [class*="Date"], [class*="Text"], [class*="Count"]) {
+  color: var(--ngo-ink) !important;
+  text-shadow: none !important;
+}
+
+/* Achievements game art and hero images intentionally inherit Steam colors. */
+
+/* 21 — Collection pages are paper cards with pinned, readable labels. */
+:where(.DesktopUI, .fullheight) [class*="allcollections_Collection_"] {
+  border: 2px solid var(--ngo-brown-dark) !important;
+  box-shadow: 2px 2px 0 var(--ngo-ink), 4px 4px 0 var(--ngo-sand-dark) !important;
+}
+
+:where(.DesktopUI, .fullheight) [class*="allcollections_CollectionLabel"] {
+  background: var(--ngo-ivory) !important;
+  color: var(--ngo-ink) !important;
+  border: 2px solid var(--ngo-brown-dark) !important;
+  border-radius: 0 !important;
+  box-shadow: var(--ngo-shadow-step) !important;
+  text-shadow: none !important;
+}
+
+:where(.DesktopUI, .fullheight) :is(
+  [class*="collectionview_CollectionHeader"],
+  [class*="appgrid_CollectionHeader"]
+) {
+  background: var(--ngo-header-stripes) !important;
+  color: var(--ngo-ivory) !important;
+  border: 2px solid var(--ngo-brown-dark) !important;
+}
+
+/* 22 — Downloads: strong orange progress with readable speed-history graph. */
+:where(.DesktopUI, .fullheight) :is(
+  [class*="downloads_ActiveDownloads"],
+  [class*="downloads_CompletedDownloads"],
+  [class*="downloaditem_DownloadItem"],
+  [class*="downloadsrow_DownloadRow"]
+) {
+  background-color: var(--ngo-sand) !important;
+  color: var(--ngo-ink) !important;
+  border: 2px solid var(--ngo-brown-dark) !important;
+  box-shadow: var(--ngo-card-shadow) !important;
+  border-radius: 0 !important;
+}
+
+:where(.DesktopUI, .fullheight) :is(
+  [class*="progressbar_ProgressBar"],
+  [class*="gamelistbar_ProgressBar"],
+  [class*="downloadgraph_GraphBackground"]
+) {
+  background: var(--ngo-sunken) !important;
+  border: 2px solid var(--ngo-brown-dark) !important;
+  box-shadow: var(--ngo-bevel-sink) !important;
+  border-radius: 0 !important;
+}
+
+:where(.DesktopUI, .fullheight) :is(
+  [class*="progressbar_Fill"],
+  [class*="progressbar_ProgressBarInner"],
+  [class*="gamelistbar_ProgressBarFill"],
+  [class*="downloadgraph_GraphBar"]
+) {
+  background-color: var(--ngo-orange) !important;
+  background-image: repeating-linear-gradient(90deg,
+    rgba(255,250,241,.16) 0 7px, rgba(32,38,40,.20) 7px 9px) !important;
+  box-shadow: inset 0 1px 0 rgba(255,250,241,.45) !important;
+  border-radius: 0 !important;
+}
+
+/* Historical bandwidth columns can be translucent blue in stock Steam. */
+:where(.DesktopUI, .fullheight) [class*="downloadgraph_GraphBar"] {
+  opacity: 1 !important;
+}
+
+/* 23 — Settings and dialogs: cream walls, dark ink, striped section headers. */
+:where(.DesktopUI, .fullheight) :is(
+  [class*="DialogContent"],
+  [class*="DialogBody"],
+  [class*="settings_SettingsPage"],
+  [class*="settings_SettingsContainer"]
+) {
+  color: var(--ngo-ink) !important;
+}
+
+:where(.DesktopUI, .fullheight) :is(
+  [class*="DialogHeader"],
+  [class*="settings_SectionHeader"]
+) {
+  color: var(--ngo-ink) !important;
+  font-family: var(--ngo-departure) !important;
+  text-shadow: none !important;
+}
+
+:where(.DesktopUI, .fullheight) :is(
+  [class*="settings_SettingsNav"],
+  [class*="settings_NavContainer"],
+  [class*="settings_CategoryList"]
+) {
+  background-color: var(--ngo-taupe) !important;
+  color: var(--ngo-ink) !important;
+}
+
+:where(.DesktopUI, .fullheight) :is(
+  [class*="settings_NavItem"][class*="Selected"],
+  [class*="settings_Category"][class*="Selected"]
+) {
+  background: var(--ngo-brown-dark) !important;
+  color: var(--ngo-ivory) !important;
+  border-left: 3px solid var(--ngo-orange) !important;
+}
+
+:where(.DesktopUI, .fullheight) :is(
+  [class*="DialogContent_Transition"],
+  [class*="DialogContent_InnerWidth"],
+  [class*="DialogModal_Container"]
+) {
+  border-radius: 0 !important;
+}
+
+/* 24 — Friends window and chat: carry the same header + card geometry. */
+:where(.friendsui-container, .fullheight) :is(
+  [class*="friendListHeaderContainer"],
+  [class*="currentUserContainer"],
+  [class*="chatHeader"]
+) {
+  background: var(--ngo-header-stripes) !important;
+  color: var(--ngo-ivory) !important;
+  border-bottom: 2px solid var(--ngo-ink) !important;
+  box-shadow: inset 0 2px 0 rgba(255,250,241,.16) !important;
+}
+
+:where(.friendsui-container, .fullheight) :is(
+  [class*="friendListHeaderContainer"],
+  [class*="currentUserContainer"],
+  [class*="chatHeader"]
+) :is([class*="name"], [class*="Name"], [class*="title"], [class*="Title"]) {
+  color: var(--ngo-ivory) !important;
+}
+
+:where(.friendsui-container, .fullheight) :is(
+  [class*="friendsListContainer"],
+  [class*="ChatRoomList"],
+  [class*="chatRoomGroup"]
+) {
+  background-color: var(--ngo-taupe) !important;
+  color: var(--ngo-ink) !important;
+}
+
+:where(.friendsui-container, .fullheight) :is(
+  [class*="chatWindow"], [class*="ChatWindow"],
+  [class*="ChatMessageEntry"], [class*="chatTextarea"]
+) {
+  border-radius: 0 !important;
+}
+
+/* Never remove Steam online/offline/away semantic indicator colors. */
+
+/* 25 — Stepped scrollbars and tiny square counter/label badges. */
+:where(.DesktopUI, .fullheight, .friendsui-container) ::-webkit-scrollbar-track {
+  background: repeating-linear-gradient(45deg,
+    rgba(255,250,241,.30) 0 2px,
+    rgba(150,112,58,.13) 2px 5px), var(--ngo-taupe) !important;
+}
+
+:where(.DesktopUI, .fullheight, .friendsui-container) ::-webkit-scrollbar-thumb {
+  background: repeating-linear-gradient(90deg,
+    rgba(150,112,58,.18) 0 2px, transparent 2px 5px), var(--ngo-sand) !important;
+  border-top: 2px solid var(--ngo-ivory) !important;
+  border-left: 2px solid var(--ngo-ivory) !important;
+  border-right: 2px solid var(--ngo-brown-dark) !important;
+  border-bottom: 2px solid var(--ngo-brown-dark) !important;
+  border-radius: 0 !important;
+}
+
+:where(.DesktopUI, .fullheight, .friendsui-container) :is(
+  [class*="libraryhomeshowcases_CountDisplay"],
+  [class*="gamelistsectionheader_SectionCount"],
+  [class*="appdetailsachievementssection_Count"]
+) {
+  background: var(--ngo-paper) !important;
+  color: var(--ngo-ink) !important;
+  border: 1px solid var(--ngo-brown-dark) !important;
+  border-radius: 0 !important;
+  box-shadow: 1px 1px 0 var(--ngo-sand-dark) !important;
+  text-shadow: none !important;
+}
+
+/* 26 — Reset imported glossy transitions but leave game media alone. */
+:where(.DesktopUI, .fullheight, .friendsui-container) :is(
+  button, [role="button"], [role="tab"], [role="menuitem"]
+) {
+  font-family: var(--ngo-departure) !important;
+  border-radius: 0 !important;
+  transition-timing-function: steps(1, end) !important;
+}
+
+:where(.DesktopUI, .fullheight, .friendsui-container) :is(
+  button, [role="button"], [role="tab"], [role="menuitem"]
+):disabled {
+  opacity: .62 !important;
+  cursor: not-allowed !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :where(.DesktopUI, .fullheight, .friendsui-container) :is(
+    button, [role="button"], [role="tab"], [role="menuitem"]
+  ) {
+    transition: none !important;
+  }
+}
+
+/* 27 — Steam notification toasts and compact account badges: paper/ink parity.
+   Steam's native notifications are not Hydra achievement notifications; this
+   intentionally only affects their native frame, never game cover images. */
+:where(.DesktopUI, .fullheight) :is(
+  [class*="SteamNotification_"],
+  [class*="steamnotification_Notification"],
+  [class*="NotificationToast_Container"],
+  [class*="NotificationToast_Root"]
+) {
+  background-color: var(--ngo-sand) !important;
+  color: var(--ngo-ink) !important;
+  border: 2px solid var(--ngo-brown-dark) !important;
+  border-radius: 0 !important;
+  box-shadow: var(--ngo-bevel-raise), 3px 3px 0 var(--ngo-brown-dark) !important;
+}
+
+:where(.DesktopUI, .fullheight) :is(
+  [class*="steamnotification_NotificationTitle"],
+  [class*="SteamNotification_Title"],
+  [class*="NotificationToast_Title"]
+) {
+  color: var(--ngo-ink) !important;
+  text-shadow: none !important;
+}
+
+:where(.DesktopUI, .fullheight) :is(
+  [class*="steamnotification_NotificationBody"],
+  [class*="SteamNotification_Body"],
+  [class*="NotificationToast_Description"]
+) {
+  color: var(--ngo-muted) !important;
+  text-shadow: none !important;
+}
+
+/* Keep icon/logo/media colors as supplied by Steam. */
+
+/* ============================================================================
+   28 — SINGLE-FRAME LIBRARY SELECTORS
+   Steam's Win95 mixin draws its own bevel; the Hydra-parity overrides in
+   sections 16–17 also framed several nested label/wrapper elements.
+   Keep ONE frame on the actual dropdown control and remove the redundant
+   outer/inner rings on Collection View, Favorites and Sort By selectors.
+   ============================================================================ */
+
+/* The library showcase/app-grid dropdown shells are layout containers,
+   not buttons, so they must not get a second border. */
+:where(.DesktopUI, .fullheight) :is(
+  [class*="libraryhomeshowcases_CollectionDropDown_"],
+  [class*="libraryhomeshowcases_SortingDropDown_"],
+  [class*="appgrid_SortingDropDown_"]
+) {
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  outline: 0 !important;
+}
+
+/* Current-value labels shouldn't be rendered as little input boxes inside
+   an already-beveled selection control. Preserve their spacing/typography. */
+:where(.DesktopUI, .fullheight) :is(
+  [class*="libraryhomeshowcases_CollectionDropDown_"],
+  [class*="libraryhomeshowcases_SortingDropDown_"],
+  [class*="appgrid_SortingDropDown_"]
+) :is(
+  [class*="DialogDropDown_CurrentDisplay"],
+  [class*="DropdownLabel"],
+  [class*="dropdown_DropdownLabel"]
+) {
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  outline: 0 !important;
+}
+
+/* The actual Steam combo control gets the SINGLE inset bevel, without an
+   extra 2px solid frame layered around the upstream Win95 border effect. */
+:where(.DesktopUI, .fullheight) :is(
+  [class*="libraryhomeshowcases_CollectionDropDown_"],
+  [class*="libraryhomeshowcases_SortingDropDown_"],
+  [class*="appgrid_SortingDropDown_"]
+) :is(
+  [class*="sortingdropdowncontrolbutton_"],
+  .DialogDropDown,
+  [class*="dropdown_Dropdown_"]
+) {
+  background-color: var(--ngo-ivory) !important;
+  border: 0 !important;
+  box-shadow: var(--ngo-bevel-sink) !important;
+  color: var(--ngo-ink) !important;
+}
+
+/* Outer focus indicator stays visible for keyboard navigation. */
+:where(.DesktopUI, .fullheight) :is(
+  [class*="libraryhomeshowcases_CollectionDropDown_"],
+  [class*="libraryhomeshowcases_SortingDropDown_"],
+  [class*="appgrid_SortingDropDown_"]
+) :is(
+  [class*="sortingdropdowncontrolbutton_"],
+  .DialogDropDown,
+  [class*="dropdown_Dropdown_"]
+):focus-visible {
+  outline: 2px dashed var(--ngo-orange) !important;
+  outline-offset: 2px !important;
+}
+
+
+/* ==========================================================================
+   29 — DROPDOWN MENU ITEM / VALUE CLEANUP (2026-10-14)
+   Unlike the closed controls, Steam renders open listboxes in a portal.
+   Never frame their individual option rows as if they were input widgets.
+   ========================================================================== */
+
+/* Closed selector: the already-framed input owns the bevel, not its text. */
+:where(.DesktopUI, .fullheight, .friendsui-container) :is(
+  [class*="DialogDropDown_CurrentDisplay"],
+  [class*="dropdown_DropdownLabel"],
+  [class*="sortingdropdowncontrolbutton_"] [class*="CurrentDisplay"]
+) {
+  border: 0 !important;
+  box-shadow: none !important;
+  outline: 0 !important;
+  background: transparent !important;
+}
+
+/* Open dropdown: option rows are FLAT, with no stacked bevels or borders. */
+:where(.DesktopUI, .fullheight, .friendsui-container) :is(
+  [class*="DialogDropDownMenu_Item"],
+  [class*="DialogDropDownMenuItem"]
+) {
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  background-image: none !important;
+  background-color: transparent !important;
+  color: var(--ngo-ink) !important;
+  margin: 0 !important;
+}
+
+/* Keep a clear, accessible selection state without framing every row. */
+:where(.DesktopUI, .fullheight, .friendsui-container) :is(
+  [class*="DialogDropDownMenu_Item"],
+  [class*="DialogDropDownMenuItem"]
+):is(:hover, :focus-visible, [aria-selected="true"]) {
+  background-color: var(--ngo-selected) !important;
+  color: var(--ngo-ink) !important;
+  box-shadow: inset 3px 0 0 var(--ngo-orange) !important;
+}
+
+/* ============================================================================
+   30 — GAME DETAILS: readable stat captions & side-section titles
+   Exact component families: appdetailsplaysection, appdetailssectionheader.
+   Fixes pale Steam labels on the light Pixel95 background without applying
+   a blanket recolor to game banners, screenshots, avatars, or media.
+   ============================================================================ */
+
+/* Steam's original GameStat / PlayBarDetailLabel text can retain very pale
+   default colors even when the toolbar itself has been recolored. */
+:where(.DesktopUI, .fullheight) :is(
+  [class*="appdetailsplaysection_PlayBarDetailLabel"],
+  [class*="appdetailsplaysection_PlayBarLabel"],
+  [class*="appdetailsplaysection_GameStat"],
+  [class*="appdetailsplaysection_GameStatRight"],
+  [class*="appdetailsplaysection_LastPlayed"],
+  [class*="appdetailsplaysection_Playtime"]
+) {
+  color: var(--ngo-ink) !important;
+  opacity: 1 !important;
+  text-shadow: none !important;
+}
+
+:where(.DesktopUI, .fullheight) :is(
+  [class*="appdetailsplaysection_GameStat"],
+  [class*="appdetailsplaysection_GameStatRight"]
+) :is(span, div, p, small, strong) {
+  color: var(--ngo-ink) !important;
+  opacity: 1 !important;
+  text-shadow: none !important;
+}
+
+/* Real section-header component — differs from appdetailssection_Header.
+   This is the title rail for Friends, Notes, Screenshots and Activity.
+   Give it the same cream-on-brown striped header as Hydra's sidecards. */
+:where(.DesktopUI, .fullheight) [class*="appdetailssectionheader_SectionHeader"] {
+  background-color: var(--ngo-brown-dark) !important;
+  background-image: var(--ngo-header-stripes) !important;
+  border-bottom: 2px solid var(--ngo-brown-dark) !important;
+  color: var(--ngo-ivory) !important;
+  opacity: 1 !important;
+  text-shadow: 1px 1px 0 var(--ngo-ink) !important;
+}
+
+:where(.DesktopUI, .fullheight) [class*="appdetailssectionheader_SectionHeader"] :is(
+  span, div, h1, h2, h3, h4, small, svg
+) {
+  color: var(--ngo-ivory) !important;
+  opacity: 1 !important;
+}
+
+/* Headers sometimes use a standalone, separately colored child title. */
+:where(.DesktopUI, .fullheight) :is(
+  [class*="appdetailssectionheader_SectionTitle"],
+  [class*="appdetailssectionheader_SectionName"],
+  [class*="appdetailssectionheader_Title"]
+) {
+  color: var(--ngo-ivory) !important;
+  opacity: 1 !important;
+  text-shadow: 1px 1px 0 var(--ngo-ink) !important;
+}
+
+/* Friends and activity subsection captions stay on light surfaces, so
+   they need dark ink, not the light text of a brown title strip. */
+:where(.DesktopUI, .fullheight) :is(
+  [class*="appdetailsfriendssection_SubsectionHeader"],
+  [class*="appdetailsfriendssection_LabelHolder"],
+  [class*="appdetailsactivitysection_ViewLastNews"],
+  [class*="appdetailsactivitysection_InnerContainer"] [class*="SectionTitle"]
+) {
+  color: var(--ngo-ink) !important;
+  opacity: 1 !important;
+  text-shadow: none !important;
+}
+
+/* Preserve muted hierarchy for tertiary copy without vanishing into cream. */
+:where(.DesktopUI, .fullheight) :is(
+  [class*="appdetailsplaysection_StatusNameContainer"],
+  [class*="appdetailsplaysection_StatusAndStats"]
+) [class*="Description"] {
+  color: var(--ngo-muted) !important;
+  opacity: 1 !important;
 }

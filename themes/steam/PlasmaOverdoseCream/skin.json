@@ -1,8 +1,8 @@
 {
   "author": "Plasma Overdose Cream remix · based on ricewind012 Win95 v2.3.0",
   "name": "Plasma Overdose Cream · Pixel95",
-  "description": "Needy Girl Overdose-inspired Win95 pixel UI, cream palette, DepartureMono Nerd Font, KDE-only main-window titlebar.",
-  "version": "2.1.3",
+  "description": "Hydra-matched Plasma Overdose Cream / Pixel95: brown striped UI, cream bevels, orange highlights, DepartureMono; KWin main-window titlebar.",
+  "version": "3.0.2",
   "Patches": [
     {
       "MatchRegexString": ".DesktopUI",

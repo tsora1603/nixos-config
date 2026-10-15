@@ -8,11 +8,8 @@ in
     "Pictures/Wallpapers".source =
       link "${home}/nixos/wallpapers";
   
-    "Documents/Themes/PlasmaOverdoseCream-Hydra.css".source =
-      link "${home}/nixos/themes/hydralauncher/PlasmaOverdoseCream-Hydra.css";
-
-    "Documents/Themes/floraphonic-classic-game-action-positive-1-224407.mp3".source = 
-      link "${home}/nixos/themes/hydralauncher/floraphonic-classic-game-action-positive-1-224407.mp3";
+    "Documents/Themes/Hydra".source =
+      link "${home}/nixos/themes/hydralauncher";
 
     ".steam/steam/millennium/themes/PlasmaOverdoseCream".source =
       link "${home}/nixos/themes/steam/PlasmaOverdoseCream";
