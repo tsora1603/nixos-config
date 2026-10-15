@@ -37,6 +37,7 @@ in
 
   home-manager = {
     useGlobalPkgs = true;
+    backupFileExtension = "before-declarative";
     useUserPackages = true;
     extraSpecialArgs = { inherit inputs; };
     users.tsora = {

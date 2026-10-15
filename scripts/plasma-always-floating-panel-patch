@@ -41,9 +41,6 @@ readonly ALIGNED_COUNT=4
 
 readonly USER_DATA_HOME=${XDG_DATA_HOME:-$HOME/.local/share}
 readonly DEST="$USER_DATA_HOME/plasma/shells/$PKG_ID"
-readonly BIN_DIR="$HOME/.local/bin"
-readonly UNIT_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/systemd/user"
-readonly UNIT_NAME="$PROG.service"
 
 # Width of the floating gap. Comes from the panel-background SVG's `floating` prefix, whose
 # fallback -- and Breeze's value -- is 8. Override for a theme that uses something else.
@@ -525,51 +522,10 @@ build_override() {
 
 cmd_install() {
 	if [[ -d $DEST && ! -f "$DEST/$STAMP" ]]; then
-		die "$DEST already exists and was not created by $PROG.
-Refusing to overwrite what looks like your own shell package.
-Move it aside first if you want to continue."
-	fi
-
-	local self target
-	self=$(readlink -f -- "${BASH_SOURCE[0]}")
-	target="$BIN_DIR/$PROG"
-	mkdir -p -- "$BIN_DIR"
-	if [[ $self != "$(readlink -f -- "$target" 2>/dev/null)" ]]; then
-		install -Dm755 -- "$self" "$target"
-		log "installed $target"
+		die "$DEST already exists and is not managed by this patch"
 	fi
 
 	build_override && log "patched override installed at $DEST" || true
-
-	mkdir -p -- "$UNIT_DIR"
-	cat >"$UNIT_DIR/$UNIT_NAME" <<EOF
-[Unit]
-Description=Re-apply the always-floating Plasma panel patch
-Documentation=$HOMEPAGE
-After=graphical-session-pre.target
-Before=plasma-plasmashell.service
-PartOf=graphical-session.target
-ConditionPathExists=$DEST
-
-[Service]
-Type=oneshot
-ExecStart=$target refresh
-
-[Install]
-WantedBy=plasma-workspace.target
-EOF
-
-	if ! command -v systemctl >/dev/null 2>&1; then
-		warn "systemctl not found; enable $UNIT_DIR/$UNIT_NAME yourself"
-	elif systemctl --user daemon-reload 2>/dev/null &&
-		systemctl --user enable "$UNIT_NAME" >/dev/null 2>&1; then
-		log "enabled $UNIT_NAME (re-applies the patch before plasmashell starts)"
-	else
-		warn "could not enable $UNIT_NAME -- no systemd user session?"
-		warn "the override is installed; enable it later with:"
-		warn "  systemctl --user enable $UNIT_NAME"
-	fi
-
 	grow_panels
 	install_resize_snap
 	restart_shell
@@ -583,22 +539,16 @@ cmd_adjust() {
 }
 
 cmd_refresh() {
-	if [[ ! -d $DEST ]]; then
-		log "no override at $DEST; nothing to refresh (run '$PROG install' first)"
-		return 0
+	if [[ -d $DEST && ! -f "$DEST/$STAMP" ]]; then
+		die "$DEST already exists and is not managed by this patch"
 	fi
+
 	build_override && log "refreshed $DEST" || true
 }
 
 cmd_uninstall() {
 	shrink_panels
 	remove_resize_snap
-
-	if command -v systemctl >/dev/null 2>&1 && [[ -f "$UNIT_DIR/$UNIT_NAME" ]]; then
-		systemctl --user disable --now "$UNIT_NAME" >/dev/null 2>&1 || true
-	fi
-	rm -f -- "$UNIT_DIR/$UNIT_NAME"
-	command -v systemctl >/dev/null 2>&1 && systemctl --user daemon-reload || true
 
 	if [[ -d $DEST && ! -f "$DEST/$STAMP" ]]; then
 		warn "$DEST was not created by $PROG; leaving it alone"
@@ -608,7 +558,6 @@ cmd_uninstall() {
 	fi
 
 	rm -rf -- "${XDG_CACHE_HOME:-$HOME/.cache}/plasmashell/qmlcache"
-	rm -f -- "$BIN_DIR/$PROG"
 	restart_shell
 	log "done"
 }

@@ -10,7 +10,7 @@
       "org.vinegarhq.Sober" 
     ];
 
-    uninstallUnmanaged = true;
+    uninstallUnmanaged = false;
     uninstallUnused = false;
 
     update = {

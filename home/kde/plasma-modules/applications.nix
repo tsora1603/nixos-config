@@ -26,7 +26,6 @@
       dolphinrc = {
         CompactMode.PreviewSize = 16;
         DetailsMode.PreviewSize = 22;
-        General.ViewPropsTimestamp = "2026,10,12,20,19,24.041";
         "KFileDialog Settings" = {
           "Places Icons Auto-resize" = false;
           "Places Icons Static Size" = 22;
@@ -35,7 +34,6 @@
       katerc = {
         General = {
           "Days Meta Infos" = 30;
-          PinnedDocuments = "";
           "Save Meta Infos" = true;
           "Show Full Path in Title" = false;
           "Show Menu Bar" = true;
@@ -56,15 +54,7 @@
         };
       };
       spectaclerc = {
-        ImageSave = {
-          lastImageSaveLocation = "file:///home/tsora/Pictures/Screenshots/Screenshot_20261013_170852.png";
-          translatedScreenshotsFolder = "Screenshots";
-        };
         VideoSave.translatedScreencastsFolder = "Screencasts";
-        ViewerWindow = {
-          "2 screens: Height" = 677;
-          "2 screens: Width" = 968;
-        };
       };
       kiorc.Confirmations.ConfirmEmptyTrash = true;
     };

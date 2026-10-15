@@ -16,26 +16,44 @@ let
 
   installer = ../../scripts/plasma-always-floating-panel-patch;
 
-  bootstrap = pkgs.writeShellScript "install-floating-panel" ''
+  runner = pkgs.writeShellScript "plasma-floating-panel" ''
     export PATH="${lib.makeBinPath dependencies}:$PATH"
-
-    # Install only if the patch is missing.
-    if [ ! -f "$HOME/.local/share/plasma/shells/org.kde.plasma.desktop/.plasma-always-floating-panel-patch" ]; then
-      ${pkgs.bash}/bin/bash ${installer} install
-    fi
+    exec ${pkgs.bash}/bin/bash ${installer} "$@"
   '';
 in
 {
-  systemd.user.services.plasma-floating-bootstrap = {
+  home.file.".local/bin/plasma-always-floating-panel-patch".source =
+    runner;
+
+  systemd.user.services.plasma-always-floating-panel-patch = {
     Unit = {
-      Description = "Install always-floating Plasma panel patch";
-      After = [ "plasma-plasmashell.service" ];
+      Description = "Refresh the always-floating Plasma panel patch";
+      After = [ "graphical-session-pre.target" ];
+      Before = [ "plasma-plasmashell.service" ];
       PartOf = [ "plasma-workspace.target" ];
     };
 
     Service = {
       Type = "oneshot";
-      ExecStart = "${bootstrap}";
+      ExecStart = "${runner} refresh";
+    };
+
+    Install.WantedBy = [ "plasma-workspace.target" ];
+  };
+
+  systemd.user.services.plasma-floating-bootstrap = {
+    Unit = {
+      Description = "Configure floating panels and resize snapping";
+      After = [
+        "plasma-plasmashell.service"
+        "plasma-always-floating-panel-patch.service"
+      ];
+      PartOf = [ "plasma-workspace.target" ];
+    };
+
+    Service = {
+      Type = "oneshot";
+      ExecStart = "${runner} install --no-restart";
     };
 
     Install.WantedBy = [ "plasma-workspace.target" ];

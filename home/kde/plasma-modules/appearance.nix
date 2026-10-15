@@ -1,5 +1,5 @@
 # KDE colors, fonts, icon theme, splash screen, and titlebar colors.
-{ ... }:
+{ pkgs, ... }:
 {
   programs.plasma = {
     configFile = {
@@ -7,7 +7,7 @@
         General = {
           AccentColor = "150,112,58";
           LastUsedCustomAccentColor = "150,112,58";
-          TerminalApplication = "/nix/store/k39mzmgrkpx5p1mxcdf9c2j8g9igjz5b-ghostty-1.3.1/bin/ghostty --gtk-single-instance=true";
+          TerminalApplication = "${pkgs.ghostty}/bin/ghostty --gtk-single-instance=true";
           TerminalService = "com.mitchellh.ghostty.desktop";
           XftAntialias = true;
           XftHintStyle = "hintslight";

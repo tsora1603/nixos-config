@@ -87,9 +87,38 @@ py.buildPythonApplication rec {
     })
   ];
 
-  # Upstream tests may need network/authentication, which Nix builds lack.
+  # The PyPI source archive contains no upstream tests.
   doCheck = false;
-  pythonImportsCheck = [ "tidaler" ];
+  pythonImportsCheck = [ "tidaler.cli" "tidaler.gui" ];
+
+  doInstallCheck = true;
+  installCheckPhase = ''
+    runHook preInstallCheck
+
+    export HOME="$TMPDIR/tidaler-check-home"
+    export XDG_CONFIG_HOME="$HOME/.config"
+    export XDG_CACHE_HOME="$HOME/.cache"
+    export XDG_RUNTIME_DIR="$TMPDIR/tidaler-runtime"
+    export QT_QPA_PLATFORM=offscreen
+
+    mkdir -p "$HOME" "$XDG_RUNTIME_DIR"
+    chmod 700 "$XDG_RUNTIME_DIR"
+
+    export PYTHONPATH="$out/${py.python.sitePackages}:''${PYTHONPATH:-}"
+
+    "$out/bin/tidaler" --help > cli-help.txt
+    grep -q 'Usage:' cli-help.txt
+
+    "$out/bin/tidaler" dl --help > download-help.txt
+    grep -q 'Usage:' download-help.txt
+
+    "$out/bin/tidaler" --version > version.txt
+    grep -Fx '${version}' version.txt
+
+    ${py.python.interpreter} ${../tests/tidaler-smoke.py}
+
+    runHook postInstallCheck
+  '';
 
   meta = with pkgs.lib; {
     description = "TIDAL downloader with CLI and PySide6 GUI";

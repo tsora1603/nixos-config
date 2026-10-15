@@ -38,6 +38,14 @@
         inputs.qylock.nixosModules.default
         inputs.nix-flatpak.nixosModules.nix-flatpak
       ];
+      packages.x86_64-linux.tidaler =
+      let
+        pkgs = import nixpkgs { system = "x86_64-linux"; };
+      in
+      import ./packages/tidaler.nix { inherit pkgs; };
+        
+      checks.x86_64-linux.tidaler =
+        self.packages.x86_64-linux.tidaler;
     };
   };
 }

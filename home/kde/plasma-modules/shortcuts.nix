@@ -180,7 +180,6 @@
         minimizeAllOthersActiveScreen = [ ];
       };
       # Desktop and session
-      ActivityManager.switch-to-activity-97dcd993-5c49-4b35-865f-a78d457885d5 = [ ];
       plasmashell = {
         "Slideshow Wallpaper Next Image" = [ ];
         "activate application launcher" = "Alt+F1";
