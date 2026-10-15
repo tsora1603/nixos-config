@@ -166,7 +166,7 @@ in
     qbittorrent-enhanced
     lm_sensors # for fastfetch
     pciutils   # for fastfetch
-    _7zip-zstd-rar
+    unar # for .rar
   ];
 
   environment.localBinInPath = true;

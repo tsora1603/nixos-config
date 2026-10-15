@@ -12,6 +12,9 @@
         PreferredWebShortcuts = "";
         UsePreferredWebShortcutsOnly = false;
       };
+      powerdevil.AC.autoSuspend = {
+        action = "nothing";
+      };
     };
   };
 }
