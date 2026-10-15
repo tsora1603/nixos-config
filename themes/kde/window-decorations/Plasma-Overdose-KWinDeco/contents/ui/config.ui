@@ -1,0 +1,211 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ui version="4.0">
+ <class>PlasmaNSOKWinConfigDialog</class>
+ <widget class="QWidget" name="PlasmaNSOKWinConfigDialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>590</width>
+    <height>760</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Config Dialog</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <layout class="QFormLayout" name="formLayout_2">
+     <item row="0" column="0">
+      <widget class="QLabel" name="label">
+       <property name="text">
+        <string>Pixel Width</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="1">
+      <widget class="QSlider" name="kcfg_pixelWidth">
+       <property name="minimum">
+        <number>5</number>
+       </property>
+       <property name="maximum">
+        <number>100</number>
+       </property>
+       <property name="singleStep">
+        <number>1</number>
+       </property>
+       <property name="orientation">
+        <enum>Qt::Orientation::Horizontal</enum>
+       </property>
+       <property name="tickPosition">
+        <enum>QSlider::TickPosition::TicksBelow</enum>
+       </property>
+       <property name="tickInterval">
+        <number>5</number>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="0">
+      <widget class="QLabel" name="label_2">
+       <property name="text">
+        <string>Text, lines and buttons (#RRGGBB)</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="0">
+      <widget class="QLabel" name="label_3">
+       <property name="text">
+        <string>Window frame, active (#RRGGBB)</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="1">
+      <widget class="QLineEdit" name="kcfg_colorCyan">
+       <property name="placeholderText">
+        <string>#90F4E4</string>
+       </property>
+       <property name="maxLength">
+        <number>9</number>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="0">
+      <widget class="QLabel" name="label_4">
+       <property name="text">
+        <string>Title bar, active (#RRGGBB)</string>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="1">
+      <widget class="QLineEdit" name="kcfg_colorPink">
+       <property name="placeholderText">
+        <string>#F0D1F1</string>
+       </property>
+       <property name="maxLength">
+        <number>9</number>
+       </property>
+      </widget>
+     </item>
+     <item row="4" column="0">
+      <widget class="QLabel" name="label_5">
+       <property name="text">
+        <string>Bottom left rectangle, active (#RRGGBB)</string>
+       </property>
+      </widget>
+     </item>
+     <item row="4" column="1">
+      <widget class="QLineEdit" name="kcfg_colorMagenta">
+       <property name="placeholderText">
+        <string>#EAA0E8</string>
+       </property>
+       <property name="maxLength">
+        <number>9</number>
+       </property>
+      </widget>
+     </item>
+     <item row="5" column="0">
+      <widget class="QLabel" name="label_6">
+       <property name="text">
+        <string>Inactive window (#RRGGBB)</string>
+       </property>
+      </widget>
+     </item>
+     <item row="5" column="1">
+      <widget class="QLineEdit" name="kcfg_colorGray">
+       <property name="placeholderText">
+        <string>#E3E3E3</string>
+       </property>
+       <property name="maxLength">
+        <number>9</number>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="1">
+      <widget class="QLineEdit" name="kcfg_colorPurple">
+       <property name="placeholderText">
+        <string>#4D23CF</string>
+       </property>
+       <property name="maxLength">
+        <number>9</number>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+  <item><widget class="QGroupBox" name="shadowGroup"><property name="title"><string>Active window shadow</string></property><layout class="QVBoxLayout" name="shadowLayout"><item><widget class="QCheckBox" name="kcfg_shadowEnabled"><property name="text"><string>Enable window shadow (active windows)</string></property><property name="checked"><bool>true</bool></property></widget></item><item><layout class="QFormLayout" name="shadowFormLayout"><item row="0" column="0"><widget class="QLabel" name="shadowOpacityLabel"><property name="text"><string>Opacity</string></property></widget></item><item row="0" column="1"><widget class="QSpinBox" name="kcfg_shadowOpacity"><property name="minimum"><number>0</number></property><property name="maximum"><number>100</number></property><property name="value"><number>30</number></property><property name="suffix"><string> %</string></property><property name="singleStep"><number>5</number></property></widget></item><item row="1" column="0"><widget class="QLabel" name="shadowOffsetXLabel"><property name="text"><string>Horizontal offset (x pixel width)</string></property></widget></item><item row="1" column="1"><widget class="QSpinBox" name="kcfg_shadowOffsetX"><property name="minimum"><number>-16</number></property><property name="maximum"><number>16</number></property><property name="value"><number>2</number></property></widget></item><item row="2" column="0"><widget class="QLabel" name="shadowOffsetYLabel"><property name="text"><string>Vertical offset (x pixel width)</string></property></widget></item><item row="2" column="1"><widget class="QSpinBox" name="kcfg_shadowOffsetY"><property name="minimum"><number>-16</number></property><property name="maximum"><number>16</number></property><property name="value"><number>2</number></property></widget></item><item row="3" column="0"><widget class="QLabel" name="shadowColorLabel"><property name="text"><string>Shadow color (#RRGGBB)</string></property></widget></item><item row="3" column="1"><widget class="QLineEdit" name="kcfg_shadowColor"><property name="placeholderText"><string>#4D23CF</string></property><property name="maxLength"><number>9</number></property></widget></item></layout></item><item><widget class="QLabel" name="shadowInfoLabel"><property name="text"><string>The shadow is pixel-sharp, matching this decoration’s retro style.</string></property><property name="wordWrap"><bool>true</bool></property></widget></item></layout></widget></item>
+  <item>
+   <widget class="QGroupBox" name="inactiveShadowGroup">
+    <property name="title"><string>Inactive window shadow</string></property>
+    <layout class="QVBoxLayout" name="inactiveShadowLayout">
+     <item>
+      <widget class="QCheckBox" name="kcfg_inactiveShadowEnabled">
+       <property name="text"><string>Enable window shadow (inactive windows)</string></property>
+       <property name="checked"><bool>true</bool></property>
+      </widget>
+     </item>
+     <item>
+      <layout class="QFormLayout" name="inactiveShadowFormLayout">
+       <item row="0" column="0">
+        <widget class="QLabel" name="inactiveShadowOpacityLabel">
+         <property name="text"><string>Opacity</string></property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QSpinBox" name="kcfg_inactiveShadowOpacity">
+         <property name="minimum"><number>0</number></property>
+         <property name="maximum"><number>100</number></property>
+         <property name="value"><number>20</number></property>
+         <property name="suffix"><string> %</string></property>
+         <property name="singleStep"><number>5</number></property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QLabel" name="inactiveShadowOffsetXLabel">
+         <property name="text"><string>Horizontal offset (x pixel width)</string></property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QSpinBox" name="kcfg_inactiveShadowOffsetX">
+         <property name="minimum"><number>-16</number></property>
+         <property name="maximum"><number>16</number></property>
+         <property name="value"><number>2</number></property>
+        </widget>
+       </item>
+       <item row="2" column="0">
+        <widget class="QLabel" name="inactiveShadowOffsetYLabel">
+         <property name="text"><string>Vertical offset (x pixel width)</string></property>
+        </widget>
+       </item>
+       <item row="2" column="1">
+        <widget class="QSpinBox" name="kcfg_inactiveShadowOffsetY">
+         <property name="minimum"><number>-16</number></property>
+         <property name="maximum"><number>16</number></property>
+         <property name="value"><number>2</number></property>
+        </widget>
+       </item>
+       <item row="3" column="0">
+        <widget class="QLabel" name="inactiveShadowColorLabel">
+         <property name="text"><string>Shadow color (#RRGGBB)</string></property>
+        </widget>
+       </item>
+       <item row="3" column="1">
+        <widget class="QLineEdit" name="kcfg_inactiveShadowColor">
+         <property name="placeholderText"><string>#6A5C46</string></property>
+         <property name="maxLength"><number>9</number></property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <widget class="QLabel" name="inactiveShadowInfoLabel">
+       <property name="text"><string>Changes apply when the window loses focus. Use a different color or disable the inactive shadow independently.</string></property>
+       <property name="wordWrap"><bool>true</bool></property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+  </item></layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

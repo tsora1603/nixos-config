@@ -93,3 +93,7 @@ This revision corrects a broad `DialogDropDown` match that unintentionally style
 ## Game details contrast update (3.0.2)
 
 Improved contrast for Last Launched / Usage Time, Friends, Notes, Recordings and Screenshots, and Activity captions using the Steam appdetailsplaysection and appdetailssectionheader controls. Existing dropdown fixes and the Steam library structure are retained.
+
+## 3.0.3 contrast correction
+
+Steam game-detail captions and section names now receive dark ink on light panels. This revision also overrides nested inline label colors and parent opacity, and avoids restricting the new rules to a `.DesktopUI` ancestor. Game image content is unchanged. Test this in Steam after a complete restart; older client CSS module names can differ.

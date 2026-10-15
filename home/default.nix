@@ -6,7 +6,7 @@
     ./ghostty.nix
     ./git.nix
     ./home.nix
-    ./kwin.nix
+    ./kde
     ./shell.nix
     ./ssh.nix
     ./vesktop.nix

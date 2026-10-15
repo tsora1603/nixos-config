@@ -1246,84 +1246,105 @@
 }
 
 /* ============================================================================
-   30 — GAME DETAILS: readable stat captions & side-section titles
-   Exact component families: appdetailsplaysection, appdetailssectionheader.
-   Fixes pale Steam labels on the light Pixel95 background without applying
-   a blanket recolor to game banners, screenshots, avatars, or media.
+   31 — GAME DETAILS / REAL CONTRAST CORRECTION (3.0.3)
+   The earlier rules only targeted a few labels and inherited text color.
+   Steam gives captions hard-coded colors and may fade their parent containers.
+   Do not require an ancestor called .DesktopUI: this also covers Steam's
+   internal content roots and classes retained across client updates.
    ============================================================================ */
 
-/* Steam's original GameStat / PlayBarDetailLabel text can retain very pale
-   default colors even when the toolbar itself has been recolored. */
-:where(.DesktopUI, .fullheight) :is(
-  [class*="appdetailsplaysection_PlayBarDetailLabel"],
-  [class*="appdetailsplaysection_PlayBarLabel"],
+/* In-game toolbar: stat captions, values and their real nested text nodes.
+   This intentionally excludes the Launch/Manage buttons and other chrome. */
+:is(
+  [class*="appdetailsplaysection_GameStatsSection"],
   [class*="appdetailsplaysection_GameStat"],
   [class*="appdetailsplaysection_GameStatRight"],
-  [class*="appdetailsplaysection_LastPlayed"],
-  [class*="appdetailsplaysection_Playtime"]
-) {
-  color: var(--ngo-ink) !important;
-  opacity: 1 !important;
-  text-shadow: none !important;
-}
-
-:where(.DesktopUI, .fullheight) :is(
+  [class*="appdetailsplaysection_PlayBarDetailLabel"],
+  [class*="appdetailsplaysection_PlayBarLabel"],
+  [class*="appdetailsplaysection_StatusNameContainer"]
+),
+:is(
+  [class*="appdetailsplaysection_GameStatsSection"],
   [class*="appdetailsplaysection_GameStat"],
-  [class*="appdetailsplaysection_GameStatRight"]
-) :is(span, div, p, small, strong) {
-  color: var(--ngo-ink) !important;
+  [class*="appdetailsplaysection_GameStatRight"],
+  [class*="appdetailsplaysection_PlayBarDetailLabel"],
+  [class*="appdetailsplaysection_PlayBarLabel"],
+  [class*="appdetailsplaysection_StatusNameContainer"]
+) :is(span, div, p, small, strong, label) {
+  color: #202628 !important;
+  -webkit-text-fill-color: #202628 !important;
   opacity: 1 !important;
   text-shadow: none !important;
 }
 
-/* Real section-header component — differs from appdetailssection_Header.
-   This is the title rail for Friends, Notes, Screenshots and Activity.
-   Give it the same cream-on-brown striped header as Hydra's sidecards. */
-:where(.DesktopUI, .fullheight) [class*="appdetailssectionheader_SectionHeader"] {
-  background-color: var(--ngo-brown-dark) !important;
-  background-image: var(--ngo-header-stripes) !important;
-  border-bottom: 2px solid var(--ngo-brown-dark) !important;
-  color: var(--ngo-ivory) !important;
-  opacity: 1 !important;
-  text-shadow: 1px 1px 0 var(--ngo-ink) !important;
-}
-
-:where(.DesktopUI, .fullheight) [class*="appdetailssectionheader_SectionHeader"] :is(
-  span, div, h1, h2, h3, h4, small, svg
+/* Restore parent contrast too. If a parent is translucent, an opaque child
+   remains washed out; fixing color on the child alone cannot work. */
+:is(
+  [class*="appdetailsplaysection_GameStatsSection"],
+  [class*="appdetailsplaysection_GameStat"],
+  [class*="appdetailsplaysection_GameStatRight"],
+  [class*="appdetailsplaysection_PlayBarDetailLabel"]
 ) {
-  color: var(--ngo-ivory) !important;
-  opacity: 1 !important;
+  filter: none !important;
 }
 
-/* Headers sometimes use a standalone, separately colored child title. */
-:where(.DesktopUI, .fullheight) :is(
+/* Library details section headings (Friends, Notes, Recordings, Activity).
+   Stay with the existing light Win95 sidebar treatment, but use solid ink.
+   Includes older and newer Steam class naming families. */
+:is(
+  [class*="appdetailssectionheader_SectionHeader"],
   [class*="appdetailssectionheader_SectionTitle"],
   [class*="appdetailssectionheader_SectionName"],
-  [class*="appdetailssectionheader_Title"]
+  [class*="appdetailssectionheader_Title"],
+  [class*="appdetailssection_SectionHeader"],
+  [class*="appdetailssection_SectionTitle"],
+  [class*="appdetailssection_SectionName"]
 ) {
-  color: var(--ngo-ivory) !important;
-  opacity: 1 !important;
-  text-shadow: 1px 1px 0 var(--ngo-ink) !important;
-}
-
-/* Friends and activity subsection captions stay on light surfaces, so
-   they need dark ink, not the light text of a brown title strip. */
-:where(.DesktopUI, .fullheight) :is(
-  [class*="appdetailsfriendssection_SubsectionHeader"],
-  [class*="appdetailsfriendssection_LabelHolder"],
-  [class*="appdetailsactivitysection_ViewLastNews"],
-  [class*="appdetailsactivitysection_InnerContainer"] [class*="SectionTitle"]
-) {
-  color: var(--ngo-ink) !important;
+  background-color: #d8d0c0 !important;
+  background-image: none !important;
+  color: #202628 !important;
+  -webkit-text-fill-color: #202628 !important;
   opacity: 1 !important;
   text-shadow: none !important;
 }
 
-/* Preserve muted hierarchy for tertiary copy without vanishing into cream. */
-:where(.DesktopUI, .fullheight) :is(
-  [class*="appdetailsplaysection_StatusNameContainer"],
-  [class*="appdetailsplaysection_StatusAndStats"]
-) [class*="Description"] {
-  color: var(--ngo-muted) !important;
+:is(
+  [class*="appdetailssectionheader_SectionHeader"],
+  [class*="appdetailssectionheader_SectionTitle"],
+  [class*="appdetailssectionheader_SectionName"],
+  [class*="appdetailssectionheader_Title"],
+  [class*="appdetailssection_SectionHeader"],
+  [class*="appdetailssection_SectionTitle"],
+  [class*="appdetailssection_SectionName"]
+) :is(span, div, h1, h2, h3, h4, p, small, label) {
+  color: #202628 !important;
+  -webkit-text-fill-color: #202628 !important;
   opacity: 1 !important;
+  text-shadow: none !important;
+}
+
+/* Some section titles are inside a generic Steam section header wrapper. */
+[class*="appdetailssection_AppDetailsSection"] :is(
+  [class*="SectionTitle"],
+  [class*="SectionHeader"],
+  [class*="SectionName"],
+  [class*="HeaderText"]
+) {
+  color: #202628 !important;
+  -webkit-text-fill-color: #202628 !important;
+  opacity: 1 !important;
+  text-shadow: none !important;
+}
+
+/* Strong but unobtrusive subtitle contrast on top of game banner images. */
+:is(
+  [class*="sharedappdetailsheader_"] [class*="Family"],
+  [class*="sharedappdetailsheader_"] [class*="Shared"],
+  [class*="appdetailsheader_"] [class*="Family"],
+  [class*="appdetailsheader_"] [class*="Shared"]
+) {
+  color: #fffaf1 !important;
+  -webkit-text-fill-color: #fffaf1 !important;
+  opacity: 1 !important;
+  text-shadow: 1px 1px 0 #202628, -1px -1px 0 #202628, 0 2px 2px #202628 !important;
 }

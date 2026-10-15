@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kcfg xmlns="http://www.kde.org/standards/kcfg/1.0"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.kde.org/standards/kcfg/1.0
+      http://www.kde.org/standards/kcfg/1.0/kcfg.xsd" >
+  <kcfgfile name=""/>
+
+  <group name="">
+    <entry name="pixelWidth" type="Int">
+      <default>15</default>
+    </entry>
+    <entry name="colorPurple" type="String">
+      <default>#202628</default>
+    </entry>
+    <entry name="colorCyan" type="String">
+      <default>#D8D0C0</default>
+    </entry>
+    <entry name="colorPink" type="String">
+      <default>#8A7C64</default>
+    </entry>
+    <entry name="colorMagenta" type="String">
+      <default>#C87922</default>
+    </entry>
+    <entry name="colorGray" type="String">
+      <default>#F0ECE0</default>
+    </entry>
+    <!-- Optional decoration shadow; offsets are multiples of pixelWidth. -->
+    <entry name="shadowEnabled" type="Bool">
+      <default>true</default>
+    </entry>
+    <entry name="shadowOpacity" type="Int">
+      <default>30</default>
+    </entry>
+    <entry name="shadowOffsetX" type="Int">
+      <default>2</default>
+    </entry>
+    <entry name="shadowOffsetY" type="Int">
+      <default>2</default>
+    </entry>
+    <entry name="shadowColor" type="String">
+      <default>#6A5C46</default>
+    </entry>
+    <!-- Independent shadow controls for unfocused windows. -->
+    <entry name="inactiveShadowEnabled" type="Bool">
+      <default>true</default>
+    </entry>
+    <entry name="inactiveShadowOpacity" type="Int">
+      <default>20</default>
+    </entry>
+    <entry name="inactiveShadowOffsetX" type="Int">
+      <default>2</default>
+    </entry>
+    <entry name="inactiveShadowOffsetY" type="Int">
+      <default>2</default>
+    </entry>
+    <entry name="inactiveShadowColor" type="String">
+      <default>#D8D0C0</default>
+    </entry>
+  </group>
+</kcfg>

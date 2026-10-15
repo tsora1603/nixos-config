@@ -2,7 +2,7 @@
   "author": "Plasma Overdose Cream remix · based on ricewind012 Win95 v2.3.0",
   "name": "Plasma Overdose Cream · Pixel95",
   "description": "Hydra-matched Plasma Overdose Cream / Pixel95: brown striped UI, cream bevels, orange highlights, DepartureMono; KWin main-window titlebar.",
-  "version": "3.0.2",
+  "version": "3.0.3",
   "Patches": [
     {
       "MatchRegexString": ".DesktopUI",
