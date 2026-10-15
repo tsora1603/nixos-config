@@ -32,13 +32,18 @@
     nixosConfigurations.hephaestus = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       specialArgs = { inherit inputs; };
+
       modules = [
         ./configuration.nix
         home-manager.nixosModules.home-manager
         inputs.qylock.nixosModules.default
         inputs.nix-flatpak.nixosModules.nix-flatpak
       ];
+<<<<<<< HEAD
     };
+=======
+    }; # nixosSystem ends here
+>>>>>>> f7bac0e (some fixes)
 
     packages.x86_64-linux.tidaler =
       let
@@ -48,5 +53,9 @@
 
     checks.x86_64-linux.tidaler =
       self.packages.x86_64-linux.tidaler;
+<<<<<<< HEAD
   };
+=======
+};
+>>>>>>> f7bac0e (some fixes)
 }
