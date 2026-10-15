@@ -81,3 +81,4 @@ This setup uses and builds on:
 - [Plasma Overdose](https://github.com/Notify-ctrl/Plasma-Overdose) by Notify-ctrl (the base for the local KDE theme)
 - [Millennium](https://github.com/SteamClientHomebrew/Millennium) and ricewind012’s [Win95 Steam theme](https://github.com/ricewind012/win95-themes/blob/master/docs/steam.md)
 - [Qylock](https://github.com/Darkkal44/qylock)
+- [plasma-always-floating-panel-patch](https://github.com/illatillmods/plasma-always-floating-panel-patch)
