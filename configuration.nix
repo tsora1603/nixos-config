@@ -13,8 +13,15 @@ in
     ./flatpaks.nix
   ];
 
+  # Graphics acceleration, including 32-bit games
+  hardware.graphics = {
+    enable = true;
+    enable32Bit = true;
+  };
+
   nixpkgs.overlays = [
     inputs.millennium.overlays.default
+    inputs.lsfg-vk.overlays.default
   ];
 
   fileSystems."/mnt/backup" = {
@@ -68,6 +75,8 @@ in
 
   # Use latest kernel.
   boot.kernelPackages = pkgs.linuxPackages_latest;
+
+  boot.kernelModules = [ "ntsync" ];
 
   networking.hostName = "hephaestus"; # Define your hostname.
 
@@ -158,6 +167,8 @@ in
   
     # Other stuff
     steam-run # to run FHS applications/scripts
+    mangojuice
+    mangohud
     (import ./packages/tidaler.nix { inherit pkgs; })
     parsec-bin
     yacreader
@@ -166,7 +177,10 @@ in
     qbittorrent-enhanced
     lm_sensors # for fastfetch
     pciutils   # for fastfetch
-    unar # for .rar    
+    unar # for .rar
+    _7zip-zstd-rar
+    lsfg-vk
+    vulkan-tools    
   ];
 
   environment.localBinInPath = true;

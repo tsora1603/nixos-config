@@ -28,7 +28,12 @@
     };
 
     bedrock-on-linux = {
-      url = "github:Wyze3306/BedrockOnLinux";
+      url = "github:Wyze3306/BedrockOnLinux/v2.2.9";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
+
+    lsfg-vk = {
+      url = "github:Daaboulex/lsfg-vk-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
