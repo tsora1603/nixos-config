@@ -33,7 +33,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }@inputs: {
+  outputs = { self, nixpkgs, home-manager, bedrock-on-linux, ... }@inputs: {
     nixosConfigurations.hephaestus = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       specialArgs = { inherit inputs; };
@@ -43,6 +43,12 @@
         home-manager.nixosModules.home-manager
         inputs.qylock.nixosModules.default
         inputs.nix-flatpak.nixosModules.nix-flatpak
+        
+        { 
+          environment.systemPackages = [
+            bedrock-on-linux.packages.x86_64-linux.default
+         ];
+        }
       ];
     }; # nixosSystem ends here
 

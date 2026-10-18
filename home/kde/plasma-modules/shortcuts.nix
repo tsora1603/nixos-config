@@ -182,7 +182,7 @@
       # Desktop and session
       plasmashell = {
         "Slideshow Wallpaper Next Image" = [ ];
-        "activate application launcher" = "Alt+F1";
+        "activate application launcher" = [ "Meta" ];
         "activate task manager entry 1" = [ ];
         "activate task manager entry 10" = [ ];
         "activate task manager entry 2" = [ ];
