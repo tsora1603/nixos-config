@@ -36,23 +36,34 @@
       url = "github:Daaboulex/lsfg-vk-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
   };
 
-  outputs = { self, nixpkgs, home-manager, bedrock-on-linux, ... }@inputs: {
+  outputs = { self, nixpkgs, home-manager, bedrock-on-linux, nix-cachyos-kernel, ... }@inputs: {
     nixosConfigurations.hephaestus = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       specialArgs = { inherit inputs; };
 
       modules = [
+        (
+          { pkgs, ... }:
+          {
+            nixpkgs.overlays = [
+              nix-cachyos-kernel.overlays.pinned
+            ];
+          }
+        )
+
         ./configuration.nix
         home-manager.nixosModules.home-manager
         inputs.qylock.nixosModules.default
         inputs.nix-flatpak.nixosModules.nix-flatpak
-        
-        { 
+
+        {
           environment.systemPackages = [
             bedrock-on-linux.packages.x86_64-linux.default
-         ];
+          ];
         }
       ];
     }; # nixosSystem ends here

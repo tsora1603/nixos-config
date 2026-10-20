@@ -61,6 +61,13 @@ in
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
+  # Use latest cachyos LTO kernel.
+  nix.settings.substituters = [ "https://attic.xuyh0120.win/lantian" ];
+  nix.settings.trusted-public-keys = [ "lantian:EeAUQ+W+6r7EtwnmYjeVwx5kOGEBpjlBfPlzGlTNvHc=" ];
+  boot.kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest-lto-x86_64-v3;
+
+  boot.kernelModules = [ "ntsync" ];
+
   # Add the Flathub remote so Discover has a Flatpak source.
   systemd.services.flatpak-repo = {
     wantedBy = [ "multi-user.target" ];
@@ -72,11 +79,6 @@ in
       flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
     '';
   };
-
-  # Use latest kernel.
-  boot.kernelPackages = pkgs.linuxPackages_latest;
-
-  boot.kernelModules = [ "ntsync" ];
 
   networking.hostName = "hephaestus"; # Define your hostname.
 

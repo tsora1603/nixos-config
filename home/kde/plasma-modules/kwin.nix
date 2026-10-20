@@ -1,8 +1,18 @@
 # KWin window management, native tiling, effects, and window rules.
-{ ... }:
+{ pkgs, ... }:
 {
   programs.plasma = {
     enable = true;
+    startup.startupScript."screen-scaling" = {
+      runAlways = true;
+      text = ''
+        ${pkgs.kdePackages.libkscreen}/bin/kscreen-doctor \
+          output.DP-1.rotation.none \
+          output.DP-1.position.0,260 \
+          output.HDMI-A-2.rotation.right \
+          output.HDMI-A-2.position.3440,0
+      '';
+    };
     configFile = {
       kwinrc = {
         # Desktops, focus, and pointer edges
@@ -78,9 +88,10 @@
           Description = "Settings for Steam";
           decocolor = "PlasmaOverdoseCream";
           decocolorrule = 2;
+          noborder = false;
           noborderrule = 2;
           wmclass = "steam";
-          wmclasscomplete = true;
+          wmclasscomplete = false;
           wmclassmatch = 1;
         };
 
