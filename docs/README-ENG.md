@@ -24,9 +24,9 @@ There are three main layers:
 
 | Layer | What it handles |
 | --- | --- |
-| [NixOS](docs/NIXOS.md) | Hardware, boot, users, networking, system services and packages |
-| [Home Manager](docs/HOME-MANAGER.md) | My applications, shell, dotfiles and files in my home directory |
-| [Plasma Manager](docs/PLASMA-MANAGER.md) | KDE preferences, shortcuts, window rules and wallpaper settings |
+| [NixOS](/docs/NIXOS.md) | Hardware, boot, users, networking, system services and packages |
+| [Home Manager](/docs/HOME-MANAGER.md) | My applications, shell, dotfiles and files in my home directory |
+| [Plasma Manager](/docs/PLASMA-MANAGER.md) | KDE preferences, shortcuts, window rules and wallpaper settings |
 
 The main package set follows NixOS 26.05. Zen Browser uses the separate
 unstable input, while other inputs provide: 
