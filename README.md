@@ -1,4 +1,7 @@
-Minha configuração pessoal do NixOS para desktop. **KDE Plasma com uma estética pixel art em tons de creme e marrom, usando o [Plasma Overdose](https://github.com/Notify-ctrl/Plasma-Overdose) como tema base**.
+[PT-BR](README.md) | [ENG](README-ENG.md)
+
+# Meu NixOS
+Minha configuração pessoal do NixOS. **KDE Plasma com uma estética pixel art em tons de creme e marrom, usando o [Plasma Overdose](https://github.com/Notify-ctrl/Plasma-Overdose) como tema base**.
 
 O setup utiliza NixOS 26.05 com **Home Manager** para as configurações do usuário e **Plasma Manager** para a configuração declarativa do KDE.
 
