@@ -1,4 +1,4 @@
-[PT-BR](README.md) | [ENG](README-ENG.md)
+[PT-BR](/README.md) | [ENG](/docs/README-ENG.md)
 
 # Meu NixOS
 Minha configuração pessoal do NixOS. **KDE Plasma com uma estética pixel art em tons de creme e marrom, usando o [Plasma Overdose](https://github.com/Notify-ctrl/Plasma-Overdose) como tema base**.
