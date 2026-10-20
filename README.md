@@ -1,13 +1,11 @@
-# My NixOS config
+Minha configuração pessoal do NixOS para desktop. **KDE Plasma com uma estética pixel art em tons de creme e marrom, usando o [Plasma Overdose](https://github.com/Notify-ctrl/Plasma-Overdose) como tema base**.
 
-My personal NixOS desktop config - heavily assisted by AI on the things I'm still learning. A setup of **KDE Plasma + a cream-brown pixel art aesthetic**.
+O setup utiliza NixOS 26.05 com **Home Manager** para as configurações do usuário e **Plasma Manager** para a configuração declarativa do KDE.
 
-It runs NixOS 26.05 with **Home Manager** for user settings and **Plasma Manager** for KDE configuration.
-
-This is tailored to my hardware and preferences, but the modules should
-make it fairly easy to find something you want to borrow.
+Esta configuração foi feita para o meu hardware e minhas preferências, mas a organização em módulos deve tornar fácil encontrar algo que você queira aproveitar.
 
 ## Screenshots
+
 <h3 align="center">🖥️ Plasma Overdose Cream</h3>
 <p align="center">
   <img src=".github/screenshot-1.png" width="90%" alt="Desktop">
@@ -17,68 +15,62 @@ make it fairly easy to find something you want to borrow.
   <img src=".github/screenshot-2.png" width="90%" alt="Desktop">
 </p>
 
-## How everything works:
-- [NixOS](docs/NIXOS.md)
-- [Home Manager](docs/HOME-MANAGER.md)
-- [Plasma Manager](docs/PLASMA-MANAGER.md)
+## Como tudo funciona
 
-There are three main layers:
+A configuração é dividida em três camadas principais:
 
-| Layer | What it handles |
+| Camada | Responsabilidades |
 | --- | --- |
-| NixOS | Hardware, boot, users, networking, system services and packages |
-| Home Manager | My applications, shell, dotfiles and files in my home directory |
-| Plasma Manager | KDE preferences, shortcuts, window rules and wallpaper settings |
+| [NixOS](docs/NIXOS.md) | Hardware, boot, usuários, rede, serviços do sistema e pacotes |
+| [Home Manager](docs/HOME-MANAGER.md) | Aplicativos, shell, dotfiles e arquivos no diretório home |
+| [Plasma Manager](docs/PLASMA-MANAGER.md) | Configurações do KDE, atalhos, window rules e wallpapers |
 
-[`flake.nix`](flake.nix) brings those layers together. It defines the `hephaestus`
-system and its dependencies; `flake.lock` records their exact revisions.
+O conjunto principal de pacotes segue o NixOS 26.05. O Zen Browser utiliza um input separado do `unstable`, enquanto os demais inputs fornecem:
 
-The main package set follows NixOS 26.05. Zen Browser uses the separate
-unstable input, while other inputs provide: 
 - `home-manager`;
-- `plasma-manager`; 
-- `nix-flatpak` (for declarative flatpak managing); 
-- `millennium` (for Steam ricing); 
-- `qylock` (for the awesome `sddm` screens); 
+- `plasma-manager`;
+- `nix-cachyos-kernel`;
+- `nix-flatpak` (para gerenciamento declarativo de Flatpaks);
+- `millennium` (para personalizar a Steam);
+- `qylock` (para os incríveis temas do `sddm`);
+- `bedrock-on-linux` (Minecraft Bedrock, versão GDK, rodando via Wine/Proton);
+- `lsfg-vk` (Lossless Scaling).
 
-## Validate and apply
+## Validar e aplicar
 
-From the repository root:
+A partir da raiz do repositório:
 
 ```sh
-# Evaluate the configuration without building the whole system
+# Avalia a configuração sem fazer o build do sistema inteiro
 nix flake check --no-build --no-write-lock-file
 
-# Build Tidaler and run its packaging checks
+# Faz o build do Tidaler e executa os checks de empacotamento
 nix build --no-link --no-write-lock-file .#tidaler
 ```
 
-The GitHub Actions workflow runs these checks too.
+O workflow do GitHub Actions também executa esses checks.
 
-To try and then persist the system configuration:
+Para testar e depois aplicar permanentemente a configuração do sistema:
 
 ```sh
 sudo nixos-rebuild test --flake .#hephaestus
 sudo nixos-rebuild switch --flake .#hephaestus
 ```
 
-`test` activates the configuration without making it the boot default.
-`switch` also makes it the default for subsequent boots.
+O comando `test` ativa a configuração sem defini-la como padrão para o próximo boot. Já o `switch` também a torna padrão para os próximos boots.
 
-If you’re adapting this setup, review the hardware configuration,
-username, home paths, monitor-specific settings and SSH identity first.
+Se você pretende adaptar este setup, revise primeiro a configuração de hardware, o nome de usuário, os paths do diretório home, as configurações específicas dos monitores e a identidade SSH.
 
-Leave `system.stateVersion` and `home.stateVersion` alone during
-routine updates: they control compatibility defaults, not package versions.
+Não altere `system.stateVersion` nem `home.stateVersion` durante atualizações rotineiras: essas opções controlam os padrões de compatibilidade, não as versões dos pacotes.
 
-## Credits
+## Créditos
 
-This setup uses and builds on:
+Este setup utiliza e se baseia nos seguintes projetos:
 
-- [NixOS](https://nixos.org/), [Home Manager](https://github.com/nix-community/home-manager) and [Plasma Manager](https://github.com/nix-community/plasma-manager)
-- [KDE Plasma](https://kde.org/pt-br/plasma-desktop/) and [Karousel](https://github.com/peterfajdiga/karousel)
-- [Pixora icons](https://github.com/tsora1603/pixora-icons) (my icon theme!)
-- [Plasma Overdose](https://github.com/Notify-ctrl/Plasma-Overdose) by Notify-ctrl (the base for the local KDE theme)
-- [Millennium](https://github.com/SteamClientHomebrew/Millennium) and ricewind012’s [Win95 Steam theme](https://github.com/ricewind012/win95-themes/blob/master/docs/steam.md)
+- [NixOS](https://nixos.org/), [Home Manager](https://github.com/nix-community/home-manager) e [Plasma Manager](https://github.com/nix-community/plasma-manager)
+- [KDE Plasma](https://kde.org/pt-br/plasma-desktop/) e [Karousel](https://github.com/peterfajdiga/karousel)
+- [Pixora icons](https://github.com/tsora1603/pixora-icons) (meu próprio tema de ícones!)
+- [Plasma Overdose](https://github.com/Notify-ctrl/Plasma-Overdose), por Notify-ctrl (a base do tema KDE)
+- [Millennium](https://github.com/SteamClientHomebrew/Millennium) e o [tema Win95 para Steam](https://github.com/ricewind012/win95-themes/blob/master/docs/steam.md), por ricewind012
 - [Qylock](https://github.com/Darkkal44/qylock)
 - [plasma-always-floating-panel-patch](https://github.com/illatillmods/plasma-always-floating-panel-patch)
