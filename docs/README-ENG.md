@@ -1,3 +1,6 @@
+[PT-BR](/README.md) | [ENG](/docs/README-ENG.md)
+
+# My NixOS
 My personal NixOS desktop config. **KDE Plasma + a cream-brown pixel art aesthetic based on the 
 [Plasma Overdose KDE theme](https://github.com/Notify-ctrl/Plasma-Overdose)**.
 
