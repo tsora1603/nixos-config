@@ -12,11 +12,11 @@ make it fairly easy to find something you want to borrow.
 ## Screenshots
 <h3 align="center">🖥️ Plasma Overdose Cream</h3>
 <p align="center">
-  <img src=".github/screenshot-1.png" width="90%" alt="Desktop">
+  <img src="/.github/screenshot-1.png" width="90%" alt="Desktop">
 </p>
 <h3 align="center">🐉 Hydra Launcher + Discord</h3>
 <p align="center">
-  <img src=".github/screenshot-2.png" width="90%" alt="Desktop">
+  <img src="/.github/screenshot-2.png" width="90%" alt="Desktop">
 </p>
 
 ## How everything works:
