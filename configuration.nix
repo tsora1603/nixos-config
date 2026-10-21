@@ -182,7 +182,8 @@ in
     unar # for .rar
     _7zip-zstd-rar
     lsfg-vk
-    vulkan-tools    
+    vulkan-tools
+    zoom-us
   ];
 
   environment.localBinInPath = true;
