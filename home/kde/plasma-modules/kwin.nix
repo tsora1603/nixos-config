@@ -1,11 +1,18 @@
 # KWin window management, native tiling, effects, and window rules.
 { config, lib, pkgs, ... }:
 {
-  # Drop retired script settings and shortcuts before applying native bindings.
+  # Remove user-installed copies too; removing a Nix package leaves these behind.
   home.activation.removeKarousel = lib.hm.dag.entryBetween
     [ "configure-plasma" ]
     [ "writeBoundary" ]
     ''
+      if [ -d ${lib.escapeShellArg "${config.xdg.dataHome}/kwin/scripts/karousel"} ]; then
+        $DRY_RUN_CMD ${pkgs.kdePackages.kpackage}/bin/kpackagetool6 \
+          --type KWin/Script \
+          --packageroot ${lib.escapeShellArg "${config.xdg.dataHome}/kwin/scripts"} \
+          --remove karousel
+      fi
+
       $DRY_RUN_CMD ${pkgs.python3}/bin/python \
         ${../../../scripts/remove-karousel-config.py} \
         ${lib.escapeShellArg config.xdg.configHome}
@@ -40,7 +47,10 @@
           CornerBarrier = false;
           EdgeBarrier = 0;
         };
-        Plugins.minimizeallEnabled = true;
+        Plugins = {
+          minimizeallEnabled = true;
+          karouselEnabled = false;
+        };
         # Native tiling configuration (including monitor-specific layouts)
         Tiling.padding = 4;
         "Tiling/2e81d7a2-3b84-447b-8e4c-9d527f014aa6/68306631-fe1e-4d4b-94ad-31e40cb6e5a5" = {

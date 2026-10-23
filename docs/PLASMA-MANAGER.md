@@ -46,9 +46,12 @@ scrolling a tiling viewport have no native KWin equivalent. Their old bindings
 are removed instead of being assigned unrelated actions. The former preset-width
 and viewport-centering shortcuts now resize and center the active window.
 
-Home Manager activation removes leftover Karousel plugin settings and shortcut
-entries before applying the native bindings. Log out and back in after the first
-switch so the running window manager releases the old script and shortcuts.
+Home Manager activation uninstalls any user-local Karousel copy from
+`$XDG_DATA_HOME/kwin/scripts/karousel` (normally `~/.local/share/kwin/scripts/karousel`),
+removes its old settings and shortcut entries, and explicitly disables the plugin
+before the next login. Removing the Nix package alone leaves user-installed
+copies behind. Log out and back in after the first switch so the running window
+manager releases the old script and shortcuts.
 
 ## The floating-panel patch
 
