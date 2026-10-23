@@ -1,6 +1,16 @@
 # KWin window management, native tiling, effects, and window rules.
-{ pkgs, ... }:
+{ config, lib, pkgs, ... }:
 {
+  # Drop retired script settings and shortcuts before applying native bindings.
+  home.activation.removeKarousel = lib.hm.dag.entryBetween
+    [ "configure-plasma" ]
+    [ "writeBoundary" ]
+    ''
+      $DRY_RUN_CMD ${pkgs.python3}/bin/python \
+        ${../../../scripts/remove-karousel-config.py} \
+        ${lib.escapeShellArg config.xdg.configHome}
+    '';
+
   programs.plasma = {
     enable = true;
     startup.startupScript."screen-scaling" = {

@@ -71,7 +71,7 @@ routine updates: they control compatibility defaults, not package versions.
 This setup uses and builds on:
 
 - [NixOS](https://nixos.org/), [Home Manager](https://github.com/nix-community/home-manager) and [Plasma Manager](https://github.com/nix-community/plasma-manager)
-- [KDE Plasma](https://kde.org/pt-br/plasma-desktop/) and [Karousel](https://github.com/peterfajdiga/karousel)
+- [KDE Plasma](https://kde.org/pt-br/plasma-desktop/)
 - [Pixora icons](https://github.com/tsora1603/pixora-icons) (my icon theme!)
 - [Plasma Overdose](https://github.com/Notify-ctrl/Plasma-Overdose) by Notify-ctrl (the base for the local KDE theme)
 - [Millennium](https://github.com/SteamClientHomebrew/Millennium) and ricewind012’s [Win95 Steam theme](https://github.com/ricewind012/win95-themes/blob/master/docs/steam.md)
