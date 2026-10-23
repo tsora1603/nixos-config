@@ -12,10 +12,6 @@
           --packageroot ${lib.escapeShellArg "${config.xdg.dataHome}/kwin/scripts"} \
           --remove karousel
       fi
-
-      $DRY_RUN_CMD ${pkgs.python3}/bin/python \
-        ${../../../scripts/remove-karousel-config.py} \
-        ${lib.escapeShellArg config.xdg.configHome}
     '';
 
   programs.plasma = {

@@ -27,7 +27,7 @@ Monitor-specific tile layouts remain in
 | Shortcut | Native KWin action |
 | --- | --- |
 | Meta + arrows | Focus a window in that direction (Meta + Alt + arrows also works) |
-| Meta + Shift + arrows | Move the active window toward an edge or neighboring window |
+| Meta + Shift + arrows | Move and resize the active window into the corresponding screen half (KWin Quick Tile) |
 | Meta + Shift + Home / End | Move the active window left / right |
 | Meta + Space | Toggle maximize (Meta + Page Up also works) |
 | Meta + Ctrl + minus / plus | Shrink / expand the active window horizontally |
@@ -36,6 +36,10 @@ Monitor-specific tile layouts remain in
 | Meta + Ctrl + Enter | Focus the next screen |
 | Meta + 1–9 / 0 | Send the active window to desktop 1–9 / 10 |
 | Meta + Ctrl + Shift + F11 / F12 | Send the active window to desktop 11 / 12 |
+
+Meta alone opens the existing Search widget (`org.kde.milou`, widget 485 in
+containment 428). Both its global action and its own `Shortcuts/global` setting
+are declared in `shortcuts.nix`. If the widget is recreated, update these IDs.
 
 Desktop transfers affect the active window and require the destination desktop
 to exist; the configuration currently declares one desktop. These actions do
@@ -47,10 +51,10 @@ are removed instead of being assigned unrelated actions. The former preset-width
 and viewport-centering shortcuts now resize and center the active window.
 
 Home Manager activation uninstalls any user-local Karousel copy from
-`$XDG_DATA_HOME/kwin/scripts/karousel` (normally `~/.local/share/kwin/scripts/karousel`),
-removes its old settings and shortcut entries, and explicitly disables the plugin
-before the next login. Removing the Nix package alone leaves user-installed
-copies behind. Log out and back in after the first switch so the running window
+`$XDG_DATA_HOME/kwin/scripts/karousel` (normally `~/.local/share/kwin/scripts/karousel`)
+and explicitly disables the plugin before the next login. Removing the Nix
+package alone leaves user-installed copies behind. Log out and back in after the
+first switch so the running window
 manager releases the old script and shortcuts.
 
 ## The floating-panel patch

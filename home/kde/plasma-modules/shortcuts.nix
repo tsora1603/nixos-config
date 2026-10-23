@@ -123,17 +123,17 @@
         "Window One Screen to the Left" = [ ];
         "Window One Screen to the Right" = [ ];
         "Window Operations Menu" = "Alt+F3";
-        # Move the active window toward an edge or a neighboring window.
-        "Window Pack Down" = "Meta+Shift+Down";
-        "Window Pack Left" = [ "Meta+Shift+Left" "Meta+Shift+Home" ];
-        "Window Pack Right" = [ "Meta+Shift+Right" "Meta+Shift+End" ];
-        "Window Pack Up" = "Meta+Shift+Up";
-        "Window Quick Tile Bottom" = [ ];
+        "Window Pack Down" = [ ];
+        "Window Pack Left" = "Meta+Shift+Home";
+        "Window Pack Right" = "Meta+Shift+End";
+        "Window Pack Up" = [ ];
+        # Move and resize the active window into a screen region.
+        "Window Quick Tile Bottom" = "Meta+Shift+Down";
         "Window Quick Tile Bottom Left" = [ ];
         "Window Quick Tile Bottom Right" = [ ];
-        "Window Quick Tile Left" = [ ];
-        "Window Quick Tile Right" = [ ];
-        "Window Quick Tile Top" = [ ];
+        "Window Quick Tile Left" = "Meta+Shift+Left";
+        "Window Quick Tile Right" = "Meta+Shift+Right";
+        "Window Quick Tile Top" = "Meta+Shift+Up";
         "Window Quick Tile Top Left" = [ ];
         "Window Quick Tile Top Right" = [ ];
         "Window Raise" = [ ];
@@ -184,7 +184,8 @@
       # Desktop and session
       plasmashell = {
         "Slideshow Wallpaper Next Image" = [ ];
-        "activate application launcher" = [ "Meta" ];
+        "activate application launcher" = [ ];
+        "activate widget 485" = [ "Meta" ]; # Search (org.kde.milou)
         "activate task manager entry 1" = [ ];
         "activate task manager entry 10" = [ ];
         "activate task manager entry 2" = [ ];
@@ -284,5 +285,10 @@
       };
       "services/zen-twilight.desktop"._launch = "Meta+W";
     };
+
+    # Plasma also reads the shortcut from the widget's own configuration.
+    # These IDs identify the existing Search widget; recreating it changes them.
+    configFile."plasma-org.kde.plasma.desktop-appletsrc".
+      "Containments/428/Applets/485/Shortcuts".global = "Meta";
   };
 }
