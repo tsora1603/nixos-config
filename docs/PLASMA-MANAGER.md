@@ -42,20 +42,7 @@ containment 428). Both its global action and its own `Shortcuts/global` setting
 are declared in `shortcuts.nix`. If the widget is recreated, update these IDs.
 
 Desktop transfers affect the active window and require the destination desktop
-to exist; the configuration currently declares one desktop. These actions do
-not transfer entire columns of windows.
-
-Numbered-column moves, column stacking/squeezing, moving a tail of windows and
-scrolling a tiling viewport have no native KWin equivalent. Their old bindings
-are removed instead of being assigned unrelated actions. The former preset-width
-and viewport-centering shortcuts now resize and center the active window.
-
-Home Manager activation uninstalls any user-local Karousel copy from
-`$XDG_DATA_HOME/kwin/scripts/karousel` (normally `~/.local/share/kwin/scripts/karousel`)
-and explicitly disables the plugin before the next login. Removing the Nix
-package alone leaves user-installed copies behind. Log out and back in after the
-first switch so the running window
-manager releases the old script and shortcuts.
+to exist; the configuration currently declares one desktop.
 
 ## The floating-panel patch
 
