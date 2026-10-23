@@ -148,7 +148,6 @@ in
     kdePackages.kcolorchooser # Color picker
     kdePackages.kolourpaint   # Simple paint program
     kdePackages.ksystemlog    # System log viewer
-    kdePackages.karousel      # Scrollable tiling Kwin script
     kdePackages.sddm-kcm      # SDDM configuration module
     kdiff3                    # File/directory comparison tool
 

@@ -8,8 +8,7 @@ Most preferences live under [`home/kde/plasma-modules/`](../home/kde/plasma-modu
 | `appearance.nix` | Fonts, icons, accent colors, splash screen and terminal preference |
 | `input.nix` | Keyboard layout, mouse settings and cursor theme |
 | `kwin.nix` | Focus behavior, window rules and native tiling layouts |
-| `karousel.nix` | Scrolling tiling, floating exceptions and Karousel shortcuts |
-| `shortcuts.nix` | General desktop and application shortcuts |
+| `shortcuts.nix` | Native KWin window actions, desktop and application shortcuts |
 | `applications.nix` | Dolphin, Kate, Spectacle and file dialog preferences |
 | `services.nix` | Miscellaneous desktop service settings |
 | `wallpapers.nix` | Desktop and lock-screen wallpapers |
@@ -20,12 +19,36 @@ module rather than relying on KDE's System Settings.
 
 ## Window management
 
-KWin handles the desktop, window rules and focus-following-the-mouse
-behavior, while Karousel tries to implement a scrolling tiling layout.
+KWin handles window rules, focus-following-the-mouse behavior and native tiling.
+Monitor-specific tile layouts remain in
+[`kwin.nix`](../home/kde/plasma-modules/kwin.nix), and window shortcuts live in
+[`shortcuts.nix`](../home/kde/plasma-modules/shortcuts.nix).
 
-The rules near the top of [`karousel.nix`](..home/kde/plasma-modules/karousel.nix) 
-decide which applications float. Small utilities, Dolphin and Ghostty are examples of floating
-exceptions. Rules can match either an application’s `window class` or its `title`.
+| Shortcut | Native KWin action |
+| --- | --- |
+| Meta + arrows | Focus a window in that direction (Meta + Alt + arrows also works) |
+| Meta + Shift + arrows | Move the active window toward an edge or neighboring window |
+| Meta + Shift + Home / End | Move the active window left / right |
+| Meta + Space | Toggle maximize (Meta + Page Up also works) |
+| Meta + Ctrl + minus / plus | Shrink / expand the active window horizontally |
+| Meta + R | Start interactive window resizing; confirm with Enter or cancel with Escape |
+| Meta + Alt + Enter | Center the active window |
+| Meta + Ctrl + Enter | Focus the next screen |
+| Meta + 1–9 / 0 | Send the active window to desktop 1–9 / 10 |
+| Meta + Ctrl + Shift + F11 / F12 | Send the active window to desktop 11 / 12 |
+
+Desktop transfers affect the active window and require the destination desktop
+to exist; the configuration currently declares one desktop. These actions do
+not transfer entire columns of windows.
+
+Numbered-column moves, column stacking/squeezing, moving a tail of windows and
+scrolling a tiling viewport have no native KWin equivalent. Their old bindings
+are removed instead of being assigned unrelated actions. The former preset-width
+and viewport-centering shortcuts now resize and center the active window.
+
+Home Manager activation removes leftover Karousel plugin settings and shortcut
+entries before applying the native bindings. Log out and back in after the first
+switch so the running window manager releases the old script and shortcuts.
 
 ## The floating-panel patch
 

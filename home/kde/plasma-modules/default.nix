@@ -5,7 +5,6 @@
     ./appearance.nix
     ./wallpapers.nix
     ./kwin.nix
-    ./karousel.nix
     ./shortcuts.nix
     ./input.nix
     ./applications.nix

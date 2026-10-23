@@ -71,7 +71,7 @@ Não altere `system.stateVersion` nem `home.stateVersion` durante atualizações
 Este setup utiliza e se baseia nos seguintes projetos:
 
 - [NixOS](https://nixos.org/), [Home Manager](https://github.com/nix-community/home-manager) e [Plasma Manager](https://github.com/nix-community/plasma-manager)
-- [KDE Plasma](https://kde.org/pt-br/plasma-desktop/) e [Karousel](https://github.com/peterfajdiga/karousel)
+- [KDE Plasma](https://kde.org/pt-br/plasma-desktop/)
 - [Pixora icons](https://github.com/tsora1603/pixora-icons) (meu próprio tema de ícones!)
 - [Plasma Overdose](https://github.com/Notify-ctrl/Plasma-Overdose), por Notify-ctrl (a base do tema KDE)
 - [Millennium](https://github.com/SteamClientHomebrew/Millennium) e o [tema Win95 para Steam](https://github.com/ricewind012/win95-themes/blob/master/docs/steam.md), por ricewind012
