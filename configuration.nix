@@ -184,6 +184,8 @@ in
     lsfg-vk
     vulkan-tools
     zoom-us
+    protonplus
+    libreoffice
   ];
 
   environment.localBinInPath = true;
