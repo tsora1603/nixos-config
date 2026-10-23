@@ -185,6 +185,14 @@ in
     zoom-us
     protonplus
     libreoffice
+
+    # pixora-icons stuff
+    parallel
+    imagemagick
+    vtracer
+    scour
+    python313Packages.lxml
+    python314Packages.lxml
   ];
 
   environment.localBinInPath = true;

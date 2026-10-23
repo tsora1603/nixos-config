@@ -103,6 +103,33 @@
           wmclass = "vesktop";
           wmclasscomplete = true;
           wmclassmatch = 1;
+
+          position = "3440,0";
+          positionrule = 3;
+          size = "1080,960";
+          sizerule = 3;
+
+          maximizehoriz = false;
+          maximizehorizrule = 3;
+          maximizevert = false;
+          maximizevertrule = 3;
+        };
+
+        # WhatsApp — Zen Twilight
+        "5" = {
+          Description = "Settings for WhatsApp Web on Zen-Twilight";
+          title = ".*WhatsApp [—–] Zen Twilight$";
+          titlematch = 3; # Regular expression
+
+          position = "3440,960";
+          positionrule = 3;
+          size = "1080,960";
+          sizerule = 3;
+
+          maximizehoriz = false;
+          maximizehorizrule = 3;
+          maximizevert = false;
+          maximizevertrule = 3;
         };
 
         # Rule ordering and count
