@@ -7,7 +7,8 @@
     packages = [
       "io.github.ciromattia.kcc"
       "io.mrarm.mcpelauncher"
-      "org.vinegarhq.Sober" 
+      "org.vinegarhq.Sober"
+      "org.strawberrymusicplayer.strawberry"
     ];
 
     uninstallUnmanaged = false;

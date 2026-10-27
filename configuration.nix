@@ -146,6 +146,7 @@ in
     kdePackages.kcharselect   # Character map
     kdePackages.kclock        # Clock app
     kdePackages.kcolorchooser # Color picker
+    kdePackages.kdenlive      # Video editor
     kdePackages.kolourpaint   # Simple paint program
     kdePackages.ksystemlog    # System log viewer
     kdePackages.sddm-kcm      # SDDM configuration module
@@ -205,7 +206,7 @@ in
   '';
 
   environment.plasma6.excludePackages = with pkgs; [
-    kdePackages.elisa          # Music player
+    kdePackages.elisa          # Audio player
     kdePackages.kdepim-runtime # Akonadi agents
     kdePackages.kmahjongg
     kdePackages.kmines
