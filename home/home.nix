@@ -1,9 +1,6 @@
 { ... }:
 
 {
-  xdg.configFile."btop/themes/plasma-overdose-cream.theme".source =
-    ../themes/btop/plasma-overdose-cream.theme;
-
   home.file = {
     "Pictures/Wallpapers".source = ../wallpapers;
 
@@ -15,6 +12,9 @@
 
     ".config/vesktop/themes/PlasmaOverdoseCream-Vesktop.css".source =
       ../themes/vesktop/PlasmaOverdoseCream-Vesktop.css;
+
+    ".config/btop/themes/plasma-overdose-cream.theme".source =
+      ../themes/btop/plasma-overdose-cream.theme
   };
 
   # Install each local KDE component separately so other themes can coexist.
