@@ -1,6 +1,9 @@
 { ... }:
 
 {
+  xdg.configFile."btop/themes/plasma-overdose-cream.theme".source =
+    ../themes/btop/plasma-overdose-cream.theme;
+
   home.file = {
     "Pictures/Wallpapers".source = ../wallpapers;
 

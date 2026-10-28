@@ -12,7 +12,15 @@
 
     bash.enable = true;
     eza.enable = true;
-    btop.enable = true;
+    btop = {
+      enable = true;
+      settings = {
+        color_theme = "plasma-overdose-cream";
+        theme_background = true;
+        truecolor = true;
+        rounded_corners = false;
+      };
+    };
   };
 
   home.sessionPath = [

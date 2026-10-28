@@ -1,0 +1,65 @@
+# Plasma Overdose Cream — matches the local KDE and Ghostty palettes.
+# Cream canvas, dark ink, brown borders and warm graph gradients.
+
+theme[main_bg]="#f0ece0"
+theme[main_fg]="#202628"
+theme[title]="#6a5c46"
+theme[hi_fg]="#875321"
+theme[selected_bg]="#6a5c46"
+theme[selected_fg]="#ffffff"
+theme[inactive_fg]="#776250"
+theme[graph_text]="#6a5c46"
+theme[meter_bg]="#d8d0c0"
+theme[proc_misc]="#96703a"
+
+# Panel outlines and separators.
+theme[cpu_box]="#96703a"
+theme[mem_box]="#8b5940"
+theme[net_box]="#776250"
+theme[proc_box]="#6a5c46"
+theme[div_line]="#8a7c64"
+
+# Temperature retains the KDE positive / warning / negative colors.
+theme[temp_start]="#39734a"
+theme[temp_mid]="#c87922"
+theme[temp_end]="#a83232"
+
+theme[cpu_start]="#8a7c64"
+theme[cpu_mid]="#96703a"
+theme[cpu_end]="#875321"
+
+theme[free_start]="#8a7c64"
+theme[free_mid]="#776250"
+theme[free_end]="#6a5c46"
+
+theme[cached_start]="#96703a"
+theme[cached_mid]="#875321"
+theme[cached_end]="#80523a"
+
+theme[available_start]="#8a7c64"
+theme[available_mid]="#776250"
+theme[available_end]="#6a5c46"
+
+theme[used_start]="#96703a"
+theme[used_mid]="#c87922"
+theme[used_end]="#a83232"
+
+theme[download_start]="#8a7c64"
+theme[download_mid]="#776250"
+theme[download_end]="#6a5c46"
+
+theme[upload_start]="#96703a"
+theme[upload_mid]="#946023"
+theme[upload_end]="#875321"
+
+theme[process_start]="#8a7c64"
+theme[process_mid]="#96703a"
+theme[process_end]="#875321"
+
+# Process follow/pause banners (btop 1.4.7+).
+theme[proc_pause_bg]="#a83232"
+theme[proc_follow_bg]="#6a5c46"
+theme[proc_banner_bg]="#875321"
+theme[proc_banner_fg]="#ffffff"
+theme[followed_bg]="#6a5c46"
+theme[followed_fg]="#ffffff"
