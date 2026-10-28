@@ -14,7 +14,7 @@
       ../themes/vesktop/PlasmaOverdoseCream-Vesktop.css;
 
     ".config/btop/themes/plasma-overdose-cream.theme".source =
-      ../themes/btop/plasma-overdose-cream.theme
+      ../themes/btop/plasma-overdose-cream.theme;
   };
 
   # Install each local KDE component separately so other themes can coexist.
