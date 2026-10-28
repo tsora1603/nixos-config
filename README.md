@@ -51,8 +51,6 @@ nix flake check --no-build --no-write-lock-file
 nix build --no-link --no-write-lock-file .#tidaler
 ```
 
-O workflow do GitHub Actions também executa esses checks.
-
 Para testar e depois aplicar permanentemente a configuração do sistema:
 
 ```sh
