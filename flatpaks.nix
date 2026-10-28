@@ -9,6 +9,7 @@
       "io.mrarm.mcpelauncher"
       "org.vinegarhq.Sober"
       "org.strawberrymusicplayer.strawberry"
+      "org.mediaharbor.MediaHarbor"
     ];
 
     uninstallUnmanaged = false;

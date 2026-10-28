@@ -76,10 +76,10 @@
           Description = "Settings for Ghostty";
           placement = 7;
           placementrule = 2;
-          size = "1080,644";
+          size = "1090,644";
           sizerule = 4;
           wmclass = "com.mitchellh.ghostty";
-          wmclasscomplete = true;
+          wmclasscomplete = false;
           wmclassmatch = 1;
         };
 
