@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ lib, ... }:
 {
   programs = {
     fish = {
@@ -31,6 +31,12 @@
   };  
 
   xdg.configFile = {
-    "fish/functions" = { source = ./fish/functions; recursive = true; };
+    "fish/functions" = {
+      source = lib.cleanSourceWith {
+        src = ./.;
+        filter = path: type: type == "directory" || lib.hasSuffix ".fish" path;
+      };
+      recursive = true;
+    };
   };
 }

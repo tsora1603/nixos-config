@@ -14,7 +14,7 @@ let
     kdePackages.qttools
   ];
 
-  installer = ../../scripts/plasma-always-floating-panel-patch;
+  installer = ../../../scripts/plasma-always-floating-panel-patch;
 
   runner = pkgs.writeShellScript "plasma-floating-panel" ''
     export PATH="${lib.makeBinPath dependencies}:$PATH"

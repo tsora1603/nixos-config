@@ -1,7 +1,7 @@
 # KDE: Modularized
 
-[`home/kde/default.nix`](../home/kde/default.nix) imports the desktop modules. 
-Most preferences live under [`home/kde/plasma-modules/`](../home/kde/plasma-modules):
+[`home/modules/kde/default.nix`](../home/modules/kde/default.nix) imports the desktop modules.
+Most preferences live under [`home/modules/kde/plasma-modules/`](../home/modules/kde/plasma-modules):
 
 | File | What to change there |
 | --- | --- |
@@ -21,8 +21,8 @@ module rather than relying on KDE's System Settings.
 
 KWin handles window rules, focus-following-the-mouse behavior and native tiling.
 Monitor-specific tile layouts remain in
-[`kwin.nix`](../home/kde/plasma-modules/kwin.nix), and window shortcuts live in
-[`shortcuts.nix`](../home/kde/plasma-modules/shortcuts.nix).
+[`kwin.nix`](../home/modules/kde/plasma-modules/kwin.nix), and window shortcuts live in
+[`shortcuts.nix`](../home/modules/kde/plasma-modules/shortcuts.nix).
 
 | Shortcut | Native KWin action |
 | --- | --- |
@@ -46,8 +46,8 @@ to exist; the configuration currently declares one desktop.
 
 ## The floating-panel patch
 
-[`floating-panel.nix`](..home/kde/floating-panel.nix) 
-connects the [panel patch](https://github.com/illatillmods/plasma-always-floating-panel-patch) 
+[`floating-panel.nix`](../home/modules/kde/floating-panel.nix)
+connects the [panel patch](https://github.com/illatillmods/plasma-always-floating-panel-patch)
 *(a bit modified for my setup)* to Home Manager and systemd user services.
 
 The patch keeps panels floating when windows touch them and adjusts

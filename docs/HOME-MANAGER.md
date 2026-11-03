@@ -4,7 +4,7 @@ Home Manager is included as a NixOS module. That means rebuilding the
 system also applies the configuration for the user; there
 isn’t a separate Home Manager command to remember.
 
-[`home/default.nix`](https://github.com/tsora1603/nixos-config/blob/main/home/default.nix) is the entry point. It imports smaller modules such
+[`home/default.nix`](https://github.com/tsora1603/nixos-config/blob/main/home/default.nix) is the entry point. It imports [`home/modules/default.nix`](../home/modules/default.nix), which loads modules such
 as `fish.nix`, `ghostty.nix`, `git.nix`, and the KDE directory.
 
 Each module owns a particular part of the setup. For example:
@@ -23,7 +23,7 @@ under the home directory. Conflicting unmanaged files get a
 Installing theme assets and selecting them are separate steps:
 
 - [`themes/`](../themes/) is the source for my custom themes.
-- [`home/themes.nix`](../home/themes.nix) links the local cream color scheme, cursor,
+- [`home/modules/themes.nix`](../home/modules/themes.nix) links the local cream color scheme, cursor,
 global theme, Plasma style and KWin decoration into their individual
 locations under `~/.local/share/`. It doesn't replace the parent theme
 directories, so other installed themes can coexist.
@@ -38,7 +38,7 @@ config doesn't include or download them.
 
 ### Application themes
 
-[`home/themes.nix`](../home/themes.nix) places the matching themes where the applications
+[`home/modules/themes.nix`](../home/modules/themes.nix) places the matching themes where the applications
 expect them:
 
 | Application | Installed location |
@@ -61,7 +61,7 @@ The repository’s [`wallpapers/`](../wallpapers/) directory is installed at
 `~/Pictures/Wallpapers`. The two monitor folders keep the collection
 organized; the selected images are configured in `wallpapers.nix`.
 
-[`wallpaper-hot-reload.nix`](../home/kde/wallpaper-hot-reload.nix) attempts to apply wallpaper changes to a
+[`wallpaper-hot-reload.nix`](../home/modules/kde/wallpaper-hot-reload.nix) attempts to apply wallpaper changes to a
 running Plasma session during Home Manager activation.
 
 ## Shell and everyday tools
@@ -72,7 +72,7 @@ palette, while Yazi provides the terminal file manager (still has to be tweaked 
 
 The `ls`, `ll`, `la` and `lt` aliases use `eza`.
 
-[`shell.nix`](../home/ssh.nix) also configures `nh` and scheduled cleanup with
+[`shell.nix`](../home/modules/shell.nix) also configures `nh` and scheduled cleanup with
 `--keep-since 7d --keep 5`. Its flake path currently expects this
 checkout at `/home/tsora/nixos`.
 
