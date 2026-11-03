@@ -2,6 +2,10 @@
 
 let
   system = pkgs.stdenv.hostPlatform.system;
+  unstable = import inputs.nixpkgs-unstable {
+    inherit system;
+    config.allowUnfree = true;
+  };
 in
 {
   imports = [
@@ -247,6 +251,9 @@ in
       };
     };
   };
+
+  services.power-profiles-daemon.enable = true;
+  services.upower.enable = true;
 
   # Enable touchpad support (enabled default in most desktopManager).
   # services.libinput.enable = true;
