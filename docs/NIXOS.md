@@ -1,15 +1,15 @@
 # The system side
 
 [`configuration.nix`](../configuration.nix) is the entry point. It imports the
-hardware configuration, Flatpak declarations and the modules below. Shared Nix
+Flatpak declarations and the modules below. Shared Nix
 settings and `system.stateVersion` stay in this file.
 
 | Module | What it configures |
 | --- | --- |
-| [`boot.nix`](../modules/boot.nix) | systemd-boot, CachyOS kernel, binary cache and ntsync |
+| [`boot.nix`](../modules/boot.nix) | systemd-boot, CachyOS kernel, binary cache, initrd drivers and kernel modules |
 | [`desktop.nix`](../modules/desktop.nix) | Plasma, SDDM, Qylock, graphics acceleration, fonts and Flatpak integration |
-| [`hardware.nix`](../modules/hardware.nix) | PipeWire audio, Bluetooth, firmware updates and power management |
-| [`system.nix`](../modules/system.nix) | Hostname, networking, locale, keyboard layout and backup SSD mount |
+| [`hardware.nix`](../modules/hardware.nix) | Hardware detection, platform, AMD microcode, audio, Bluetooth, firmware updates and power management |
+| [`system.nix`](../modules/system.nix) | Hostname, networking, locale, keyboard layout, filesystems and swap |
 | [`users.nix`](../modules/users.nix) | User account, Fish and Home Manager integration |
 | [`gaming.nix`](../modules/gaming.nix) | Millennium and lsfg-vk overlays, Steam and AppImage support |
 | [`packages.nix`](../modules/packages.nix) | System applications and the separate unstable package set |

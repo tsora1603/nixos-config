@@ -3,7 +3,6 @@
 
 {
   imports = [
-    ./hardware-configuration.nix
     ./flatpaks.nix
 
     ./modules/boot.nix

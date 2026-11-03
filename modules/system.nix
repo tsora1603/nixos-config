@@ -1,6 +1,21 @@
 { pkgs, ... }:
 
 {
+  fileSystems."/" = {
+    device = "/dev/disk/by-uuid/533c7954-2111-4c8d-a6c8-054983eb9878";
+    fsType = "ext4";
+  };
+
+  fileSystems."/boot" = {
+    device = "/dev/disk/by-uuid/E251-7799";
+    fsType = "vfat";
+    options = [ "fmask=0077" "dmask=0077" ];
+  };
+
+  swapDevices = [
+    { device = "/dev/disk/by-uuid/c1d8f42d-d665-4d3b-bc0b-68d5ec7995a5"; }
+  ];
+
   fileSystems."/mnt/backup" = {
     device = "/dev/disk/by-label/backup";
     fsType = "ext4";
