@@ -34,8 +34,4 @@
     "kwin/decorations/Plasma-Overdose-KWinDeco".source =
       ../themes/kde/window-decorations/Plasma-Overdose-KWinDeco;
   };
-
-  programs.onlyoffice.enable = true;
-  programs.vscodium.enable = true;
-  programs.prismlauncher.enable = true;
 }
