@@ -171,7 +171,6 @@ in
     steam-run # to run FHS applications/scripts
     mangojuice
     mangohud
-    (import ./packages/tidaler.nix { inherit pkgs; })
     parsec-bin
     yacreader
     hydralauncher
