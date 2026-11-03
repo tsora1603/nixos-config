@@ -43,9 +43,6 @@ From the repository root:
 ```sh
 # Evaluate the configuration without building the whole system
 nix flake check --no-build --no-write-lock-file
-
-# Build Tidaler and run its packaging checks
-nix build --no-link --no-write-lock-file .#tidaler
 ```
 
 To try and then persist the system configuration:

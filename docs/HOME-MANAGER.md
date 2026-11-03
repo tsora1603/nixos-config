@@ -12,18 +12,18 @@ Each module owns a particular part of the setup. For example:
 - `fish.nix` defines aliases, abbreviations and prompt configuration.
 - `ghostty.nix` configures the terminal and its matching color palette.
 - `ssh.nix` configures the GitHub SSH identity and starts an SSH agent.
-- `home.nix` installs wallpapers and application theme files.
+- `themes.nix` installs wallpapers and application theme files.
 
 Home Manager generates files and links them into the expected places
 under the home directory. Conflicting unmanaged files get a
-[`.before-declarative`](../configuration.nix#L40) backup rather than being silently overwritten.
+[`.before-declarative`](../modules/users.nix) backup rather than being silently overwritten.
 
 ## How the themes work
 
 Installing theme assets and selecting them are separate steps:
 
 - [`themes/`](../themes/) is the source for my custom themes.
-- [`home/home.nix`](../home/home.nix) links the local cream color scheme, cursor,
+- [`home/themes.nix`](../home/themes.nix) links the local cream color scheme, cursor,
 global theme, Plasma style and KWin decoration into their individual
 locations under `~/.local/share/`. It doesn't replace the parent theme
 directories, so other installed themes can coexist.
@@ -38,7 +38,7 @@ config doesn't include or download them.
 
 ### Application themes
 
-[`home/home.nix`](../home/home.nix) places the matching themes where the applications
+[`home/themes.nix`](../home/themes.nix) places the matching themes where the applications
 expect them:
 
 | Application | Installed location |

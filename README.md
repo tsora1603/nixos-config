@@ -46,9 +46,6 @@ A partir da raiz do repositório:
 ```sh
 # Avalia a configuração sem fazer o build do sistema inteiro
 nix flake check --no-build --no-write-lock-file
-
-# Faz o build do Tidaler e executa os checks de empacotamento
-nix build --no-link --no-write-lock-file .#tidaler
 ```
 
 Para testar e depois aplicar permanentemente a configuração do sistema:
