@@ -1,4 +1,3 @@
-# Machine-wide settings are grouped by purpose in modules/.
 { ... }:
 
 {

@@ -22,6 +22,4 @@
       ];
     };
   };
-
-  programs.fish.enable = true;
 }

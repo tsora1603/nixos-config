@@ -65,4 +65,6 @@ in
       ps.lxml
     ]))
   ];
+
+  programs.fish.enable = true;
 }
