@@ -8,7 +8,6 @@
     ./modules/desktop.nix
     ./modules/hardware.nix
     ./modules/system.nix
-    ./modules/umbriel.nix
     ./modules/users.nix
     ./modules/gaming.nix
     ./modules/packages.nix

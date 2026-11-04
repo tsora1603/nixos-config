@@ -11,7 +11,6 @@
     ./shell.nix
     ./ssh.nix
     ./themes.nix
-    ./umbriel.nix
     ./vesktop.nix
     ./yazi.nix
   ];
