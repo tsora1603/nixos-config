@@ -55,6 +55,7 @@ in
     zoom-us
     protonplus
     libreoffice
+    wine
 
     # pixora-icons stuff
     parallel
