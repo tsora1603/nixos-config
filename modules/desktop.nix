@@ -18,6 +18,7 @@
     };
   };
   services.flatpak.enable = true;
+  services.tailscale.enable = true;
 
   programs.qylock = {
     enable = true;

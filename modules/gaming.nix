@@ -1,20 +1,30 @@
-{ pkgs, inputs, ... }:
+{ pkgs, inputs, lib, ... }:
 
 {
   nixpkgs.overlays = [
-    inputs.millennium.overlays.default
     inputs.lsfg-vk.overlays.default
+  ];
+
+  services.playit = {
+    enable = true;
+    secretPath = "/etc/playit/secret.toml";
+  };
+
+  environment.systemPackages = with pkgs; [
+    temurin-bin
+    openssl
   ];
 
   programs.steam = {
     enable = true;
-    package = pkgs.millennium-steam;
+    protontricks.enable = true;
   };
 
   programs.appimage = {
     enable = true;
     binfmt = true; # Allows launching .AppImage files directly.
   };
+
 
   # Minecraft Bedrock server
   virtualisation.docker.enable = true;
@@ -23,29 +33,40 @@
     backend = "docker";
     containers.bedrock = {
       image = "itzg/minecraft-bedrock-server";
+
       ports = [
-        "19132:19132/udp"
-        "19132:19132/tcp"
+        "19142:19142/tcp"
+        "19143-19152:19143-19152/udp"
       ];
+
       volumes = [ "/srv/minecraft:/data" ];
+
       environment = {
+        SERVER_PORT = "19142";
+        SERVER_UDP_PORTS = "127.0.0.1:19143-19152:19143-19152";
+
+        LEVEL_NAME = "Os Okamas do Autista 251026 - Copy - Copy";
         ALLOW_LIST = "false";
         EULA = "TRUE";
         VERSION = "LATEST";
-        SERVER_NAME = "My NixOS Server";
+        SERVER_NAME = "Os Okamas do Autista";
         GAMEMODE = "survival";
         DIFFICULTY = "hard";
         MAX_PLAYERS = "10";
         ALLOW_CHEATS = "false";
         TZ = "America/Sao_Paulo";
+
+        # WaterdogPE backend
+        ONLINE_MODE = "false";
       };
     };
   };
 
-  # Create the world/data directory
   systemd.tmpfiles.rules = [ "d /srv/minecraft 0755 root root -" ];
 
-  # Bedrock with NetherNet needs TCP (signalling) and UDP (gameplay)
-  networking.firewall.allowedTCPPorts = [ 19132 ];
-  networking.firewall.allowedUDPPorts = [ 19132 ];
+  networking.firewall.allowedTCPPorts = [ 19132 19142 ];
+
+  networking.firewall.allowedUDPPorts = [
+    19133
+  ] ++ (lib.range 19143 19152);
 }

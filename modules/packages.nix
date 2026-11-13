@@ -56,6 +56,8 @@ in
     protonplus
     libreoffice
     wine
+    tailscale
+    tailscale-systray
 
     # pixora-icons stuff
     parallel

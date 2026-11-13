@@ -1,9 +1,15 @@
 {
   description = "tsora's NixOS config";
 
+  nixConfig = {
+    extra-substituters = [ "https://playit-nixos-module.cachix.org" ];
+    extra-trusted-public-keys = [ "playit-nixos-module.cachix.org-1:22hBXWXBbd/7o1cOnh+p0hpFUVk9lPdRLX3p5YSfRz4=" ];
+  };
+
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
+    playit-nixos-module.url = "github:pedorich-n/playit-nixos-module";
 
     home-manager = {
       url = "github:nix-community/home-manager/release-26.05";
@@ -14,8 +20,6 @@
       url = "github:0xc000022070/zen-browser-flake";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
-
-    millennium.url = "github:SteamClientHomebrew/Millennium?dir=packages/nix";
 
     qylock.url = "github:Darkkal44/qylock";
 
@@ -40,7 +44,7 @@
     nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
   };
 
-  outputs = { self, nixpkgs, home-manager, bedrock-on-linux, nix-cachyos-kernel, ... }@inputs: {
+  outputs = { self, nixpkgs, home-manager, bedrock-on-linux, nix-cachyos-kernel, playit-nixos-module, ... }@inputs: {
     nixosConfigurations.hephaestus = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       specialArgs = { inherit inputs; };
@@ -56,6 +60,7 @@
         )
 
         ./configuration.nix
+        playit-nixos-module.nixosModules.default
         home-manager.nixosModules.home-manager
         inputs.qylock.nixosModules.default
         inputs.nix-flatpak.nixosModules.nix-flatpak
