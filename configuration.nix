@@ -9,6 +9,7 @@
     ./modules/hardware.nix
     ./modules/system.nix
     ./modules/users.nix
+    ./modules/minecraft-bedrock.nix
     ./modules/gaming.nix
     ./modules/packages.nix
   ];
